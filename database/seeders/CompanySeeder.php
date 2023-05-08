@@ -15,14 +15,25 @@ class CompanySeeder extends Seeder
     public function run()
     {
         \DB::table('companies')->insert([
-            'user_id' => 1,
-            'name' => 'TESLA Vietnam',
-            'address' => 'Địa chỉ 1',
-            'about' => 'QUALITY SPEAKS FOR ITSELF Thành lập từ năm 2007 bởi các sáng lập viên là cựu du học sinh của chính phủ Úc, TESLA Vietnam là công ty hoạt động trong lĩnh vực CNTT với nòng cốt là các chuyên gia đầu ngành từ các tập đoàn công nghệ lớn của thế giới.',
-            'technologies' => json_encode(array('PHP', 'Javascript')),            
-            'people' => 100,
-            'logo' => '/public/media/logo.png',
-            'slogan' => 'QUALITY SPEAKS FOR ITSELF',
-        ]);
+            [
+                'user_id' => 1,
+                'name' => 'BSS Group',
+                'address' => 'Tầng 14, 16, 18 & 19, Viwaseen Tower, số 48 Tố Hữu, Phường Trung Văn, Quận Nam Từ Liêm, Thành phố Hà Nội',
+                'about' => 'BSS Group - Globally trusted partner for full service ecommerce solutions Since 2012, BSS has provided a wide range of products and services on multiple platforms, including Magento, Shopify, BigCommerce, and Shopware,... In 2022, we are thrilled to have Magestore and Simicart join the ecosystem to diversify our offerings to customers. From our humble beginnings with only 5 key members in our first office, BSS Group has now expanded to 300 members - including Ecommerce Solution Specialists, Certified Developers, PMP certified Project Managers, highly qualified Testers, and Marketers. To become a trusted full-service solution provider for multiple eCommerce platforms on a global scale, we are eager to find out the next talented generation to join us. We pride ourselves on: ',
+                'technologies' => json_encode(array('PHP', 'Javascript', 'AWS')),            
+                'people' => 100,
+                'logo' => 'bss-logo.png',
+                'slogan' => 'BSS Group - Globally trusted partner for full service ecommerce solutions',
+            ],
+            [
+                'user_id' => 2,
+                'name' => 'VITALIFY ASIA ( Công ty TNHH Vitalify Á Châu)',
+                'address' => '224A-224B Dien Bien Phu, Phường Võ Thị Sáu, Quận 3, Thành phố Hồ Chí Minh',
+                'about' => 'Vitalify Asia is a Japan-based technology company specialized in developing product (mobile/web) with partners and AI own product.',
+                'technologies' => json_encode(array('PHP', 'AWS')),            
+                'people' => 450,
+                'logo' => 'vitalify-asia-logo.jpg',
+                'slogan' => '',
+            ]]);
     }
 }

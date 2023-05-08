@@ -16,6 +16,10 @@ class Authenticate extends Middleware
     {
         if (!auth()->check()) {
             return route('admin.login');
+        } 
+        else if (auth()->user()->type != config('constants.USER.TYPE.ADMIN')) {
+            auth()->logout();
+            return route('admin.login');
         }
     }
 }

@@ -1,5 +1,9 @@
 @extends('admin.components.list')
 
-@section('title', $metadata['list'][0]->company->name . ' Job')
+@section('title', $metadata['list']['detail']->name . ' Job')
 
 @section('page', 'List')
+
+@slot('list')
+    {!! $metadata['list'] = $metadata['list']['list'] !!} 
+@endslot

@@ -8,13 +8,13 @@
 
         @yield('css')
 
-        <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/admin/css/bootstrap.min.css') }}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css" />
         
-        <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         
-        <link href="{{ asset('assets/css/app.min.css') }}" id="app-stylesheet" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/admin/css/app.min.css') }}" id="app-stylesheet" rel="stylesheet" type="text/css" />
 
-        <link href="{{ asset('assets/css/custom.css') }}" id="app-stylesheet" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/admin/css/custom.css') }}" id="app-stylesheet" rel="stylesheet" type="text/css" />
         
     </head>
 
@@ -126,7 +126,7 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item active">
                                     <div class="notify-icon">
-                                        <img src="{{ asset('assets/images/users/user-1.jpg') }}" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <img src="{{ asset('assets/admin/images/users/user-1.jpg') }}" class="img-fluid rounded-circle" alt="" /> </div>
                                     <p class="notify-details">Cristina Pride</p>
                                     <p class="text-muted mb-0 user-msg">
                                         <small>Hi, How are you? What about our next meeting</small>
@@ -146,7 +146,7 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <div class="notify-icon">
-                                        <img src="{{ asset('assets/images/users/user-4.jpg') }}" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <img src="{{ asset('assets/admin/images/users/user-4.jpg') }}" class="img-fluid rounded-circle" alt="" /> </div>
                                     <p class="notify-details">Karen Robinson</p>
                                     <p class="text-muted mb-0 user-msg">
                                         <small>Wow ! this admin looks good and awesome design</small>
@@ -196,7 +196,7 @@
 
                     <li class="dropdown notification-list topbar-dropdown">
                         <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src="{{ asset('assets/images/users/user-1.jpg') }}" alt="user-image" class="rounded-circle">
+                            <img src="{{ asset('assets/admin/images/users/user-1.jpg') }}" alt="user-image" class="rounded-circle">
                             <span class="pro-user-name ms-1">
                                 Nowak <i class="mdi mdi-chevron-down"></i> 
                             </span>
@@ -282,9 +282,9 @@
                     <!-- User box -->
                     <div class="user-box text-center">
 
-                        <img src="{{ asset('assets/images/users/user-1.jpg') }}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
+                        <img src="{{ asset('assets/admin/images/users/user-1.jpg') }}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
                             <div class="dropdown">
-                                <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"  aria-expanded="false">Nowak Helme</a>
+                                <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"  aria-expanded="false">{{ auth()->user()->name }}</a>
                                 <div class="dropdown-menu user-pro-dropdown">
 
                                     <!-- item-->
@@ -519,19 +519,19 @@
         <div class="rightbar-overlay"></div>
 
         <!-- Vendor -->
-        <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-        <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
-        <script src="{{ asset('assets/libs/waypoints/lib/jquery.waypoints.min.js') }}"></script>
-        <script src="{{ asset('assets/libs/jquery.counterup/jquery.counterup.min.js') }}"></script>
-        <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/libs/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/libs/simplebar/simplebar.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/libs/node-waves/waves.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/libs/waypoints/lib/jquery.waypoints.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/libs/jquery.counterup/jquery.counterup.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/libs/feather-icons/feather.min.js') }}"></script>
 
         <!-- knob plugin -->
-        <script src="{{ asset('assets/libs/jquery-knob/jquery.knob.min.js') }}"></script>
-        <script src="{{ asset('assets/libs/raphael/raphael.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/libs/jquery-knob/jquery.knob.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/libs/raphael/raphael.min.js') }}"></script>
         <!-- App js-->
-        <script src="{{ asset('assets/js/app.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/app.min.js') }}"></script>
         
         @yield('javascript')
     </body>

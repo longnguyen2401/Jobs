@@ -29,4 +29,25 @@ class Job extends Model
     {
         return $this->belongsTo('App\Models\Company');
     }
+
+    public function requests()
+    {
+        return $this->hasMany('App\Models\Request');
+    }
+
+    public function getArrLevelAttribute() {
+        return explode("|", $this->level);
+    }
+
+    public function getArrSkillAttribute() {
+        return explode("|", $this->skill);
+    }
+
+    public function getArrTypeAttribute() {
+        return explode("|", $this->type);
+    }
+
+    public function getCanApplyAttribute() {
+        return auth()->check() && auth()->user()->requests->firstWhere('job_id', $this->id) ? false : true;
+    }
 }

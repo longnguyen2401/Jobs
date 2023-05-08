@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+// Google Sign In
+Route::post('/get-google-sign-in-url', [\App\Http\Controllers\Api\GoogleController::class, 'getGoogleSignInUrl']);
+

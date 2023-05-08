@@ -1,0 +1,19 @@
+.list-unstyled i.icon.bg-soft-primary::before {
+    line-height: 46px !important;
+}
+
+.candidate-detail-social-menu li .social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bookmark-post .favorite-icon a, .job-box.bookmark-post .favorite-icon a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-box .favorite-icon {
+    display: none;
+}

@@ -18,7 +18,7 @@ class CompanyOperation extends BaseOperation
      * 
      * @var string
      */
-    protected array $default = array(
+    protected array $operation = array(
         [
             'action' => 'update'
         ],

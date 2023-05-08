@@ -8,16 +8,16 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="assets/admin/images/favicon.ico">
 
         <!-- Bootstrap Css -->
-        <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/admin/css/bootstrap.min.css') }}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css" />
         <!-- App css -->
 
-        <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
+        <link href="{{ asset('assets/admin/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
 
         <!-- icons -->
-        <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
     </head>
 

@@ -42,7 +42,7 @@ abstract class BaseOperation
     public function getModelOperation(): Collection
     {
         $data = [
-            'list' => $this->operation,
+            'operation' => $this->operation,
             'roles' => $this->roles
         ];
         return collect($data);

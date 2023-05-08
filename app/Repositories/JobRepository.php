@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\Company;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,8 +22,9 @@ class JobRepository extends BaseRepository
      */
     public function getDataById(int $id = null)
     { 
-        $data = parent::$_model::where('company_id', $id)->with('company')->get();
-        return $data;
+        $detail = Company::find($id);
+        $list = $detail->jobs;
+        return compact('detail', 'list');
     }
 
     /**
@@ -34,11 +36,11 @@ class JobRepository extends BaseRepository
     public function toggleActive(int $id)
     {
         $data = $this->find($id);
-
+        
         if (!$data) return false;
 
         $data->active = !$data->active;
         $data->save();
-        return true;
+        return $data->company->id;
     }
 }

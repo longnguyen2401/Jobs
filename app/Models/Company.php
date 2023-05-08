@@ -27,4 +27,9 @@ class Company extends Model
     {
         return $this->hasMany('App\Models\Job');
     }
+
+    public function requests()
+    {
+        return $this->hasMany('App\Models\Request');
+    }
 }

@@ -16,10 +16,11 @@ class IfAuthenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check()) {
+        if (auth()->check() && auth()->user()->type == config('constants.USER.TYPE.ADMIN')) {
             return redirect()->route('admin.company');
         }
     
+        auth()->logout();
         return $next($request);
     }
 }
