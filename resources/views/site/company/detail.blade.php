@@ -53,47 +53,30 @@
                         <div class="card side-bar">
                             <div class="card-body p-4">
                                 <div class="candidate-profile text-center">
-                                    <img src="assets/images/featured-job/img-01.png" alt="" class="avatar-lg rounded-circle">
-                                    <h6 class="fs-18 mb-1 mt-4">Jobcy Technology Pvt.Ltd</h6>
-                                    <p class="text-muted mb-4">Since July 2017</p>
-                                    <ul class="candidate-detail-social-menu list-inline mb-0">
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)" class="social-link"><i class="uil uil-twitter-alt"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)" class="social-link"><i class="uil uil-whatsapp"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)" class="social-link"><i class="uil uil-phone-alt"></i></a>
-                                        </li>
-                                    </ul>
+                                    <img src="{{ asset('storage/uploads/' . $detail->logo) }}" alt="" class="avatar-lg rounded-circle">
+                                    <h6 class="fs-18 mb-1 mt-4">
+                                        {{ $detail->name }}
+                                    </h6>
+                                    <p class="text-muted mt-3 mb-0">{{ $detail->slogan }}</p>
                                 </div>
                             </div><!--end candidate-profile-->
 
                             <div class="candidate-profile-overview  card-body border-top p-4">
-                                <h6 class="fs-17 fw-medium mb-3">Profile Overview</h6>
+                                <h6 class="fs-17 fw-medium mb-3">Company Overview</h6>
                                 <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <div class="d-flex">
-                                            <label class="text-dark">Owner Name</label>
-                                            <div>
-                                                <p class="text-muted mb-0">Charles Dickens</p>
-                                            </div>
-                                        </div>
-                                    </li>
                                     <li>
                                         <div class="d-flex">
                                             <label class="text-dark">Employees</label>
                                             <div>
-                                                <p class="text-muted mb-0">1500 - 1850</p>
+                                                <p class="text-muted mb-0">{{ $detail->people }}</p>
                                             </div>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-flex">
-                                            <label class="text-dark">Location</label>
+                                            <label class="text-dark">Email</label>
                                             <div>
-                                                <p class="text-muted mb-0">New York</p>
+                                                <p class="text-muted text-break mb-0">{{ $detail->email }}</p>
                                             </div>
                                         </div>
                                     </li>
@@ -101,46 +84,29 @@
                                         <div class="d-flex">
                                             <label class="text-dark">Website</label>
                                             <div>
-                                                <p class="text-muted text-break mb-0">www.Jobcytecnologypvt.ltd.com</p>
+                                                <p class="text-muted text-break mb-0">{{ $detail->website }}</p>
                                             </div>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-flex">
-                                            <label class="text-dark">Established</label>
+                                            <label class="text-dark">Location</label>
                                             <div>
-                                                <p class="text-muted mb-0">July 10 2017</p>
+                                                <p class="text-muted mb-0">{{ $detail->address }}</p>
                                             </div>
                                         </div>
                                     </li>
                                 </ul>
                                 <div class="mt-3">
-                                    <a href="javascript:void(0)" class="btn btn-danger btn-hover w-100"><i class="uil uil-phone"></i> Contact</a>
+                                    <a href="mailto: {{ $detail->email }}" class="btn btn-danger btn-hover w-100"><i class="uil uil-envelope"></i> Contact</a>
                                 </div>
-                            </div><!--candidate-profile-overview-->
-                            <div class="card-body p-4 border-top">
-                                <div class="ur-detail-wrap">
-                                    <div class="ur-detail-wrap-header">
-                                        <h6 class="fs-17 fw-medium mb-3">Working Days</h6>
-                                    </div>
-                                    <div class="ur-detail-wrap-body">
-                                        <ul class="working-days">
-                                            <li>Monday<span>9AM - 5PM</span></li>
-                                            <li>Tuesday<span>9AM - 5PM</span></li>
-                                            <li>Wednesday<span>9AM - 5PM</span></li>
-                                            <li>Thursday<span>9AM - 5PM</span></li>
-                                            <li>Friday<span>9AM - 5PM</span></li>
-                                            <li>Saturday<span>9AM - 5PM</span></li>
-                                            <li>Sunday<span class="text-danger">Close</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--end card-body-->
-                            <div class="card-body p-4 border-top">
+                            </div>
+
+                            {{-- <div class="card-body p-4 border-top">
                                 <h6 class="fs-17 fw-medium mb-4">Company Location</h6>
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1628067715234!5m2!1sen!2sin" 
                                     style="width:100%"  height="250" allowfullscreen="" loading="lazy"></iframe>
-                            </div>
+                            </div> --}}
                         </div><!--end card-->
                     </div><!--end col-->
                     
@@ -150,77 +116,88 @@
 
                                 <div class="mb-5">
                                     <h6 class="fs-17 fw-medium mb-4">About Company</h6>
-                                    <p class="text-muted"> Objectively pursue diverse catalysts for change for interoperable meta-services. Distinctively re-engineer 
-                                        revolutionary meta-services and premium architectures. Intrinsically incubate intuitive opportunities and 
-                                        real-time potentialities. Appropriately communicate one-to-one technology.</p>
-
-                                    <p class="text-muted">Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate 
-                                        one-to-one technology.</p>
-
-                                    <p class="text-muted"> Exercitation photo booth stumptown tote bag Banksy, elit small batch freegan sed. Craft beer elit 
-                                        seitan exercitation, photo booth et 8-bit kale chips proident chillwave deep v laborum. Aliquip veniam delectus, Marfa 
-                                        eiusmod Pinterest in do umami readymade swag.</p>
+                                    <div class="description">
+                                        {{ $detail->about }}
+                                    </div>
                                 </div>
                             
                                 <div class="candidate-portfolio mb-5">
                                     <h6 class="fs-17 fw-medium mb-4">Gallery</h6>
                                     <div class="row g-3">
-                                        <div class="col-lg-6">
-                                            <div class="candidate-portfolio-box card border-0">
-                                                <img src="assets/images/blog/img-01.jpg" alt="" class="img-fluid">
-                                                <div class="bg-overlay"></div>
-                                                <div class="zoom-icon">
-                                                    <a href="assets/images/blog/img-01.jpg" class="image-popup text-white" data-title="Project Leader" data-description="There are many variations of passages of available, but the majority alteration in some form."><i class="uil uil-search-alt"></i></a>
+                                        <div class="col-12">
+                                            @isset($detail->images)
+                                            <div class="swiper blogdetailSlider">
+                                                <div class="swiper-wrapper">
+                                                    @foreach ($detail->arr_image as $image)
+                                                        <div class="swiper-slide">
+                                                            <img src="{{ asset('storage/uploads/' . $image) }}" alt="" class="img-fluid rounded-3">
+                                                        </div>
+                                                    @endforeach
+                                                    
                                                 </div>
                                             </div>
-                                        </div><!-- end col -->
-                                        <div class="col-lg-6">
-                                            <div class="candidate-portfolio-box card border-0">
-                                                <img src="assets/images/blog/img-03.jpg" alt="" class="img-fluid">
-                                                <div class="bg-overlay"></div>
-                                                <div class="zoom-icon">
-                                                    <a href="assets/images/blog/img-03.jpg" class="image-popup text-white" data-title="Project Leader" data-description="There are many variations of passages of available, but the majority alteration in some form."><i class="uil uil-search-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col -->
-                                        <div class="col-lg-12">
-                                            <div class="candidate-portfolio-box card border-0">
-                                                <img src="assets/images/blog/img-12.jpg" alt="" class="img-fluid">
-                                                <div class="bg-overlay"></div>
-                                                <div class="zoom-icon">
-                                                    <a href="assets/images/blog/img-12.jpg" class="image-popup text-white" data-title="Project Leader" data-description="There are many variations of passages of available, but the majority alteration in some form."><i class="uil uil-search-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col -->
+                                            @endisset
+                                        </div>
                                     </div><!-- end row -->
                                 </div><!-- end portfolio -->  
                                 
                                 <div>
                                     <h6 class="fs-17 fw-medium mb-4">Current Opening</h6>
-                                    <div class="job-box bookmark-post card mt-4">
+                                    @foreach ($detail->jobs as $job)
+                                    <div class="job-box card mt-4">
                                         <div class="p-4">
                                             <div class="row">
-                                                <div class="col-lg-2">
-                                                    <img src="assets/images/featured-job/img-01.png" alt="" class="img-fluid rounded-3">
-                                                </div>
+                                                <div class="col-lg-1">
+                                                    <a href="/"><img src="{{ asset('storage/uploads/' . $job->company->logo) }}" alt="" class="img-fluid rounded-3"></a>
+                                                </div><!--end col-->
                                                 <div class="col-lg-10">
                                                     <div class="mt-3 mt-lg-0">
-                                                        <h5 class="fs-16 fw-medium mb-1"><a href="job-details.html" class="text-dark">Magento Developer</a> <small class="text-muted fw-normal">(0-2 Yrs Exp.)</small></h5>
+                                                        <h5 class="fs-17 mb-1"><a href="/job/detail/{{ $job->id }}" class="text-dark">{{ $job->title }}</a> <small class="text-muted fw-normal">({{ $job->year }} Yrs Exp.)</small></h5>
                                                         <ul class="list-inline mb-0">
                                                             <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0">Jobcy Technology Pvt.Ltd</p>
+                                                                <p class="text-muted fs-14 mb-0">{{ $job->company->name }}</p>
                                                             </li>
                                                             <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> California</p>
+                                                                @if (is_array($job->arr_level))
+                                                                    <p class="text-muted fs-14 mb-0">
+                                                                        @foreach ($job->arr_level as $level)
+                                                                            <span class="badge bg-soft-success mt-1">{{ $level }}</span>
+                                                                        @endforeach
+                                                                    </p>
+                                                                @else
+                                                                    <p class="text-muted fs-14 mb-0">
+                                                                        <span class="badge bg-soft-success mt-1">{{ $job->level }}</span>
+                                                                        
+                                                                    </p>
+                                                                @endif
                                                             </li>
                                                             <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
+                                                                <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> 
+                                                                    @if (empty($job->min_salary))
+                                                                        up to {{ $job->max_salary }}$
+                                                                    @elseif (empty($job->max_salary))
+                                                                        {{ $job->min_salary }}$+
+                                                                    @else
+                                                                        {{ $job->min_salary }}$ - {{ $job->max_salary }}$
+                                                                    @endif
+                                                                </p>
                                                             </li>
                                                         </ul>
                                                         <div class="mt-2">
-                                                            <span class="badge bg-soft-success mt-1">Full Time</span>
+                                                            @if (is_array($job->arr_type))
+                                                                <p class="text-muted fs-14 mb-0">
+                                                                    @foreach ($job->arr_type as $type)
+                                                                        <span class="badge bg-primary mt-1">{{ $type }}</span>
+                                                                    @endforeach
+                                                                </p>
+                                                            @else
+                                                                <p class="text-muted fs-14 mb-0">
+                                                                    <span class="badge bg-primary mt-1">{{ $job->type }}</span>                                                                    
+                                                                </p>
+                                                            @endif
+                                                            {{-- <span class="badge bg-soft-success mt-1">Full Time</span>
                                                             <span class="badge bg-soft-warning mt-1">Urgent</span>
-                                                            <span class="badge bg-soft-info mt-1">Private</span>
+                                                            <span class="badge bg-soft-info mt-1">Private</span> --}}
                                                         </div>
                                                     </div>
                                                 </div><!--end col-->
@@ -234,181 +211,57 @@
                                                 <div class="col-md-8">
                                                     <div>
                                                         <ul class="list-inline mb-0">
-                                                            <li class="list-inline-item fw-medium"><i class="uil uil-tag"></i> Keywords :</li>
-                                                            <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">Ui designer</a>,</li>
-                                                            <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">developer</a></li>
+                                                            <li class="list-inline-item"><i class="uil uil-tag"></i> Keywords :</li>
+                                                            @if (is_array($job->arr_skill))
+                                                                @foreach ($job->arr_skill as $skill)
+                                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">{{ $skill }}</a>
+                                                                        @if(!$loop->last)
+                                                                            ,
+                                                                        @endif
+                                                                    </li>
+                                                                @endforeach
+                                                               
+                                                            @else
+                                                                <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">{{ $job->skill }}</a></li>
+                                                            @endif
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
-                                                <!--end col-->
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="text-md-end">
-                                                        <a href="#applyNow" data-bs-toggle="modal" class="primary-link">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
+                                                        @if ($job->can_apply)
+                                                            @if (auth()->check() && auth()->user()->type == config('constants.USER.TYPE.USER'))
+                                                                <form method="POST" action="{{ route('site.request.apply') }}">
+                                                                    @csrf
+                                                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                                                    <input type="hidden" name="job_id" value="{{ $job->id }}">
+                                                                    <div class="text-center">
+                                                                        <button type="submit" class="btn btn-primary">
+                                                                            Apply Now
+                                                                            <i class="mdi mdi-chevron-double-right"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            @elseif (auth()->check() && auth()->user()->type != config('constants.USER.TYPE.USER'))
+                                                                Just User Can To Apply
+                                                            @else
+                                                                <a href="/login" class="primary-link">
+                                                                    Login To Apply
+                                                                    <i class="mdi mdi-chevron-double-right"></i>
+                                                                </a>
+                                                            @endif
+                                                        @else 
+                                                            Was apply !
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <!--end col-->
                                             </div>
                                             <!--end row-->
                                         </div>
-                                    </div><!--end job-box-->
-                                    <div class="job-box card mt-4">
-                                        <div class="p-4">
-                                            <div class="row">
-                                                <div class="col-lg-2">
-                                                    <img src="assets/images/featured-job/img-02.png" alt="" class="img-fluid rounded-3">
-                                                </div><!--end col-->
-                                                <div class="col-lg-10">
-                                                    <div class="mt-3 mt-lg-0">
-                                                        <h5 class="fs-16 fw-medium mb-1"><a href="job-details.html" class="text-dark">Marketing Director</a> <small class="text-muted fw-normal">(2-4 Yrs Exp.)</small></h5>
-                                                        <ul class="list-inline mb-0">
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0">Jobcy Technology Pvt.Ltd</p>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> New York</p>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="mt-2">
-                                                            <span class="badge bg-soft-danger mt-1">Part Time</span>
-                                                            <span class="badge bg-soft-info mt-1">Private</span>
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                            <div class="favorite-icon">
-                                                <a href="javascript:void(0)"><i class="uil uil-heart-alt fs-18"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="p-3 bg-light">
-                                            <div class="row justify-content-between">
-                                                <div class="col-md-8">
-                                                    <div>
-                                                        <ul class="list-inline mb-0">
-                                                            <li class="list-inline-item fw-medium"><i class="uil uil-tag"></i> Keywords :</li>
-                                                            <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">Marketing</a>,</li>
-                                                            <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">business</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-md-4">
-                                                    <div class="text-md-end">
-                                                        <a href="#applyNow" data-bs-toggle="modal" class="primary-link">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                            </div>
-                                            <!--end row-->
-                                        </div>
-                                    </div><!--end job-box-->
-                                    <div class="job-box bookmark-post card mt-4">
-                                        <div class="p-4">
-                                            <div class="row">
-                                                <div class="col-lg-2">
-                                                    <img src="assets/images/featured-job/img-05.png" alt="" class="img-fluid rounded-3">
-                                                </div><!--end col-->
-                                                <div class="col-lg-10">
-                                                    <div class="mt-3 mt-lg-0">
-                                                        <h5 class="fs-16 fw-medium  mb-1"><a href="job-details.html" class="text-dark">Product Designer</a> <small class="text-muted fw-normal">(0-5 Yrs Exp.)</small></h5>
-                                                        <ul class="list-inline mb-0">
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0">Jobcy Technology Pvt.Ltd</p>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> California</p>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="mt-2">
-                                                            <span class="badge bg-soft-blue mt-1">Internship</span>
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                            <div class="favorite-icon">
-                                                <a href="javascript:void(0)"><i class="uil uil-heart-alt fs-18"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="p-3 bg-light">
-                                            <div class="row justify-content-between">
-                                                <div class="col-md-8">
-                                                    <div>
-                                                        <ul class="list-inline mb-0">
-                                                            <li class="list-inline-item fw-medium"><i class="uil uil-tag"></i> Keywords :</li>
-                                                            <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">Ui designer</a>,</li>
-                                                            <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">developer</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-md-4">
-                                                    <div class="text-md-end">
-                                                        <a href="#applyNow" data-bs-toggle="modal" class="primary-link">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                            </div>
-                                            <!--end row-->
-                                        </div>
-                                    </div><!--end job-box-->
-                                    <div class="job-box card mt-4">
-                                        <div class="p-4">
-                                            <div class="row">
-                                                <div class="col-lg-2">
-                                                    <img src="assets/images/featured-job/img-06.png" alt="" class="img-fluid rounded-3">
-                                                </div><!--end col-->
-                                                <div class="col-lg-10">
-                                                    <div class="mt-3 mt-lg-0">
-                                                        <h5 class="fs-16 fw-medium mb-1"><a href="job-details.html" class="text-dark">Product Designer</a> <small class="text-muted fw-normal">(0-5 Yrs Exp.)</small></h5>
-                                                        <ul class="list-inline mb-0">
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0">Jobcy Technology Pvt.Ltd</p>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="mdi mdi-map-marker"></i> California</p>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="mt-2">
-                                                            <span class="badge bg-soft-blue mt-1">Internship</span>
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                            <div class="favorite-icon">
-                                                <a href="javascript:void(0)"><i class="uil uil-heart-alt fs-18"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="p-3 bg-light">
-                                            <div class="row justify-content-between">
-                                                <div class="col-md-8">
-                                                    <div>
-                                                        <ul class="list-inline mb-0">
-                                                            <li class="list-inline-item fw-medium"><i class="uil uil-tag"></i> Keywords :</li>
-                                                            <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">Ui designer</a>,</li>
-                                                            <li class="list-inline-item"><a href="javascript:void(0)" class="primary-link text-muted">developer</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-md-4">
-                                                    <div class="text-md-end">
-                                                        <a href="#applyNow" data-bs-toggle="modal" class="primary-link">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                            </div>
-                                            <!--end row-->
-                                        </div>
-                                    </div><!--end job-box-->      
+                                    </div>
+                                @endforeach
                                 </div>
                             </div><!-- card body end -->
                         </div><!--end card-->
@@ -607,4 +460,31 @@
     </button>
     <!--end back-to-top-->
 </div>
+@endsection
+
+@section('after-main-css')
+    <!-- Swiper Css -->
+    
+    <link rel="stylesheet" href="{{ asset('assets/site/css/swiper-bundle.min.css') }}">
+    
+    <style>
+
+        .swiper-slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+    </style>
+@endsection
+
+@section('after-main-js')
+    <!-- Swiper Js -->
+    
+    <script src="{{ asset('assets/site/js/swiper-bundle.min.js') }}"></script>
+@endsection
+
+@section('js')
+    <script>
+        var swiper=new Swiper(".blogSlider",{loop:!0,pagination:{el:".swiper-pagination",clickable:!0},autoplay:{delay:2500,disableOnInteraction:!1},breakpoints:{200:{slidesPerView:1,spaceBetween:10},992:{slidesPerView:2,spaceBetween:20}}}),swiper=new Swiper(".blogdetailSlider",{loop:!0,spaceBetween:10,pagination:{el:".swiper-pagination",clickable:!0},autoplay:{delay:2500,disableOnInteraction:!1}});
+    </script>
 @endsection

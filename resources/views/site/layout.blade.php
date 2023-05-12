@@ -40,81 +40,6 @@
             </div>
         </div>
         <div>
-
-            <div class="top-bar">
-                <div class="container-fluid custom-container">
-                    <div class="row g-0 align-items-center">
-                        <div class="col-md-7">
-                            <ul class="list-inline mb-0 text-center text-md-start">
-                                <li class="list-inline-item">
-                                    <p class="fs-13 mb-0"> <i class="mdi mdi-map-marker"></i> Your Location: <a href="javascript:void(0)" class="text-dark">New Caledonia</a></p>
-                                </li>
-                                <li class="list-inline-item">
-                                    <ul class="topbar-social-menu list-inline mb-0">
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i
-                                                    class="uil uil-whatsapp"></i></a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i
-                                                    class="uil uil-facebook-messenger-alt"></i></a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i
-                                                    class="uil uil-instagram"></i></a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i
-                                                    class="uil uil-envelope"></i></a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i
-                                                    class="uil uil-twitter-alt"></i></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--end col-->
-                        <div class="col-md-5">
-                            <ul class="list-inline mb-0 text-center text-md-end">
-                                <li class="list-inline-item py-2 me-2 align-middle">
-                                    <a href="#signupModal" class="text-dark fw-medium fs-13" data-bs-toggle="modal"><i class="uil uil-lock"></i>
-                                        Sign Up</a>
-                                </li>
-                                <li class="list-inline-item align-middle">
-                                    <div class="dropdown d-inline-block language-switch">
-                                        <button type="button" class="btn" data-bs-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <img id="header-lang-img" src="{{ asset('assets/site/images/flags/us.jpg') }}" alt="Header Language" height="16" />
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="eng">
-                                                <img src="{{ asset('assets/site/images/flags/us.jpg') }}" alt="user-image" class="me-1" height="12" />
-                                                <span class="align-middle">English</span>
-                                            </a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
-                                                <img src="{{ asset('assets/site/images/flags/spain.jpg') }}" alt="user-image" class="me-1" height="12" />
-                                                <span class="align-middle">Spanish</span>
-                                            </a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
-                                                <img src="{{ asset('assets/site/images/flags/germany.jpg') }}" alt="user-image" class="me-1" height="12" />
-                                                <span class="align-middle">German</span>
-                                            </a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
-                                                <img src="{{ asset('assets/site/images/flags/italy.jpg') }}" alt="user-image" class="me-1" height="12" />
-                                                <span class="align-middle">Italian</span>
-                                            </a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
-                                                <img src="{{ asset('assets/site/images/flags/russia.jpg') }}" alt="user-image" class="me-1" height="12" />
-                                                <span class="align-middle">Russian</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--end col-->
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end container-->
-            </div>
             <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar">
                 <div class="container-fluid custom-container">
                     <a class="navbar-brand text-dark fw-bold me-auto" href="/">
@@ -129,88 +54,15 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mx-auto navbar-center">
-                            <li class="nav-item dropdown dropdown-hover">
-                                <a class="nav-link" href="javascript:void(0)" id="homedrop" role="button" data-bs-toggle="dropdown">
-                                    Home <div class="arrow-down"></div>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/" id="" role="button" >
+                                    Job List 
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
-                                    <li><a class="dropdown-item" href="index.html">Home 1</a></li>
-                                    <li><a class="dropdown-item" href="index-2.html">Home 2</a></li>
-                                    <li><a class="dropdown-item" href="index-3.html">Home 3</a></li>
-                                </ul>
                             </li>
-                            <li class="nav-item dropdown dropdown-hover">
-                                <a class="nav-link" href="javascript:void(0)" id="jobsdropdown" role="button" data-bs-toggle="dropdown">
-                                    Company <div class="arrow-down"></div>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/profile/list" id="" role="button" >
+                                    Portfolio List 
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="jobsdropdown">
-                                    <li><a class="dropdown-item" href="about.html">About Us</a></li>
-                                    <li><a class="dropdown-item" href="services.html">Services</a></li>
-                                    <li><a class="dropdown-item" href="team.html">Team</a></li>
-                                    <li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
-                                    <a class="dropdown-item" href="privacy-policy.html">Priacy & Policy</a>
-                                    <li><a class="dropdown-item" href="faqs.html">Faqs</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown dropdown-hover">
-                                <a class="nav-link" href="javascript:void(0)" id="pagesdoropdown" role="button" data-bs-toggle="dropdown">
-                                    Pages
-                                    <div class="arrow-down"></div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-center" aria-labelledby="pagesdoropdown">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <span class="dropdown-header">Jobs</span>
-                                            <div>
-                                                <a class="dropdown-item" href="job-list.html">Job List</a>
-                                                <a class="dropdown-item" href="job-list-2.html">Job List-2</a>
-                                                <a class="dropdown-item" href="job-grid.html">Job Grid</a>
-                                                <a class="dropdown-item" href="job-grid-2.html">Job Grid-2</a>
-                                                <a class="dropdown-item" href="job-details.html">Job Details</a>
-                                                <a class="dropdown-item" href="job-categories.html">Jobs Categories</a>
-                                            </div>
-                                        </div><!--end col-->
-                                        <div class="col-lg-4">
-                                            <span class="dropdown-header">Candidates / Companys</span>
-                                            <div>
-                                                <a class="dropdown-item" href="candidate-list.html">Candidate List</a>
-                                                <a class="dropdown-item" href="candidate-grid.html">Candidate Grid</a>
-                                                <a class="dropdown-item" href="candidate-details.html">Candidate Details</a>
-                                                <a class="dropdown-item" href="company-list.html">Company List</a>
-                                                <a class="dropdown-item" href="company-details.html">Company Details</a>
-                                            </div>
-                                        </div><!--end col-->
-                                        <div class="col-lg-4">
-                                            <span class="dropdown-header">Extra Pages</span>
-                                            <div>
-                                                <a class="dropdown-item" href="sign-up.html">Sign Up</a>
-                                                <a class="dropdown-item" href="sign-in.html">Sign In</a>
-                                                <a class="dropdown-item" href="sign-out.html">Sign Out</a>
-                                                <a class="dropdown-item" href="reset-password.html">Reset Password</a>
-                                                <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
-                                                <a class="dropdown-item" href="404-error.html">404 Error</a>
-                                                <a class="dropdown-item" href="components.html">Components</a>
-                                            </div>
-                                        </div><!--end col-->
-                                    </div>
-                                </div>
-                            </li><!--end dropdown-->
-                            <li class="nav-item dropdown dropdown-hover">
-                                <a class="nav-link" href="javascript:void(0)" id="productdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Blog 
-                                    <div class="arrow-down"></div>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="productdropdown">
-                                    <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-                                    <li><a class="dropdown-item" href="blog-grid.html">Blog Grid</a></li>
-                                    <li><a class="dropdown-item" href="blog-modern.html">Blog Modern</a></li>
-                                    <li><a class="dropdown-item" href="blog-masonry.html">Blog Masonry</a></li>
-                                    <li><a class="dropdown-item" href="blog-details.html">Blog details</a></li>
-                                    <li><a class="dropdown-item" href="blog-author.html">Blog Author</a></li>
-                                </ul>
-                            </li><!--end dropdown-->
-                            <li class="nav-item">
-                                <a href="contact.html" class="nav-link">Contact</a>
                             </li>
                         </ul><!--end navbar-nav-->
                     </div>
@@ -393,3 +245,5 @@
         @yield('js')
     </body>
 </html>
+
+

@@ -21,6 +21,7 @@ class ProfileUser extends Model
         'preventive_email',
         'website',
         'project',
+        'cv',
     ];
 
     public function company()
@@ -46,5 +47,9 @@ class ProfileUser extends Model
     public function certification()
     {
         return $this->hasMany('App\Models\Certification');
+    }
+
+    public function getArrSkillAttribute() {
+        return explode("|", $this->skill);
     }
 }

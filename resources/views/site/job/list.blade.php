@@ -136,7 +136,7 @@
                                                 </div><!--end col-->
                                                 <div class="col-lg-10">
                                                     <div class="mt-3 mt-lg-0">
-                                                        <h5 class="fs-17 mb-1"><a href="job-details.html" class="text-dark">{{ $job->title }}</a> <small class="text-muted fw-normal">({{ $job->year }} Yrs Exp.)</small></h5>
+                                                        <h5 class="fs-17 mb-1"><a href="/job/detail/{{ $job->id }}" class="text-dark">{{ $job->title }}</a> <small class="text-muted fw-normal">({{ $job->year }} Yrs Exp.)</small></h5>
                                                         <ul class="list-inline mb-0">
                                                             <li class="list-inline-item">
                                                                 <p class="text-muted fs-14 mb-0">{{ $job->company->name }}</p>

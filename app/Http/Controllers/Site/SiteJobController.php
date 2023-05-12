@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Site\SiteBaseController;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 class SiteJobController extends SiteBaseController
 {
@@ -25,10 +26,21 @@ class SiteJobController extends SiteBaseController
     /**
      * Index function
      *
+     * @return View
+     */
+    public function create(): View
+    {   
+        return $this->repository->create();
+    }
+
+    /**
+     * Save function
+     *
+     * @param Request
      * @return void
      */
-    public function detail()
+    public function save(Request $request)
     {   
-        return view('site.profile.user');
+        return $this->repository->save($request);
     }
 }

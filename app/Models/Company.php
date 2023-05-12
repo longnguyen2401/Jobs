@@ -14,9 +14,11 @@ class Company extends Model
     protected $fillable = [
         'user_id',
         'address',
+        'email',
         'name',
         'about',
         'website',
+        'images',
         'technologies',
         'people',
         'logo',
@@ -31,5 +33,14 @@ class Company extends Model
     public function requests()
     {
         return $this->hasMany('App\Models\Request');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    
+    public function getArrImageAttribute() {
+        return explode("|", $this->images);
     }
 }

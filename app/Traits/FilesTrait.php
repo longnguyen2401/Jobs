@@ -15,10 +15,11 @@ trait FilesTrait
     public function checkUploadFile(Request $request): Request
     {
         $arrayKeyValue = [];
+        
         foreach ($request->all() as $key => $value) 
         {
             if (preg_match('/^file-*/', $key) && $request->hasFile($key)) 
-            {
+            {   
                 $file        = $request->file($key);
                 $fileName    = $file->getClientOriginalName();
                 $file->storeAs('public/uploads', $fileName);

@@ -15,6 +15,7 @@ class Job extends Model
         'company_id',
         'title',
         'description',
+        'quantity',
         'min_salary',
         'max_salary',
         'level',
@@ -50,4 +51,18 @@ class Job extends Model
     public function getCanApplyAttribute() {
         return auth()->check() && auth()->user()->requests->firstWhere('job_id', $this->id) ? false : true;
     }
+
+    public function getNumberRequestAttribute() {
+        return $this->requests->count();
+    }
+
+    public function getRelatedAttribute() {
+        $skills = $this->arr_skill;
+        $q = $this->where('skill', '!=', '');
+        foreach ($skills as $skill) {
+            $q->orWhere('skill', 'like', '%' . $skill . '%');
+        }
+        return $q->get();
+    }
 }
+

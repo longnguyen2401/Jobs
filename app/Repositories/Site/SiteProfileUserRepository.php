@@ -2,6 +2,7 @@
 namespace App\Repositories\Site;
 
 use App\Models\Education;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repositories\Site\SiteBaseRepository;
 use App\Traits\MonthTrait;
@@ -24,6 +25,30 @@ class SiteProfileUserRepository extends SiteBaseRepository
      * Get list job
      * 
      * @param int|null $id
+     * @return View
+     */
+    public function index(): View
+    { 
+        $list = self::$_model->get();
+        return view('site.profile.list', compact('list'));
+    }
+
+    /**
+     * Get detail 
+     * 
+     * @param int|null $id
+     * @return View
+     */
+    public function detail(int $id)
+    { 
+        $detail = self::$_model->where('user_id', $id)->first();
+        return view('site.profile.profile', compact('detail'));
+    }
+
+    /**
+     * Get list job
+     * 
+     * @param int|null $id
      * @return 
      */
     public function save(Request $request)
@@ -40,12 +65,14 @@ class SiteProfileUserRepository extends SiteBaseRepository
             $education = $this->handleTime($request->education);
             
             Education::updateOrCreate(['profile_user_id' => $profile->id], $education);
+
+            User::updateOrCreate(['id' => $request->user_id], $request->user);
             
             DB::commit();
             
             if ($request->job_id) {
                 $SiteRequestRepository = \App::make('App\Repositories\Site\SiteRequestRepository');
-                $SiteRequestRepository->apply($request);
+                return $SiteRequestRepository->apply($request);
             }
             session()->put('message-profile-detail', 'Cập nhật thông tin thành công !');
             return redirect('profile/detail');

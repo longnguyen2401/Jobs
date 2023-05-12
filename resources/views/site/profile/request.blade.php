@@ -89,11 +89,11 @@
                             <div class="card-body p-4">
                                 <div class="row">
                                     <div class="col-lg-1">
-                                        <a href="company-details.html"><img src="{{ asset('uploads/' . $request->job->company->logo) }}" alt="" class="img-fluid rounded-3"></a>
+                                        <a href="/company/detail/{{ $detail->company->id }}"><img src="{{ asset('storage/uploads/' . $request->job->company->logo) }}" alt="" class="img-fluid rounded-3"></a>
                                     </div><!--end col-->
                                     <div class="col-lg-9">
                                         <div class="mt-3 mt-lg-0">
-                                            <h5 class="fs-17 mb-1"><a href="job-details.html" class="text-dark">{{ $request->job->title }}</a></h5>
+                                            <h5 class="fs-17 mb-1"><a href="/job/detail/{{ $request->job->id }}" class="text-dark">{{ $request->job->title }}</a></h5>
                                             <ul class="list-inline mb-0">
                                                 <li class="list-inline-item">
                                                     <p class="text-muted fs-14 mb-0">{{ $request->job->company->name }}</p>
@@ -142,7 +142,7 @@
                                     <div class="col-lg-2 align-self-center">
                                         <ul class="list-inline mt-3 mb-0 text-end">
                                             <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" title="File CV">
-                                                <a href="manage-jobs-post.html" class="avatar-sm bg-soft-success d-inline-block text-center rounded-circle fs-18">
+                                                <a href="{{ asset('storage/uploads/' . $request->file_cv) }}" download class="avatar-sm bg-soft-success d-inline-block text-center rounded-circle fs-18">
                                                     <i class="uil uil-edit"></i>
                                                 </a>
                                             </li>
@@ -174,28 +174,7 @@
                     </div><!--end col-->    
                 </div><!--end row-->
 
-                <div class="row">
-                    <div class="col-lg-12 mt-4 pt-2">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination job-pagination mb-0 justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                                        <i class="mdi mdi-chevron-double-left fs-15"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="javascript:void(0)">
-                                        <i class="mdi mdi-chevron-double-right fs-15"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div><!--end col-->
-                </div><!--end row-->
+                
             </div><!--end container-->
         </section>
         <!-- END MANAGE-JOBS -->

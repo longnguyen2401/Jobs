@@ -17,3 +17,11 @@
 .job-box .favorite-icon {
     display: none;
 }
+
+.navbar {
+    margin-top: 0px;
+}
+
+img {
+    object-fit: cover;
+}

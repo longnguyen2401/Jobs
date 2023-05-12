@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Site\SiteBaseController;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class SiteRequestController extends SiteBaseController
@@ -37,9 +38,9 @@ class SiteRequestController extends SiteBaseController
     /**
      * Index function
      *
-     * @return void
+     * @return View
      */
-    public function detail()
+    public function listRequest(): View
     {   
         return view('site.profile.user');
     }

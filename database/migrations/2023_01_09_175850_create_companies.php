@@ -16,14 +16,16 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('address');
-            $table->string('name');
-            $table->text('about');
+            $table->string('address')->nullable();
+            $table->string('email')->nullable();
+            $table->string('name')->nullable();
+            $table->text('about')->nullable();
             $table->string('website')->nullable();
-            $table->string('technologies');
+            $table->string('images')->nullable();
+            $table->string('technologies')->nullable();
             $table->integer('people')->nullable();
             $table->string('logo')->nullable();
-            $table->string('slogan');
+            $table->string('slogan')->nullable();
             $table->timestamps();
         });
     }

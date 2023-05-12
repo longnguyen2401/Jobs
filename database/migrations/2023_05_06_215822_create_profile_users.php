@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('preventive_email')->nullable();
             $table->string('website')->nullable();
             $table->string('project')->nullable();
+            $table->string('cv')->nullable();
             $table->timestamps();
         });
     }

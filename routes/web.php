@@ -61,10 +61,20 @@ Route::prefix('/')->middleware(['site.if.auth'])->group(function () {
 
 Route::prefix('/')->name('site.')->group(function () {
     Route::get('/',                       [SiteJobController::class, 'index'])->name('job.list');
-    Route::get('job/detail',              [SiteJobController::class, 'detail'])->name('job.detail');
-    Route::get('company/detail',          [SiteCompanyController::class, 'detail'])->name('company.detail');
-    Route::get('profile/detail',          [SiteUserController::class, 'detail'])->name('profile.detail');
+    Route::get('job/detail/{id}',         [SiteJobController::class, 'detail'])->name('job.detail');
+    Route::get('job/create',              [SiteJobController::class, 'create'])->name('job.create');
+    Route::post('job/save',               [SiteJobController::class, 'save'])->name('job.save');
+
+    Route::get('company/detail/{id}',     [SiteCompanyController::class, 'detail'])->name('company.detail');
+    Route::get('company/profile',         [SiteCompanyController::class, 'profile'])->name('company.profile');
+    Route::get('company/applys/{id}',     [SiteCompanyController::class, 'applys'])->name('company.applys');
+    Route::post('company/profile/save',   [SiteCompanyController::class, 'save'])->name('company.profile.save');
+
+    Route::get('profile/detail',          [SiteUserController::class, 'profile'])->name('profile.detail');
     Route::post('profile/save',           [SiteProfileUserController::class, 'save'])->name('profile.save');
+    Route::get('profile/detail-user/{id}',[SiteProfileUserController::class, 'detail'])->name('profile.detail.user');
+    Route::get('profile/list',                 [SiteProfileUserController::class, 'index'])->name('profile.list');
+
     Route::post('apply',                  [SiteRequestController::class, 'apply'])->name('request.apply');
     Route::get('apply/list/{id}',         [SiteRequestController::class, 'list'])->name('request.list');
 

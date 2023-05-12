@@ -14,7 +14,7 @@
                         <div class="row g-0">
                             <div class="col-lg-6 text-center">
                                 <div class="card-body p-4">
-                                    <a href="index.html">
+                                    <a href="/">
                                         <img src="{{ asset('assets/site/images/logo-light.png') }}" alt="" class="logo-light">
                                         <img src="{{ asset('assets/site/images/logo-dark.png') }}" alt="" class="logo-dark">
                                     </a>

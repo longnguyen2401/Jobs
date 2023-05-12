@@ -75,66 +75,47 @@
                                         class="avatar-lg img-thumbnail rounded-circle mb-4" />
                                     <h5 class="mb-0">{{ auth()->user()->name }}</h5>
                                     <p class="text-muted mt-2 mb-0">{{ (auth()->user()->profileUser->job_title) ?? 'Job Title' }}</p>
-                                    {{-- <ul class="list-inline d-flex justify-content-center align-items-center ">
-                                        <li class="list-inline-item text-warning fs-19">
-                                            <i class="mdi mdi-star"></i>
-                                            <i class="mdi mdi-star"></i>
-                                            <i class="mdi mdi-star"></i>
-                                            <i class="mdi mdi-star"></i>
-                                            <i class="mdi mdi-star-half-full"></i>
-                                        </li>
-                                    </ul> --}}
-                                    {{-- <ul class="candidate-detail-social-menu list-inline mb-0">
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)" class="social-link rounded-3 btn-soft-primary"><i
-                                                    class="uil uil-facebook-f"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)" class="social-link rounded-3 btn-soft-info"><i
-                                                    class="uil uil-twitter-alt"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)" class="social-link rounded-3 btn-soft-success"><i
-                                                    class="uil uil-whatsapp"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0)" class="social-link rounded-3 btn-soft-danger"><i
-                                                    class="uil uil-phone-alt"></i></a>
-                                        </li>
-                                    </ul> --}}
+                                   
                                 </div>
                                 <!--end profile-->
                                 <div class="mt-4 border-bottom pb-4">
                                     <h5 class="fs-17 fw-bold mb-3">Documents</h5>
                                     <ul class="profile-document list-unstyled mb-0">
+                                        @isset(auth()->user()->profileUser->cv)
                                         <li>
                                             <div class="profile-document-list d-flex align-items-center mt-4 ">
                                                 <div class="icon flex-shrink-0">
                                                     <i class="uil uil-file"></i>
                                                 </div>
                                                 <div class="ms-3">
-                                                    <h6 class="fs-16 mb-0">Resume.pdf</h6>
-                                                    <p class="text-muted mb-0">1.25 MB</p>
+                                                    <h6 class="fs-16 mb-0">
+                                                        {{ auth()->user()->profileUser->cv }}
+                                                    </h6>
                                                 </div>
                                                 <div class="ms-auto">
-                                                    <a href="assets/images/dark-logo.png" download class="fs-20 text-muted"><i class="uil uil-import"></i></a>
+                                                    <a href="{{ asset('storage/uploads/' . auth()->user()->profileUser->cv) }}" download class="fs-20 text-muted"><i class="uil uil-import"></i></a>
                                                 </div>
                                             </div>
                                         </li>
+                                        @else
                                         <li>
                                             <div class="profile-document-list d-flex align-items-center mt-4 ">
                                                 <div class="icon flex-shrink-0">
                                                     <i class="uil uil-file"></i>
                                                 </div>
                                                 <div class="ms-3">
-                                                    <h6 class="fs-16 mb-0">Cover-letter.pdf</h6>
-                                                    <p class="text-muted mb-0">1.25 MB</p>
+                                                    <h6 class="fs-16 mb-0">
+                                                        No CV upload
+                                                    </h6>
                                                 </div>
                                                 <div class="ms-auto">
-                                                    <a href="assets/images/dark-logo.png" download="dark-logo" class="fs-20 text-muted"><i class="uil uil-import"></i></a>
+                                                    <a href="#" download class="fs-20 text-muted"><i class="uil uil-import"></i></a>
                                                 </div>
                                             </div>
                                         </li>
+
+                                        @endisset
+                                        
                                     </ul>
                                 </div>
                                 <!--end document-->
@@ -294,7 +275,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="mb-3">
-                                                            <label for="firstName" class="form-label">Job Title</label>
+                                                            <label for="" class="form-label">Job Title</label>
                                                             <input type="text" class="form-control" 
                                                                 name="job_title" 
                                                                 placeholder="Nhập job title" 
@@ -305,7 +286,7 @@
                                                     <div class="col-lg-12">
                                                         <div class="mb-3">
                                                             <label for="name" class="form-label">Họ và tên</label>
-                                                            <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên" value="{{ (auth()->user()->name) ?? '' }}" />
+                                                            <input type="text" class="form-control" name="user[name]" placeholder="Nhập họ và tên" value="{{ (auth()->user()->name) ?? '' }}" />
                                                         </div>
                                                      </div>
                                                      <div class="col-lg-12">
@@ -360,12 +341,12 @@
                                                         <div class="mb-3">
                                                             <label for="attachmentscv" class="form-label">Attachments
                                                                 CV</label>
-                                                            <input class="form-control" type="file" id="attachmentscv" />
+                                                            <input class="form-control" type="file" id="attachmentscv" name="file-cv"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="mb-3">
-                                                            <label for="name" class="form-label">Ảnh Đại Diện</label>
+                                                            <label for="name" class="form-label">Avatar</label>
                                                             <input type="file" class="form-control" name="file-avatar" />
                                                         </div>
                                                      </div>

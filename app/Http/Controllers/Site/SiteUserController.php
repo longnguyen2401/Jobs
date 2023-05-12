@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Site\SiteBaseController;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class SiteUserController extends SiteBaseController
@@ -15,11 +16,14 @@ class SiteUserController extends SiteBaseController
     /**
      * Index function
      *
-     * @return void
+     * @return mixed
      */
-    public function detail()
+    public function profile(): mixed
     {   
-        return view('site.profile.user');
+        if (auth()->user()->type === config('constants.USER.TYPE.USER')) {
+            return view('site.profile.user');
+        }
+        return redirect('/company/profile');
     }
 
     /**

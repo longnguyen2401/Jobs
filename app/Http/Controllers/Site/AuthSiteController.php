@@ -46,6 +46,10 @@ class AuthSiteController extends Controller
         $user->type = $request->type;
         $user->save();
 
+        if ($request->type == config('constants.USER.TYPE.COMPANY')) {
+            return redirect('/company/profile');    
+        }
+
         return redirect('/');
     }
     

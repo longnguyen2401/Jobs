@@ -2,27 +2,48 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Site\SiteBaseController;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class SiteCompanyController extends Controller
+class SiteCompanyController extends SiteBaseController
 {
     /**
-     * Construct function
-     *
-     * @return void
+     * The attributes prefix for each model.
      */
-    public function __construct()
-    {   
-    }
+    protected string $prefix = 'Company';
 
     /**
      * Index function
      *
+     * @param 
+     * @return mixed
+     */
+    public function profile()
+    {   
+        return $this->repository->profile();
+    }
+
+    /**
+     * List apply function
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function applys(int $id)
+    {   
+        return $this->repository->applys($id);
+    }
+    
+    /**
+     * Save function
+     *
+     * @param Request
      * @return void
      */
-    public function detail()
+    public function save(Request $request)
     {   
-        return view('site.company.detail');
+        return $this->repository->save($request);
     }
+    
 }

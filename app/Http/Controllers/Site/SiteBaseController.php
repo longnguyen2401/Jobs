@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Repositories\Site\SiteBaseRepository;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
 
 abstract class SiteBaseController extends Controller
 {
@@ -52,5 +53,16 @@ abstract class SiteBaseController extends Controller
         $dir = "App\\Repositories\\Site\\Site$className";
         $class = new $dir;
         return $class;
+    }
+
+    /**
+     * Detail function
+     *
+     * @param int $id
+     * @return View
+     */
+    public function detail(int $id): View
+    {   
+        return $this->repository->detail($id);
     }
 }
