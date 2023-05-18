@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('company_id');
             $table->string('title');
-            $table->text('description');
+            $table->longText('description');
             $table->integer('quantity')->nullable();
             $table->integer('min_salary')->nullable();
             $table->integer('max_salary')->nullable();
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('skill')->nullable();
             $table->integer('active')->default(0);
+            $table->date('from_date')->nullable();
             $table->date('expired_date')->nullable();
             $table->timestamps();
         });

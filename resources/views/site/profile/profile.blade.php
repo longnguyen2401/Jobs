@@ -18,8 +18,8 @@
                             <div class="page-next">
                                 <nav class="d-inline-block" aria-label="breadcrumb text-center">
                                     <ol class="breadcrumb justify-content-center">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
+                                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                        
                                         <li class="breadcrumb-item active" aria-current="page"> Candidate Details </li>
                                     </ol>
                                 </nav>

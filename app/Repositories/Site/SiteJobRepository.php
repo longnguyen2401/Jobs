@@ -5,7 +5,7 @@ use App\Repositories\Site\SiteBaseRepository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Carbon\Carbon;
 class SiteJobRepository extends SiteBaseRepository
 {
     /**
@@ -50,7 +50,9 @@ class SiteJobRepository extends SiteBaseRepository
         if (auth()->user()->type === config('constants.USER.TYPE.USER')) {
             return view('/');
         }
-        return view('site.job.create');
+        $dt = Carbon::now('Asia/Ho_Chi_Minh');
+        $now = $dt->toDateString();
+        return view('site.job.create', compact('now'));
     }
 
     /**
@@ -66,6 +68,11 @@ class SiteJobRepository extends SiteBaseRepository
 
             $profileAttr = self::$_model->getFillable();
             $profileData = $request->only($profileAttr);
+            if ($request->negotiate == 'on') {
+                $profileData['min_salary'] = null;
+                $profileData['max_salary'] = null;
+            }
+
             self::$_model::updateOrCreate(['company_id' => $request->company_id], $profileData);
             session()->put('message-profile-detail', 'Tạo tin thành công !');
 

@@ -17,8 +17,8 @@
                             <div class="page-next">
                                 <nav class="d-inline-block" aria-label="breadcrumb text-center">
                                     <ol class="breadcrumb justify-content-center">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
+                                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                        
                                         <li class="breadcrumb-item active" aria-current="page"> Create Job </li>
                                     </ol>
                                 </nav>
@@ -98,6 +98,15 @@
                                         />
                                     </div>
                                 </div>
+                                <h5 class="fs-17 fw-semibold mb-3 mb-0">Salary</h5>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Negotiate</label>
+                                        <input type="checkbox"
+                                            name="negotiate" checked
+                                        />
+                                    </div>
+                                </div>   
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="min_salary" class="form-label">Min Salary</label>
@@ -116,7 +125,8 @@
                                             placeholder="Enter $" 
                                         />
                                     </div>
-                                </div>      
+                                </div>    
+                                
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label for="skill" class="form-label">Skill Requirement</label>
@@ -126,11 +136,19 @@
                                         />
                                     </div>
                                 </div>  
-
-                                <div class="col-lg-12">
+                                
+                                <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="expired_date" class="form-label">Expired date</label>
-                                        <input type="date" class="form-control" 
+                                        <label for="expired_date" class="form-label" >Thời gian bắt đầu làm việc</label>
+                                        <input type="date" class="form-control" min='{{ $now }}'
+                                            name="from_date" 
+                                        />
+                                    </div>
+                                </div>  
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="expired_date" class="form-label" >Expired date</label>
+                                        <input type="date" class="form-control" min='{{ $now }}'
                                             name="expired_date" 
                                         />
                                     </div>

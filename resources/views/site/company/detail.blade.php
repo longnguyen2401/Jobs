@@ -17,8 +17,8 @@
                             <div class="page-next">
                                 <nav class="d-inline-block" aria-label="breadcrumb text-center">
                                     <ol class="breadcrumb justify-content-center">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
+                                        
+                                        
                                         <li class="breadcrumb-item active" aria-current="page"> Company Details </li>
                                     </ol>
                                 </nav>
@@ -173,12 +173,16 @@
                                                             </li>
                                                             <li class="list-inline-item">
                                                                 <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> 
-                                                                    @if (empty($job->min_salary))
-                                                                        up to {{ $job->max_salary }}$
-                                                                    @elseif (empty($job->max_salary))
-                                                                        {{ $job->min_salary }}$+
-                                                                    @else
-                                                                        {{ $job->min_salary }}$ - {{ $job->max_salary }}$
+                                                                    @if ($job->is_negotiate)
+                                                                        Negotiate
+                                                                    @else 
+                                                                        @if (empty($job->min_salary))
+                                                                            up to {{ $job->max_salary }}$
+                                                                        @elseif (empty($job->max_salary))
+                                                                            {{ $job->min_salary }}$+
+                                                                        @else
+                                                                            {{ $job->min_salary }}$ - {{ $job->max_salary }}$
+                                                                        @endif
                                                                     @endif
                                                                 </p>
                                                             </li>

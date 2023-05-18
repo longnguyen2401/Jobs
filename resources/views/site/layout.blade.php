@@ -170,8 +170,6 @@
                             @endif
                             
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown">
-                                <li><a class="dropdown-item" href="manage-jobs.html">Manage Jobs</a></li>
-                                <li><a class="dropdown-item" href="bookmark-jobs.html">Bookmarks Jobs</a></li>
                                 <li><a class="dropdown-item" href="/profile/detail">My Profile</a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             </ul>

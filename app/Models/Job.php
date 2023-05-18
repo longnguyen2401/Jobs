@@ -24,6 +24,7 @@ class Job extends Model
         'skill',
         'active',
         'expired_date',
+        'from_date',
     ];
 
     public function company()
@@ -46,6 +47,10 @@ class Job extends Model
 
     public function getArrTypeAttribute() {
         return explode("|", $this->type);
+    }
+
+    public function getIsNegotiateAttribute() {
+        return empty($this->min_salary) && empty($this->max_salary);
     }
 
     public function getCanApplyAttribute() {

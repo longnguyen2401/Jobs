@@ -17,8 +17,8 @@
                             <div class="page-next">
                                 <nav class="d-inline-block" aria-label="breadcrumb text-center">
                                     <ol class="breadcrumb justify-content-center">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
+                                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                        
                                         <li class="breadcrumb-item active" aria-current="page"> Job Details </li>
                                     </ol>
                                 </nav>
@@ -65,7 +65,7 @@
                                 </div>
                                 @endisset
                                 <div class="job-details-compnay-profile index-1" >
-                                    <img src="{{ asset('storage/uploads/' . $detail->company->logo) }}" alt="" class="img-fluid rounded-3 rounded-3" style="border: 1px solid #c4c4c4;height: 70px;width: 70px;object-fit: cover;">
+                                    <img src="{{ asset('storage/uploads/' . $detail->company->logo) }}" alt="" class="img-fluid rounded-3 rounded-3" style="border: 1px solid #c4c4c4;height: 70px;width: 70px;object-fit: contain;background: white;padding: 5px;">
                                 </div>
                             </div>
                             <div class="card-body p-4">
@@ -137,12 +137,16 @@
                                             <div class="border rounded-end p-3">
                                                 <p class="text-muted fs-13 mb-0">Offer Salary</p>
                                                 <p class="fw-medium mb-0">
-                                                    @if (empty($detail->min_salary))
-                                                        up to {{ $detail->max_salary }}$
-                                                    @elseif (empty($detail->max_salary))
-                                                        {{ $detail->min_salary }}$+
-                                                    @else
-                                                        {{ $detail->min_salary }}$ - {{ $detail->max_salary }}$
+                                                    @if ($detail->is_negotiate)
+                                                        Negotiate
+                                                    @else 
+                                                        @if (empty($detail->min_salary))
+                                                            up to {{ $detail->max_salary }}$
+                                                        @elseif (empty($detail->max_salary))
+                                                            {{ $detail->min_salary }}$+
+                                                        @else
+                                                            {{ $detail->min_salary }}$ - {{ $detail->max_salary }}$
+                                                        @endif
                                                     @endif
                                                 </p>
                                             </div>
@@ -205,12 +209,16 @@
                                                             </li>
                                                             <li class="list-inline-item">
                                                                 <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> 
-                                                                    @if (empty($job->min_salary))
-                                                                        up to {{ $job->max_salary }}$
-                                                                    @elseif (empty($job->max_salary))
-                                                                        {{ $job->min_salary }}$+
-                                                                    @else
-                                                                        {{ $job->min_salary }}$ - {{ $job->max_salary }}$
+                                                                    @if ($job->is_negotiate)
+                                                                        Negotiate
+                                                                    @else 
+                                                                        @if (empty($job->min_salary))
+                                                                            up to {{ $job->max_salary }}$
+                                                                        @elseif (empty($job->max_salary))
+                                                                            {{ $job->min_salary }}$+
+                                                                        @else
+                                                                            {{ $job->min_salary }}$ - {{ $job->max_salary }}$
+                                                                        @endif
                                                                     @endif
                                                                 </p>
                                                             </li>
@@ -336,12 +344,16 @@
                                                 <div class="ms-3">
                                                     <h6 class="fs-14 mb-2">Offered Salary</h6>
                                                     <p class="text-muted mb-0">
-                                                        @if (empty($detail->min_salary))
-                                                            up to {{ $detail->max_salary }}$
-                                                        @elseif (empty($detail->max_salary))
-                                                            {{ $detail->min_salary }}$+
-                                                        @else
-                                                            {{ $detail->min_salary }}$ - {{ $detail->max_salary }}$
+                                                        @if ($detail->is_negotiate)
+                                                            Negotiate
+                                                        @else 
+                                                            @if (empty($detail->min_salary))
+                                                                up to {{ $detail->max_salary }}$
+                                                            @elseif (empty($detail->max_salary))
+                                                                {{ $detail->min_salary }}$+
+                                                            @else
+                                                                {{ $detail->min_salary }}$ - {{ $detail->max_salary }}$
+                                                            @endif
                                                         @endif
                                                     </p> 
                                                 </div>

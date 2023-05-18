@@ -20,11 +20,25 @@ trait FilesTrait
         {
             if (preg_match('/^file-*/', $key) && $request->hasFile($key)) 
             {   
-                $file        = $request->file($key);
-                $fileName    = $file->getClientOriginalName();
-                $file->storeAs('public/uploads', $fileName);
                 
-                $arrayKeyValue = array_merge($arrayKeyValue, $this->handleKeyValue($request, $key, $fileName));
+                $file        = $request->file($key);
+
+                if (is_array($file)) {
+                    // $fileName    = $file[0]->getClientOriginalName();
+                    $arrStr = '';
+                    foreach ($file as $item) {
+                        $fileName    = $item->getClientOriginalName();
+                        $item->storeAs('public/uploads', $fileName);
+                        $arrStr = $arrStr . '|' . $fileName;
+                    }
+                    $arrStr = substr($arrStr, 1, strlen($arrStr));
+                    $arrayKeyValue = array_merge($arrayKeyValue, $this->handleKeyValue($request, $key, $arrStr));
+                    
+                } else {
+                    $fileName    = $file->getClientOriginalName();
+                    $file->storeAs('public/uploads', $fileName);
+                    $arrayKeyValue = array_merge($arrayKeyValue, $this->handleKeyValue($request, $key, $fileName));
+                }
             }
         }
         return $request->merge($arrayKeyValue);
@@ -43,6 +57,7 @@ trait FilesTrait
         $keyArr = explode("-", $key);
         $key    = $keyArr[1];
         $data   = array($key => $fileName);
+
         return $data;
     }
 

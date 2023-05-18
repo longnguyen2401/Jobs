@@ -44,7 +44,7 @@
                     <div class="col-lg-9">
                         <div class="me-lg-5">
                             <div class="job-list-header">
-                                <form action="#">
+                                <form action="/search/mo/" method="get">
                                     <div class="row g-2">
                                         <div class="col-lg-3 col-md-6">
                                             <div class="filler-job-form">
@@ -74,7 +74,9 @@
                                             </div>
                                         </div><!--end col-->
                                         <div class="col-lg-3 col-md-6">
-                                            <a href="javascript:void(0)" class="btn btn-primary w-100"><i class="uil uil-filter"></i> Fliter</a>
+                                            <button href="javascript:void(0)" type="submit" class="btn btn-primary w-100"><i class="uil uil-filter"></i> 
+                                                Fliter
+                                            </button>
                                         </div><!--end col-->
                                     </div><!--end row-->
                                 </form>
@@ -157,12 +159,16 @@
                                                             </li>
                                                             <li class="list-inline-item">
                                                                 <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> 
-                                                                    @if (empty($job->min_salary))
-                                                                        up to {{ $job->max_salary }}$
-                                                                    @elseif (empty($job->max_salary))
-                                                                        {{ $job->min_salary }}$+
-                                                                    @else
-                                                                        {{ $job->min_salary }}$ - {{ $job->max_salary }}$
+                                                                    @if ($job->is_negotiate)
+                                                                        Negotiate
+                                                                    @else 
+                                                                        @if (empty($job->min_salary))
+                                                                            up to {{ $job->max_salary }}$
+                                                                        @elseif (empty($job->max_salary))
+                                                                            {{ $job->min_salary }}$+
+                                                                        @else
+                                                                            {{ $job->min_salary }}$ - {{ $job->max_salary }}$
+                                                                        @endif
                                                                     @endif
                                                                 </p>
                                                             </li>
