@@ -413,6 +413,144 @@
                                                 <!--end row-->
                                             </div>
 
+                                            <div class="mt-4">
+                                                <h5 class="fs-17 fw-semibold mb-3">Experiences</h5>
+                                                <div class="row">
+                                                    <!--end col-->
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            @php
+                                                                if (isset(auth()->user()->profileUser->experiences)) {
+                                                                    $experience = auth()->user()->profileUser->experiences[0];
+                                                                    $start = (isset($experience->start)) ? substr($experience->start, 0, 7) : '';
+                                                                    $end = (isset($experience->end)) ? substr($experience->end, 0, 7) : '';
+                                                                }
+                                                            @endphp
+                                                            <label for="firstName" class="form-label">Company Name</label>
+                                                            <input type="text" class="form-control" 
+                                                                name="experience[company_name]" 
+                                                                placeholder="Enter company name" 
+                                                                value="{{ isset($experience->company_name) ? $experience->company_name : '' }}"
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Position</label>
+                                                            <input type="text" class="form-control" 
+                                                                name="experience[position]" 
+                                                                placeholder="Vị trí trong công ty"
+                                                                value="{{ isset($experience->position) ? $experience->position : '' }}" 
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Thời gian bắt đầu</label>
+                                                            <input type="month" class="form-control" 
+                                                                name="experience[start]" 
+                                                                
+                                                                value="{{ isset($experience->start) ? $start : '' }}" 
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Đến</label>
+                                                            <input type="month" class="form-control" 
+                                                                name="experience[end]" 
+                                                                
+                                                                value="{{ isset($experience->end) ? $end : '' }}" 
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Vai trò</label>
+                                                            <textarea class="form-control text-start" 
+                                                                name="experience[description]"
+                                                                rows="3"> 
+                                                                {{ isset($experience->description) ? $experience->description : '' }}
+                                                            </textarea>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                </div>
+                                                <!--end row-->
+                                            </div>
+
+                                            {{-- <div class="mt-4">
+                                                <h5 class="fs-17 fw-semibold mb-3">Project</h5>
+                                                <div class="row">
+                                                    <!--end col-->
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            @php
+                                                                // if (isset(auth()->user()->profileUser->experiences)) {
+                                                                //     $experience = auth()->user()->profileUser->experiences[0];
+                                                                //     $start = (isset($experience->start)) ? substr($experience->start, 0, 7) : '';
+                                                                //     $end = (isset($experience->end)) ? substr($experience->end, 0, 7) : '';
+                                                                // }
+                                                            @endphp
+                                                            <label for="firstName" class="form-label">Company Name</label>
+                                                            <input type="text" class="form-control" 
+                                                                name="experience[company_name]" 
+                                                                placeholder="Enter company name" 
+                                                                value="{{ isset($experience->company_name) ? $experience->company_name : '' }}"
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Position</label>
+                                                            <input type="text" class="form-control" 
+                                                                name="experience[position]" 
+                                                                placeholder="Vị trí trong công ty"
+                                                                value="{{ isset($experience->position) ? $experience->position : '' }}" 
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Thời gian bắt đầu</label>
+                                                            <input type="month" class="form-control" 
+                                                                name="experience[start]" 
+                                                                
+                                                                value="{{ isset($experience->start) ? $start : '' }}" 
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Đến</label>
+                                                            <input type="month" class="form-control" 
+                                                                name="experience[end]" 
+                                                                
+                                                                value="{{ isset($experience->end) ? $end : '' }}" 
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Vai trò</label>
+                                                            <textarea class="form-control text-start" 
+                                                                name="experience[description]"
+                                                                rows="3"> 
+                                                                {{ isset($experience->description) ? $experience->description : '' }}
+                                                            </textarea>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                </div>
+                                                <!--end row-->
+                                            </div> --}}
+
                                             <div class="mt-4 text-end">
                                                 <button type="submit" class="btn btn-primary">Update</button>
                                             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Repositories\Site\SiteBaseRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 abstract class SiteBaseController extends Controller
 {
@@ -64,5 +65,16 @@ abstract class SiteBaseController extends Controller
     public function detail(int $id): View
     {   
         return $this->repository->detail($id);
+    }
+
+    /**
+     * Filter function
+     *
+     * @param request $request
+     * @return View
+     */
+    public function filter(Request $request): View
+    {   
+        return $this->repository->filter($request);
     }
 }

@@ -2,6 +2,7 @@
 namespace App\Repositories\Site;
 
 use App\Models\Education;
+use App\Models\Experiences;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repositories\Site\SiteBaseRepository;
@@ -20,6 +21,13 @@ class SiteProfileUserRepository extends SiteBaseRepository
      * @var string
      */
     protected string $prefix = 'ProfileUser';
+
+    /**
+     * View Filter
+     * 
+     * @var 
+     */
+    protected $viewFilter = 'site.profile.list';
 
     /**
      * Get list job
@@ -65,6 +73,10 @@ class SiteProfileUserRepository extends SiteBaseRepository
             $education = $this->handleTime($request->education);
             
             Education::updateOrCreate(['profile_user_id' => $profile->id], $education);
+
+            $experience = $this->handleTime($request->experience);
+            
+            Experiences::updateOrCreate(['profile_user_id' => $profile->id], $experience);
 
             User::updateOrCreate(['id' => $request->user_id], $request->user);
             

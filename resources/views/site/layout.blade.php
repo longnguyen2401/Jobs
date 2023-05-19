@@ -171,6 +171,7 @@
                             
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown">
                                 <li><a class="dropdown-item" href="/profile/detail">My Profile</a></li>
+                                <li><a class="dropdown-item" href="/password/change">Đổi Password</a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             </ul>
                         </li>

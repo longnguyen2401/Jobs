@@ -16,6 +16,13 @@ class SiteJobRepository extends SiteBaseRepository
     protected string $prefix = 'Job';
     
     /**
+     * View Filter
+     * 
+     * @var 
+     */
+    protected $viewFilter = 'site.job.list';
+
+    /**
      * Get list job
      * 
      * @param int|null $id
@@ -23,7 +30,7 @@ class SiteJobRepository extends SiteBaseRepository
      */
     public function index(): View
     { 
-        $list = self::$_model->where('active', 1)->get();
+        $list = self::$_model->where('active', 1)->paginate(2);
         return view('site.job.list', compact('list'));
     }
 

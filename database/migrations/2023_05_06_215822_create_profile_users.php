@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('job_title')->nullable();
-            $table->string('about')->nullable();
+            $table->longText('about')->nullable();
             $table->string('avatar')->nullable();
             $table->string('address')->nullable();
             $table->string('skill')->nullable();

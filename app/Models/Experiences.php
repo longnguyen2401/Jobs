@@ -16,6 +16,7 @@ class Experiences extends Model
         'company_name',
         'position',
         'start',
+        'end',
         'description',
         'address',
     ];

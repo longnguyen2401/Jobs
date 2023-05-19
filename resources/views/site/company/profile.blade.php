@@ -99,7 +99,7 @@
                                         </li>
                                     </ul>
                                     <div class="mt-3">
-                                        <a href="" class="btn btn-danger btn-hover w-100"><i class="uil uil-envelope"></i> Find CV</a>
+                                        <a href="/profile/list" class="btn btn-danger btn-hover w-100"><i class="uil uil-envelope"></i> Find CV</a>
                                     </div>
                                 </div>
                                 
@@ -113,7 +113,9 @@
                                     <div class="mb-5">
                                         <h6 class="fs-17 fw-medium mb-4">About Company</h6>
                                         <div class="description">
-                                            {{ auth()->user()->company->about }}
+                                            @php
+                                                echo auth()->user()->company->about;
+                                            @endphp
                                         </div>
                                     </div>
                                 
@@ -342,7 +344,7 @@
                                     <!--end col-->
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="languages" class="form-label">Technical</label>
+                                            <label for="languages" class="form-label">Technical Skill Keyword</label>
                                             <input type="text" class="form-control" name="technologies"
                                                 value="{{ (auth()->user()->company->technologies) ?? '' }}" 
                                                 placeholder="Enter with format PHP|Javascript|Python"
@@ -528,5 +530,17 @@
 @section('js')
     <script>
         var swiper=new Swiper(".blogSlider",{loop:!0,pagination:{el:".swiper-pagination",clickable:!0},autoplay:{delay:2500,disableOnInteraction:!1},breakpoints:{200:{slidesPerView:1,spaceBetween:10},992:{slidesPerView:2,spaceBetween:20}}}),swiper=new Swiper(".blogdetailSlider",{loop:!0,spaceBetween:10,pagination:{el:".swiper-pagination",clickable:!0},autoplay:{delay:2500,disableOnInteraction:!1}});
+    </script>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#about-text-area' ) )
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
     </script>
 @endsection

@@ -49,7 +49,7 @@
                                                 @enderror
                                             </div>
                                             <div class="text-center mb-4">
-                                                <button type="submit" class="btn btn-white btn-hover w-100">Sửa Đăng nhập | cho nhập password khi login bằng google</button>
+                                                <button type="submit" class="btn btn-danger btn-hover w-100">Đăng nhập</button>
                                             </div>
                                             <div class="text-center">
                                                 <a id="login-goolge" class="btn btn-white btn-hover w-100" href="">

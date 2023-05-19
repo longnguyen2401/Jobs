@@ -53,7 +53,7 @@ class GoogleController extends Controller
                 ]
             );
             Auth::login($user);
-            return redirect('/type/confirm');
+            return redirect('/password/change');
         } catch (\Exception $exception) {
             return response()->json([
                 'status' => __('google sign in failed'),

@@ -341,7 +341,7 @@
                             <li>
                                 <a href="#company" data-bs-toggle="collapse">
                                     <i class="mdi mdi-clipboard-outline"></i>
-                                    <span> Tasks </span>
+                                    <span> Company </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="company">

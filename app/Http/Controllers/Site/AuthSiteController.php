@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthSiteController extends Controller
 {
@@ -77,6 +78,29 @@ class AuthSiteController extends Controller
         ])->onlyInput('email');
     }
 
+    /**
+     * Change Password
+     *
+     * @return view
+     */
+    public function changePassword()
+    {
+        return view('site.auth.enter-password');
+    }
+
+    /**
+     * Change Password
+     *
+     * @return view
+     */
+    public function savePassword(Request $request)
+    {
+        $pw = Hash::make($request->password);
+        auth()->user()->password = $pw;
+        auth()->user()->save();
+        return redirect('/type/confirm');
+    }
+    
     /**
      * Logout
      *

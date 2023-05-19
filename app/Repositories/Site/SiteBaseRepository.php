@@ -25,6 +25,20 @@ abstract class SiteBaseRepository
     protected static Model $_model;
 
     /**
+     * Init filter
+     * 
+     * @var 
+     */
+    protected $filter;
+
+    /**
+     * View Filter
+     * 
+     * @var 
+     */
+    protected $viewFilter;
+
+    /**
      * BaseRepository constructor.
      * 
      * @return void
@@ -32,6 +46,7 @@ abstract class SiteBaseRepository
     public function __construct()
     {
         $this->setModel();
+        $this->setFilter();
     }
 
     /**
@@ -54,4 +69,41 @@ abstract class SiteBaseRepository
     {
         self::$_model = $this->getModel();
     }
+
+    /**
+     * get filter
+     * 
+     * @return class
+     */
+    protected function getFilter()
+    {
+        $className = $this->prefix . 'Filter';
+        $dir = "App\\Filter\\Site\\$className";
+        if (class_exists($dir)) {
+            $class = new $dir;
+            return $class;
+        }
+        
+    }
+
+    /**
+     * Set filter
+     */
+    protected function setFilter()
+    {
+        $this->filter = $this->getFilter();
+    }
+
+     /**
+     * BaseRepository constructor.
+     * 
+     * @return 
+     */
+    public function filter(Request $request)
+    {
+        $list = $this->filter->main(self::$_model, $request);
+        return view($this->viewFilter, compact('list'));
+    }
+
+
 }

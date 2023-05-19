@@ -155,7 +155,9 @@
                                 </div><!--end Experience-->
 
                                 <div class="mt-4 job-description">
-                                    {{ $detail->description }}
+                                    @php
+                                        echo $detail->description;
+                                    @endphp 
                                 </div>
 
                                 <div class="mt-4">

@@ -39,37 +39,41 @@
         <!-- START JOB-LIST -->
         <section class="section">
             <div class="container">
+                <form action="/job/filter" method="get">
                 <div class="row">
 
                     <div class="col-lg-9">
                         <div class="me-lg-5">
                             <div class="job-list-header">
-                                <form action="/search/mo/" method="get">
+                                
                                     <div class="row g-2">
                                         <div class="col-lg-3 col-md-6">
                                             <div class="filler-job-form">
                                                 <i class="uil uil-briefcase-alt"></i>
-                                                <input type="search" class="form-control filter-job-input-box" id="exampleFormControlInput1" placeholder="Job, company... ">
+                                                <input type="search" class="form-control filter-job-input-box" id="job-title" name="title" placeholder="Job title... ">
                                             </div>
-                                        </div><!--end col-->
+                                        </div>
                                         <div class="col-lg-3 col-md-6">
                                             <div class="filler-job-form">
-                                                <i class="uil uil-location-point"></i>
-                                                <select class="form-select" data-trigger name="choices-single-location" id="choices-single-location" aria-label="Default select example">
-                                                    <option value="AF">Afghanistan</option>
-                                                    <option value="AX">&Aring;land Islands</option>
-                                                
+                                                <i class="uil uil-clipboard-notes"></i>
+                                                <select class="form-select" data-trigger name="address" id="address" aria-label="Default select example">
+                                                    <option value="">Thành phố</option>
+                                                    <option value="hochiminh">TP Hồ Chí Minh</option>
+                                                    <option value="hanoi">Hà Nội</option>
+                                                    <option value="danang">Đà Nẵng</option>
+                                                    <option value="dalat">Đà Lạt</option>
                                                 </select>
                                             </div>
                                         </div><!--end col-->
                                         <div class="col-lg-3 col-md-6">
                                             <div class="filler-job-form">
                                                 <i class="uil uil-clipboard-notes"></i>
-                                                <select class="form-select " data-trigger name="choices-single-categories" id="choices-single-categories" aria-label="Default select example">
-                                                    <option value="4">Accounting</option>
-                                                    <option value="1">IT & Software</option>
-                                                    <option value="3">Marketing</option>
-                                                    <option value="5">Banking</option>
+                                                <select class="form-select" data-trigger name="level" id="level" aria-label="Default select example">
+                                                    <option value="">Level</option>
+                                                    <option value="Fresher" {{ isset(request()->level) && 'Fresher' == request()->level ? 'selected' : ''}}>Fresher</option>
+                                                    <option value="Junior" {{ isset(request()->level) && "Junior" == request()->level ? 'selected' : ''}}>Junior</option>
+                                                    <option value="Middle" {{ isset(request()->level) && "Middle" == request()->level ? 'selected' : ''}} >Middle</option>
+                                                    <option value="Senior" {{ isset(request()->level) && "Senior" == request()->level ? 'selected' : ''}}>Senior</option>
                                                 </select>
                                             </div>
                                         </div><!--end col-->
@@ -258,24 +262,8 @@
         
                             <div class="row">
                                 <div class="col-lg-12 mt-4 pt-2">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination job-pagination mb-0 justify-content-center">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                                                    <i class="mdi mdi-chevron-double-left fs-15"></i>
-                                                </a>
-                                            </li>
-                                            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0)">
-                                                    <i class="mdi mdi-chevron-double-right fs-15"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                                    {{ $list->appends(request()->input())->links('site.component.pagination') }}
+                                    
                                 </div><!--end col-->
                             </div><!-- end row -->
                         </div>
@@ -285,31 +273,8 @@
                     <div class="col-lg-3">
                         <div class="side-bar mt-5 mt-lg-0">
                             <div class="accordion" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="locationOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#location" aria-expanded="true" aria-controls="location">
-                                        Location
-                                    </button>
-                                    </h2>
-                                    <div id="location" class="accordion-collapse collapse show" aria-labelledby="locationOne">
-                                        <div class="accordion-body">
-                                            <div class="side-title">
-                                                <div class="mb-3">
-                                                    <form class="position-relative">
-                                                        <input class="form-control" type="search" placeholder="Search...">
-                                                        <button class="bg-transparent border-0 position-absolute top-50 end-0 translate-middle-y me-2" type="submit"><span class="mdi mdi-magnify text-muted"></span></button>
-                                                    </form>
-                                                </div>
-                                                <div class="area-range">
-                                                    <div class="form-label mb-3">Area Range: <span class="example-val mt-2" id="slider1-span">0</span> miles</div>
-                                                    <div id="slider1"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- end accordion-item -->
                         
-                                <div class="accordion-item mt-4">   
+                                <div class="accordion-item">   
                                 <h2 class="accordion-header" id="experienceOne">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#experience" aria-expanded="true" aria-controls="experience">
                                         Work experience
@@ -319,20 +284,20 @@
                                     <div class="accordion-body">
                                         <div class="side-title">
                                             <div class="form-check mt-2">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" />
-                                                <label class="form-check-label ms-2 text-muted" for="flexCheckChecked1">No experience</label>
+                                                <input class="form-check-input" type="checkbox" value="0" {{ isset(request()->year) && in_array("0", request()->year) ? 'checked' : ''}} id="year1" name="year[]"/>
+                                                <label class="form-check-label ms-2 text-muted" for="year1" >No experience</label>
                                             </div>
                                             <div class="form-check mt-2">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                                                <label class="form-check-label ms-2 text-muted" for="flexCheckChecked2">0-3 years</label>
+                                                <input class="form-check-input" type="checkbox" value="1" {{ isset(request()->year) && in_array("1", request()->year) ? 'checked' : ''}} id="year2"  name="year[]" />
+                                                <label class="form-check-label ms-2 text-muted" for="year2">1 years</label>
                                             </div>
                                             <div class="form-check mt-2">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
-                                                <label class="form-check-label ms-2 text-muted" for="flexCheckChecked3">3-6 years</label>
+                                                <input class="form-check-input" type="checkbox" value="2" {{ isset(request()->year) && in_array("2", request()->year) ? 'checked' : ''}} id="year3" name="year[]" />
+                                                <label class="form-check-label ms-2 text-muted" for="year3">2 years</label>
                                             </div>
                                             <div class="form-check mt-2">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                                                <label class="form-check-label ms-2 text-muted" for="flexCheckChecked4">More than 6 years</label>
+                                                <input class="form-check-input" type="checkbox" value="3" {{ isset(request()->year) && in_array("3", request()->year) ? 'checked' : ''}} id="year4" name="year[]" />
+                                                <label class="form-check-label ms-2 text-muted" for="year4">3 years</label>
                                             </div>
                                         </div>
                                     </div>
@@ -349,27 +314,27 @@
                                         <div class="accordion-body">
                                             <div class="side-title">
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6" checked>
-                                                    <label class="form-check-label ms-2 text-muted" for="flexRadioDefault6">
+                                                    <input class="form-check-input" type="radio" value='Freelance' name="type" id="type1" {{ isset(request()->type) && 'Freelance' == request()->type ? 'checked' : ''}}>
+                                                    <label class="form-check-label ms-2 text-muted" for="type1">
                                                         Freelance
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                                    <label class="form-check-label ms-2 text-muted" for="flexRadioDefault2">
+                                                    <input class="form-check-input" type="radio" value='FullTime' name="type" id="type2" {{ isset(request()->type) && 'FullTime' == request()->type ? 'checked' : ''}}>
+                                                    <label class="form-check-label ms-2 text-muted" for="type2">
                                                         Full Time
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                                                    <label class="form-check-label ms-2 text-muted" for="flexRadioDefault3">
+                                                    <input class="form-check-input" type="radio" value='Internship' name="type" id="type3" {{ isset(request()->type) && 'Internship' == request()->type ? 'checked' : ''}}>
+                                                    <label class="form-check-label ms-2 text-muted" for="type3">
                                                         Internship
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                                                    <label class="form-check-label ms-2 text-muted" for="flexRadioDefault4">
-                                                        Part Time
+                                                    <input class="form-check-input" type="radio" value='Remote' name="type" id="type4" {{ isset(request()->type) && 'Remote' == request()->type ? 'checked' : ''}}>
+                                                    <label class="form-check-label ms-2 text-muted" for="type4">
+                                                        Remote
                                                     </label>
                                                 </div>
                                             </div>
@@ -386,39 +351,39 @@
                                     <div id="dateposted" class="accordion-collapse collapse show" aria-labelledby="datePosted">
                                         <div class="accordion-body">
                                             <div class="side-title form-check-all">
-                                                <div class="form-check">
+                                                {{-- <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="checkAll" value="" />
                                                     <label class="form-check-label ms-2 text-muted" for="checkAll">
                                                         All
                                                     </label>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="checkbox"  name="datePosted"  value="last" id="flexCheckChecked5" checked />
-                                                    <label class="form-check-label ms-2 text-muted" for="flexCheckChecked5">
+                                                    <input class="form-check-input" type="radio" value="1" name="created_at" {{ isset(request()->created_at) && '1' == request()->created_at ? 'checked' : ''}} value="last" id="created_at1" />
+                                                    <label class="form-check-label ms-2 text-muted" for="created_at1">
                                                         Last Hour
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="checkbox" name="datePosted" value="last" id="flexCheckChecked6" />
-                                                    <label class="form-check-label ms-2 text-muted" for="flexCheckChecked6">
+                                                    <input class="form-check-input" type="radio" value="2" name="created_at" {{ isset(request()->created_at) && '2' == request()->created_at ? 'checked' : ''}} value="last" id="created_at2" />
+                                                    <label class="form-check-label ms-2 text-muted" for="created_at2">
                                                         Last 24 hours
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="checkbox" name="datePosted" value="last" id="flexCheckChecked7" />
-                                                    <label class="form-check-label ms-2 text-muted" for="flexCheckChecked7">
+                                                    <input class="form-check-input" type="radio" value="3" name="created_at" {{ isset(request()->created_at) && '3' == request()->created_at ? 'checked' : ''}} value="last" id="created_at3" />
+                                                    <label class="form-check-label ms-2 text-muted" for="created_at3">
                                                         Last 7 days
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="checkbox" name="datePosted" value="last" id="flexCheckChecked8" />
-                                                    <label class="form-check-label ms-2 text-muted" for="flexCheckChecked8">
+                                                    <input class="form-check-input" type="radio" value="4" name="created_at" {{ isset(request()->created_at) && '4' == request()->created_at ? 'checked' : ''}} value="last" id="created_at4" />
+                                                    <label class="form-check-label ms-2 text-muted" for="created_at4">
                                                         Last 14 days
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="checkbox" name="datePosted" value="last" id="flexCheckChecked9" />
-                                                    <label class="form-check-label ms-2 text-muted" for="flexCheckChecked9">
+                                                    <input class="form-check-input" type="radio" value="5" name="created_at" {{ isset(request()->created_at) && '5' == request()->created_at ? 'checked' : ''}} value="last" id="created_at5" />
+                                                    <label class="form-check-label ms-2 text-muted" for="created_at5">
                                                         Last 30 days
                                                     </label>
                                                 </div>
@@ -426,24 +391,7 @@
                                         </div>
                                     </div>
                                 </div><!-- end accordion-item -->
-                        
-                                <div class="accordion-item mt-3">
-                                    <h2 class="accordion-header" id="tagCloud">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tagcloud" aria-expanded="false" aria-controls="tagcloud">
-                                            Tags Cloud
-                                        </button>
-                                    </h2>
-                                    <div id="tagcloud" class="accordion-collapse collapse show" aria-labelledby="tagCloud">
-                                        <div class="accordion-body">
-                                            <div class="side-title">
-                                                <a href="javascript:void(0)" class="badge tag-cloud fs-13 mt-2">design</a>
-                                                <a href="javascript:void(0)" class="badge tag-cloud fs-13 mt-2">marketing</a>
-                                                <a href="javascript:void(0)" class="badge tag-cloud fs-13 mt-2">business</a>
-                                                <a href="javascript:void(0)" class="badge tag-cloud fs-13 mt-2">developer</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- end accordion-item -->
+                    
                         
                             </div><!--end accordion-->
                             

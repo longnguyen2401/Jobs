@@ -162,7 +162,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <textarea class="form-control" id="" name="description"
+                                        <textarea class="form-control" id="about-job-textarea" name="description"
                                             rows="5">About of job</textarea>
                                     </div>
                                 </div>
@@ -315,7 +315,17 @@
 @endsection
 
 @section('after-main-js')
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#about-job-textarea' ) )
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 @endsection
 
 @section('js')

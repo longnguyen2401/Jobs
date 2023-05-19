@@ -12,6 +12,7 @@ use App\Http\Controllers\Site\SiteCompanyController;
 use App\Http\Controllers\Site\SiteUserController;
 use App\Http\Controllers\Site\SiteRequestController;
 use App\Http\Controllers\Site\SiteProfileUserController;
+use App\Http\Controllers\Site\FilterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,7 @@ Route::prefix('/')->name('site.')->group(function () {
     Route::get('job/detail/{id}',         [SiteJobController::class, 'detail'])->name('job.detail');
     Route::get('job/create',              [SiteJobController::class, 'create'])->name('job.create');
     Route::post('job/save',               [SiteJobController::class, 'save'])->name('job.save');
+    Route::get('job/filter',              [SiteJobController::class, 'filter'])->name('job.filter');
 
     Route::get('company/detail/{id}',     [SiteCompanyController::class, 'detail'])->name('company.detail');
     Route::get('company/profile',         [SiteCompanyController::class, 'profile'])->name('company.profile');
@@ -73,13 +75,15 @@ Route::prefix('/')->name('site.')->group(function () {
     Route::get('profile/detail',          [SiteUserController::class, 'profile'])->name('profile.detail');
     Route::post('profile/save',           [SiteProfileUserController::class, 'save'])->name('profile.save');
     Route::get('profile/detail-user/{id}',[SiteProfileUserController::class, 'detail'])->name('profile.detail.user');
-    Route::get('profile/list',                 [SiteProfileUserController::class, 'index'])->name('profile.list');
+    Route::get('profile/list',            [SiteProfileUserController::class, 'index'])->name('profile.list');
+    Route::get('profile/filter',          [SiteProfileUserController::class, 'filter'])->name('profile.filter');
 
     Route::post('apply',                  [SiteRequestController::class, 'apply'])->name('request.apply');
     Route::get('apply/list/{id}',         [SiteRequestController::class, 'list'])->name('request.list');
 
-    
-    
+   
+    Route::get('password/change',         [AuthSiteController::class, 'changePassword'])->name('password.change');
+    Route::post('password/save',          [AuthSiteController::class, 'savePassword'])->name('password.save');
     
     Route::prefix('/')->middleware(['site.auth', 'if.type.default'])->group(function () {
         Route::get('/type/confirm',       [AuthSiteController::class, 'typeConfirm'])->name('type.confirm');
