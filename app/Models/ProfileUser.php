@@ -56,4 +56,8 @@ class ProfileUser extends Model
     public function getArrSkillAttribute() {
         return explode("|", $this->skill);
     }
+
+        public function getDisplaySkillAttribute() {
+        return implode(",", $this->arr_skill);
+    }
 }

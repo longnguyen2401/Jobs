@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('year')->nullable();
             $table->string('type')->nullable();
             $table->string('skill')->nullable();
-            $table->integer('active')->default(0);
+            $table->integer('active')->default(1);
             $table->date('from_date')->nullable();
             $table->date('expired_date')->nullable();
             $table->timestamps();

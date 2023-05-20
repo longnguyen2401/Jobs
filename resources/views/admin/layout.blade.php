@@ -266,7 +266,17 @@
                     </li>
 
                     <li>
-                        <h4 class="page-title-main">@yield('title') - @yield('page')</h4>
+                        <h4 class="page-title-main">
+                            <span style="
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            max-width: 600px;
+                        "> @yield('title') - 
+                            </span>
+                            @yield('page')
+                        
+                        </h4>
                     </li>
                     
                 </ul>
@@ -351,6 +361,21 @@
                                         </li>
                                         <li>
                                             <a href="/admin/company/create">Thêm mới</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#company" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-clipboard-outline"></i>
+                                    <span> Profile User </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="company">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="/admin/profileuser">Danh sách</a>
                                         </li>
                                     </ul>
                                 </div>

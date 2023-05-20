@@ -15,13 +15,26 @@
                                 @method('PUT')
 
                                 @foreach ($metadata['form'] as $form)
+                                    @php
+                                        if (strpos($form['key'], '.')) {
+                                            $arrKey = explode(".", $form['key']);
+                                            $value = $metadata['data'];
+                                            foreach ($arrKey as $key => $keyItem) {
+                                                $value = $value->{$keyItem};
+                                            }
+                                        } else {
+                                            $value = $metadata['data']->{$form['key']};
+                                        }
+                                        
+                                    @endphp
+                                    
                                     <div class="form-group row">
                                         <label class="col-md-2 col-form-label" for="simpleinput">{{ $form['name'] }}</label>
                                         <div class="col-md-10">
                                         @switch($form['component'])
                                             @case('input')
 
-                                                <input type="{{ $form['type'] }}" class="form-control" name="{{ $form['key'] }}" value="{{ $metadata['data']->{$form['key']} }}">
+                                                <input type="{{ $form['type'] }}" class="form-control" name="{{ $form['key'] }}" value="{{ $value }}">
                                                     
                                                 @break
 
@@ -44,7 +57,24 @@
                                                 <input type="checkbox" class="" name="{{ $form['key'] }}" value="1" {{ ($metadata['data']->{$form['key']} == 1) ? 'checked' : ''  }}>
                                                     
                                                 @break
+
+                                            @case('file')
+                                                <div class="d-flex row align-items-center" >
+                                                    <div class="col-2">
+                                                        <a href="{{ asset('storage/uploads/' . $value) }}" download class="btn btn-primary btn-hover"><i class="uil uil-import"></i> Download CV</a>    
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="d-flex row mt-2" >
+                                                    <div class="col-6">
+                                                        <input type="file" class="form-control" name="file-{{ $form['key'] }}">
+                                                    </div>
+                                                    
+                                                </div>
                                                 
+                                                    
+                                                @break
                                         @endswitch
                                         </div>
                                     </div>  

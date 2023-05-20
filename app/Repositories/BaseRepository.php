@@ -109,11 +109,9 @@ abstract class BaseRepository
     public function updateOrCreate(Request $request, $id = null)
     {
         $request = $this->checkUploadFile($request);
-        $attributes = self::$_model->getFillable();
+        $attributes = self::$_model->getFillable(); 
         $data = $request->only($attributes);
-
         $data = $this->hookBeforeUpdate($data);
-
         self::$_model::updateOrCreate(['id' => $id], $data);
     }
 
@@ -167,6 +165,8 @@ abstract class BaseRepository
      *
      * @return 
      */
-    public function hookBeforeUpdate($data) {}
+    public function hookBeforeUpdate($data) {
+        return $data;
+    }
 
 }

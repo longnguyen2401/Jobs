@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\Admin\ProfileUserController;
 
 use App\Http\Controllers\Site\SiteJobController;
 use App\Http\Controllers\Site\AuthSiteController;
@@ -51,6 +52,13 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     Route::get('/job/company/{id}',       [JobController::class, 'indexById'])->name('job.byid');
     Route::get('/job/toggle-active/{id}', [JobController::class, 'toggleActive'])->name('job.toggle.active');
+
+    Route::get('/profileuser',            [ProfileUserController::class, 'index'])->name('profileuser');
+    // Route::get('/company/create',      [CompanyController::class, 'create'])->name('company.create');
+    Route::get('/profileuser/edit/{id}',  [ProfileUserController::class, 'show'])->name('profileuser.edit');
+    Route::put('/profileuser/{id}',       [ProfileUserController::class, 'update'])->name('profileuser.update');
+    Route::delete('/profileuser/{id}',    [ProfileUserController::class, 'destroy'])->name('profileuser.destroy');
+    // Route::post('/company',               [CompanyController::class, 'store'])->name('company.store');
 });
 
 // ** SITE **

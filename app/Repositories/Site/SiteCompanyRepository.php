@@ -17,6 +17,15 @@ class SiteCompanyRepository extends SiteBaseRepository
     protected string $prefix = 'Company';
     
     /**
+     * Key use mutiple value 
+     * 
+     * @var 
+     */
+    protected $mutipleValueKey = [
+        'technologies'
+    ];
+
+    /**
      * Get detail job
      * 
      * @param int|null $id
@@ -78,10 +87,12 @@ class SiteCompanyRepository extends SiteBaseRepository
 
         try {
             DB::beginTransaction();
-
             $request = $this->checkUploadFile($request);
+            $request = $this->mutipleValueByString($request);
+
             $profileAttr = self::$_model->getFillable();
             $profileData = $request->only($profileAttr);
+            
             self::$_model::updateOrCreate(['user_id' => $request->user_id], $profileData);
             session()->put('message-profile-detail', 'Cập nhật thông tin thành công !');
 

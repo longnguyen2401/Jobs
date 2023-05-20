@@ -39,6 +39,13 @@ abstract class SiteBaseRepository
     protected $viewFilter;
 
     /**
+     * Key use mutiple value 
+     * 
+     * @var 
+     */
+    protected $mutipleValueKey = [];
+
+    /**
      * BaseRepository constructor.
      * 
      * @return void
@@ -94,7 +101,7 @@ abstract class SiteBaseRepository
         $this->filter = $this->getFilter();
     }
 
-     /**
+    /**
      * BaseRepository constructor.
      * 
      * @return 
@@ -103,6 +110,19 @@ abstract class SiteBaseRepository
     {
         $list = $this->filter->main(self::$_model, $request);
         return view($this->viewFilter, compact('list'));
+    }
+
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public function mutipleValueByString(Request $request)
+    {
+        foreach ($this->mutipleValueKey as $key => $value) {
+            $request[$value] = str_replace(',', '|', $request->{$value});
+        }
+        return $request;
     }
 
 

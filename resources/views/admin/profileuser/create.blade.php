@@ -1,5 +1,5 @@
 @extends('admin.components.create')
 
-@section('title', 'Profile User')
+@section('title', 'Company')
 
 @section('page', 'Create')

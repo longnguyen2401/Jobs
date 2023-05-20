@@ -243,7 +243,124 @@
             
             @yield('content')
             
+            <section class="bg-footer">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4">
+                            <div class="footer-item mt-4 mt-lg-0 me-lg-5">
+                                <h4 class="text-white mb-4">Jobcy</h4>
+                                <p class="text-white-50">It is a long established fact that a reader will be of a page reader
+                                    will be of at its layout.</p>
+                                <p class="text-white mt-3">Follow Us on:</p>
+                                <ul class="footer-social-menu list-inline mb-0">
+                                    <li class="list-inline-item"><a href="#"><i class="uil uil-facebook-f"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="uil uil-linkedin-alt"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="uil uil-google"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="uil uil-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        @if (auth()->check() && auth()->user()->type == config('constants.USER.TYPE.COMPANY'))
+                            <div class="col-lg-2 col-6">
+                                <div class="footer-item mt-4 mt-lg-0">
+                                    <p class="fs-16 text-white mb-4">For Company</p>
+                                    <ul class="list-unstyled footer-list mb-0">
+                                        <li><a href="/profile/list"><i class="mdi mdi-chevron-right"></i> Browser Portfolio</a></li>
+                                        <li><a href="/profile/list"><i class="mdi mdi-chevron-right"></i> Portfolio Details</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
+                        
 
+                        <div class="col-lg-2 col-6">
+                            <div class="footer-item mt-4 mt-lg-0">
+                                <p class="fs-16 text-white mb-4">For Jobs</p>
+                                <ul class="list-unstyled footer-list mb-0">
+                                    <li><a href="/"><i class="mdi mdi-chevron-right"></i> Browser Jobs</a></li>
+                                    <li><a href="/"><i class="mdi mdi-chevron-right"></i> Job Details</a></li>
+                                    @if (auth()->check() && auth()->user()->type == config('constants.USER.TYPE.USER'))
+                                    <li><a href="{{ auth()->check() && auth()->user()->type == config('constants.USER.TYPE.USER') ? '/apply/list/' . auth()->user()->id : '/login'}}"
+                                        
+                                        ><i class="mdi mdi-chevron-right"></i> Apply Jobs</a></li>
+                                    @endif
+                                    
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-6">
+                            <div class="footer-item mt-4 mt-lg-0">
+                                <p class="fs-16 text-white mb-4">For Account</p>
+                                <ul class="list-unstyled footer-list mb-0">
+                                    <li><a href="/password/change"><i class="mdi mdi-chevron-right"></i> Change Password</a></li>
+                                    <li><a href="/profile/detail"><i class="mdi mdi-chevron-right"></i> Profile Details</a></li>
+                                    @if (auth()->check())
+                                        <li><a href="/logout"><i class="mdi mdi-chevron-right"></i> Logout</a></li>    
+                                    @else
+                                        <li><a href="/login"><i class="mdi mdi-chevron-right"></i> Login</a></li>
+                                    @endif
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div><!--end row-->
+                </div><!--end container-->
+            </section>
+            <!-- END FOOTER -->
+        
+            <!-- START FOOTER-ALT -->
+            <div class="footer-alt">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="text-white-50 text-center mb-0">
+                                <script>document.write(new Date().getFullYear())</script> &copy; Jobcy - Job Listing Page
+                                Template by <a href="https://themeforest.net/search/themesdesign" target="_blank"
+                                    class="text-reset text-decoration-underline">Themesdesign</a>
+                            </p>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end container-->
+            </div>
+            <!-- END FOOTER -->
+        
+            <!-- Style switcher -->
+            <div id="style-switcher" onclick="toggleSwitcher()" style="left: -165px;">
+                <div>
+                    <h6>Select your color</h6>
+                    <ul class="pattern list-unstyled mb-0">
+                        <li>
+                            <a class="color-list color1" href="javascript: void(0);" onclick="setColorGreen()"></a>
+                        </li>
+                        <li>
+                            <a class="color-list color2" href="javascript: void(0);" onclick="setColor('blue')"></a>
+                        </li>
+                        <li>
+                            <a class="color-list color3" href="javascript: void(0);" onclick="setColor('green')"></a>
+                        </li>
+                    </ul>
+                    <div class="mt-3">
+                        <h6>Light/dark Layout</h6>
+                        <div class="text-center mt-3">
+                            <!-- light-dark mode -->
+                            <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-3">
+                                <i class="uil uil-brightness mode-dark mx-auto"></i>
+                                <i class="uil uil-moon mode-light"></i>
+                            </a>
+                            <!-- END light-dark Mode -->
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- end switcher-->
+        
+            <!--start back-to-top-->
+            <button onclick="topFunction()" id="back-to-top">
+                <i class="mdi mdi-arrow-up"></i>
+            </button>
         </div>
 
         <!-- JAVASCRIPT -->

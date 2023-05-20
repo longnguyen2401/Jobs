@@ -25,6 +25,23 @@
                         @foreach ($metadata['list'] as $item)
                             <tr>
                             @foreach ($metadata['keys'] as $key)
+                            {{-- @php
+                            dd(strpos($key['key'], '.'));
+                             dd($key['key']); @endphp --}}
+                                @php
+                                    $value = 1;
+                                    if (isset($key['key']) && strpos($key['key'], '.')) {
+                                        $arrKey = explode(".", $key['key']);
+                                        $value = $item;
+                                        foreach ($arrKey as $key => $keyItem) {
+                                            $value = $value->{$keyItem};
+                                        }
+                                    } else if (isset($key['key'])) {
+                                        $value = $item->{$key['key']};
+                                    }
+                                    
+                                @endphp
+                                
                                 @if (isset($key['component']))
                                     @switch($key['component'])
                                         @case('button')
@@ -49,7 +66,8 @@
                                         @break
                                     @endswitch
                                 @else
-                                    <td>{{ $item->{$key['key']} }}</td>
+                                    
+                                    <td>{{ $value }}</td>
                                 @endif
                             @endforeach
                             @if (isset($metadata['operation']['operation']) && count($metadata['operation']['operation']) > 0)

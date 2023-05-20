@@ -40,9 +40,9 @@ class JobList extends BaseList
         [
             'name' => 'Skill',
         ],
-        [
-            'name' => 'Duyệt',
-        ],
+        // [
+        //     'name' => 'Duyệt',
+        // ],
     );
 
         /**
@@ -72,15 +72,15 @@ class JobList extends BaseList
         [
             'key' => 'skill',
         ],
-        [
-            'component' => 'icon-button',
-            'key' => 'active',
-            'condition' => '==',
-            'value' => 1,
-            'textTrue' => 'Đã duyệt',
-            'textFalse' => 'Chưa duyệt',
-            'url' => '/admin/job/toggle-active'
-        ],
+        // [
+        //     'component' => 'icon-button',
+        //     'key' => 'active',
+        //     'condition' => '==',
+        //     'value' => 1,
+        //     'textTrue' => 'Đã duyệt',
+        //     'textFalse' => 'Chưa duyệt',
+        //     'url' => '/admin/job/toggle-active'
+        // ],
     );
         
 }

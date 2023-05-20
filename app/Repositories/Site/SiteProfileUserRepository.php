@@ -10,7 +10,6 @@ use App\Repositories\Site\SiteBaseRepository;
 use App\Traits\MonthTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
-use App\Repositories\Site\SiteRequestRepository;
 
 class SiteProfileUserRepository extends SiteBaseRepository
 {
@@ -29,6 +28,15 @@ class SiteProfileUserRepository extends SiteBaseRepository
      * @var 
      */
     protected $viewFilter = 'site.profile.list';
+    
+    /**
+     * Key use mutiple value 
+     * 
+     * @var 
+     */
+    protected $mutipleValueKey = [
+        'skill'
+    ];
 
     /**
      * Get list job
@@ -66,7 +74,8 @@ class SiteProfileUserRepository extends SiteBaseRepository
           
             DB::beginTransaction();
             $request = $this->checkUploadFile($request);
-
+            $request = $this->mutipleValueByString($request);
+            
             $profileAttr = self::$_model->getFillable();
             $profileData = $request->only($profileAttr);
     

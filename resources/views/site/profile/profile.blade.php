@@ -115,7 +115,7 @@
                                 <h6 class="fs-17 fw-semibold mb-3">Document</h6>
 
                                 <div class="mt-3">
-                                    <a href="mailto: {{ $detail->user->email }}" class="btn btn-danger btn-hover w-100"><i class="uil uil-envelope"></i> Contact Me</a>
+                                    <a href="mailto:{{ $detail->user->email }}" class="btn btn-danger btn-hover w-100"><i class="uil uil-envelope"></i> Contact Me</a>
                                     @if ($detail->cv)
                                     <a href="{{ asset('storage/uploads/' . $detail->cv) }}" download class="btn btn-primary btn-hover w-100 mt-2"><i class="uil uil-import"></i> Download CV</a>    
                                     @endif
@@ -174,23 +174,42 @@
                                 </div><!--end candidate-education-details-->
                                 <div class="candidate-education-details mt-4 pt-3">
                                     <h6 class="fs-17 fw-bold mb-0">Experience</h6>
-                                    <div class="candidate-education-content mt-4 d-flex">
-                                        <div class="circle flex-shrink-0 bg-soft-primary"> W </div>
-                                        <div class="ms-4">
-                                            <h6 class="fs-16 mb-1">Web Design & Development Team Leader</h6>
-                                            <p class="mb-2 text-muted">Creative Agency - (2013 - 2016)</p>
-                                            <p class="text-muted">There are many variations of passages of available, but the majority alteration in some form. As a highly skilled and successfull product development and design specialist with more than 4 Years of My experience.</p>
+                                    @isset($detail->experiences)
+                                        @foreach ($detail->experiences as $experiences)
+                                        <div class="candidate-education-content mt-4 d-flex">
+                                            <div class="circle flex-shrink-0 bg-soft-primary">{{ $experiences->first_keyword_name }}</div>
+                                            <div class="ms-4">
+                                                <h6 class="fs-16 mb-1">{{ $experiences->position }}</h6>
+                                                <p class="mb-2 text-muted">{{ $experiences->company_name }} - ({{ ($experiences->fm_start) ?? '' }} - {{ ($experiences->fm_end) ?? '' }})</p>
+                                                <p class="text-muted">
+                                                    {{ ($experiences->description) ?? '' }}    
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="candidate-education-content mt-4 d-flex">
-                                        <div class="circle flex-shrink-0 bg-soft-primary"> P </div>
-                                        <div class="ms-4">
-                                            <h6 class="fs-16 mb-1">Project Manager</h6>
-                                            <p class="mb-2 text-muted">Jobcy Technology Pvt.Ltd - (Pressent)</p>
-                                            <p class="text-muted mb-0">There are many variations of passages of available, but the majority alteration in some form. As a highly skilled and successfull product development and design specialist with more than 4 Years of My experience.</p>
-                                        </div>
-                                    </div>
+
+                                        @endforeach
+                                    @endisset
                                 </div>
+
+                                <div class="candidate-education-details mt-4">
+                                    <h6 class="fs-18 fw-bold mb-0">Project</h6>
+                                    @isset($detail->project)
+                                        @foreach ($detail->project as $project)
+                                        <div class="candidate-education-content mt-4 d-flex">
+                                            <div class="circle flex-shrink-0 bg-soft-primary">{{ $project->first_keyword_name }}</div>
+                                            <div class="ms-4">
+                                                <h6 class="fs-16 mb-1">{{ $project->name }}</h6>
+                                                <p class="mb-2 text-muted">{{ $project->position }} - ({{ ($project->fm_start) ?? '' }} - {{ ($project->fm_end) ?? '' }})</p>
+                                                <p class="text-muted">
+                                                    {{ ($project->description) ?? '' }}    
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        @endforeach
+                                    @endisset
+                                </div>
+                                
                             </div><!--end card-body-->
                         </div><!--end card-->
                     </div><!--end col-->
@@ -200,117 +219,7 @@
     </div>
 
     <!-- START FOOTER -->
-    <section class="bg-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="footer-item mt-4 mt-lg-0 me-lg-5">
-                        <h4 class="text-white mb-4">Jobcy</h4>
-                        <p class="text-white-50">It is a long established fact that a reader will be of a page reader
-                            will be of at its layout.</p>
-                        <p class="text-white mt-3">Follow Us on:</p>
-                        <ul class="footer-social-menu list-inline mb-0">
-                            <li class="list-inline-item"><a href="#"><i class="uil uil-facebook-f"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="uil uil-linkedin-alt"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="uil uil-google"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="uil uil-twitter"></i></a></li>
-                        </ul>
-                    </div>
-                </div><!--end col-->
-                <div class="col-lg-2 col-6">
-                    <div class="footer-item mt-4 mt-lg-0">
-                        <p class="fs-16 text-white mb-4">Company</p>
-                        <ul class="list-unstyled footer-list mb-0">
-                            <li><a href="about.html"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
-                            <li><a href="contact.html"><i class="mdi mdi-chevron-right"></i> Contact Us</a></li>
-                            <li><a href="services.html"><i class="mdi mdi-chevron-right"></i> Services</a></li>
-                            <li><a href="blog.html"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
-                            <li><a href="team.html"><i class="mdi mdi-chevron-right"></i> Team</a></li>
-                            <li><a href="pricing.html"><i class="mdi mdi-chevron-right"></i> Pricing</a></li>
-                        </ul>
-                    </div>
-                </div><!--end col-->
-                <div class="col-lg-2 col-6">
-                    <div class="footer-item mt-4 mt-lg-0">
-                        <p class="fs-16 text-white mb-4">For Jobs</p>
-                        <ul class="list-unstyled footer-list mb-0">
-                            <li><a href="job-categories.html"><i class="mdi mdi-chevron-right"></i> Browser Categories</a></li>
-                            <li><a href="job-list.html"><i class="mdi mdi-chevron-right"></i> Browser Jobs</a></li>
-                            <li><a href="job-details.html"><i class="mdi mdi-chevron-right"></i> Job Details</a></li>
-                            <li><a href="bookmark-jobs.html"><i class="mdi mdi-chevron-right"></i> Bookmark Jobs</a></li>
-                        </ul>
-                    </div>
-                </div><!--end col-->
-                <div class="col-lg-2 col-6">
-                    <div class="footer-item mt-4 mt-lg-0">
-                        <p class="text-white fs-16 mb-4">For Candidates</p>
-                        <ul class="list-unstyled footer-list mb-0">
-                            <li><a href="candidate-list.html"><i class="mdi mdi-chevron-right"></i> Candidate List</a></li>
-                            <li><a href="candidate-grid.html"><i class="mdi mdi-chevron-right"></i> Candidate Grid</a></li>
-                            <li><a href="candidate-details.html"><i class="mdi mdi-chevron-right"></i> Candidate Details</a></li>
-                        </ul>
-                    </div>
-                </div><!--end col-->
-                <div class="col-lg-2 col-6">
-                    <div class="footer-item mt-4 mt-lg-0">
-                        <p class="fs-16 text-white mb-4">Support</p>
-                        <ul class="list-unstyled footer-list mb-0">
-                            <li><a href="contact.html"><i class="mdi mdi-chevron-right"></i> Help Center</a></li>
-                            <li><a href="faqs.html"><i class="mdi mdi-chevron-right"></i> FAQ'S</a></li>
-                            <li><a href="privacy-policy.html"><i class="mdi mdi-chevron-right"></i> Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                </div><!--end col-->
-            </div><!--end row-->
-        </div><!--end container-->
-    </section>
-    <!-- END FOOTER -->
-
-    <!-- START FOOTER-ALT -->
-    <div class="footer-alt">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="text-white-50 text-center mb-0">
-                        <script>document.write(new Date().getFullYear())</script> &copy; Jobcy - Job Listing Page
-                        Template by <a href="https://themeforest.net/search/themesdesign" target="_blank"
-                            class="text-reset text-decoration-underline">Themesdesign</a>
-                    </p>
-                </div><!--end col-->
-            </div><!--end row-->
-        </div><!--end container-->
-    </div>
-    <!-- END FOOTER -->
-
-    <!-- Style switcher -->
-    <div id="style-switcher" onclick="toggleSwitcher()" style="left: -165px;">
-        <div>
-            <h6>Select your color</h6>
-            <ul class="pattern list-unstyled mb-0">
-                <li>
-                    <a class="color-list color1" href="javascript: void(0);" onclick="setColorGreen()"></a>
-                </li>
-                <li>
-                    <a class="color-list color2" href="javascript: void(0);" onclick="setColor('blue')"></a>
-                </li>
-                <li>
-                    <a class="color-list color3" href="javascript: void(0);" onclick="setColor('green')"></a>
-                </li>
-            </ul>
-            <div class="mt-3">
-                <h6>Light/dark Layout</h6>
-                <div class="text-center mt-3">
-                    <!-- light-dark mode -->
-                    <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-3">
-                        <i class="uil uil-brightness mode-dark mx-auto"></i>
-                        <i class="uil uil-moon mode-light"></i>
-                    </a>
-                    <!-- END light-dark Mode -->
-                </div>
-            </div>
-        </div>
-        
-    </div>
+    
     <!-- end switcher-->
 
     <!--start back-to-top-->

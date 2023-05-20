@@ -45,4 +45,12 @@ class Company extends Model
     public function getArrImageAttribute() {
         return explode("|", $this->images);
     }
+
+    public function getArrTechAttribute() {
+        return explode("|", $this->technologies);
+    }
+
+    public function getDisplayTechAttribute() {
+        return implode(",", $this->arr_tech);
+    }
 }
