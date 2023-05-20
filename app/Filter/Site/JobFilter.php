@@ -19,6 +19,7 @@ class JobFilter extends BaseFilter
      */
     protected array $columns = [
         'title' => 'like',
+        'company.address' => 'like_trim',
         'year' => 'in',
         'level' => 'like',
         'type' => 'like',

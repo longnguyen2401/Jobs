@@ -19,7 +19,6 @@
                                 <nav class="d-inline-block" aria-label="breadcrumb text-center">
                                     <ol class="breadcrumb justify-content-center">
                                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0)">My Profile</a></li>
                                         <li class="breadcrumb-item active" aria-current="page"> My Profile </li>
                                     </ol>
                                 </nav>
@@ -126,11 +125,9 @@
                                             <li>
                                                 <div class="d-flex">
                                                     <label>Website</label>
-                                                    <div>
-                                                        <p class="text-muted mb-0">
-                                                            {{ (auth()->user()->profileUser->website) ?? '' }}
-                                                        </p>
-                                                    </div>
+                                                    <a class="text-break mb-0" href="{{ (auth()->user()->profileUser->website) ?? '' }}">
+                                                        {{ (auth()->user()->profileUser->website) ?? '' }}
+                                                    </a>
                                                 </div>
                                             </li>
                                             <li>
@@ -200,16 +197,20 @@
                                             <h6 class="fs-18 fw-bold mb-0">Education</h6>
                                             @isset(auth()->user()->profileUser->education)
                                                 @foreach (auth()->user()->profileUser->education as $education)
+                                                @php
+                                                    $start = (isset($education->start)) ? substr($education->start, 0, 7) : '';
+                                                    $end = (isset($education->end)) ? substr($education->end, 0, 7) : '';
+                                                @endphp
                                                 <div class="candidate-education-content mt-4 d-flex">
                                                     <div class="circle flex-shrink-0 bg-soft-primary">
-                                                        B
+                                                        {{ $education->first_keyword_name }}
                                                     </div>
                                                     <div class="ms-4">
                                                         <h6 class="fs-16 mb-1">
                                                             {{ ($education->major) ?? '' }}
                                                         </h6>
                                                         <p class="mb-2 text-muted">
-                                                            {{ ($education->school_name) ?? '' }} - ({{ ($education->start) ?? '' }} - {{ ($education->end) ?? '' }})
+                                                            {{ ($education->school_name) ?? '' }} - ({{ ($education->fm_start) ?? '' }} - {{ ($education->fm_end) ?? '' }})
                                                         </p>
                                                         <p class="text-muted">
                                                             {{ ($education->description) ?? '' }}
@@ -221,37 +222,48 @@
                                         </div>
                                         <div class="candidate-education-details mt-4">
                                             <h6 class="fs-18 fw-bold mb-0">Experiences</h6>
-                                            <div class="candidate-education-content mt-4 d-flex">
-                                                <div class="circle flex-shrink-0 bg-soft-primary"> W </div>
-                                                <div class="ms-4">
-                                                    <h6 class="fs-16 mb-1">Web Design & Development Team Leader</h6>
-                                                    <p class="mb-2 text-muted">Creative Agency - (2013 - 2016)</p>
-                                                    <p class="text-muted">There are many variations of passages of available, but the majority alteration in some form. As a highly skilled and successfull product development and design specialist with more than 4 Years of My experience.</p>
+                                            @isset(auth()->user()->profileUser->experiences)
+                                                @foreach (auth()->user()->profileUser->experiences as $experiences)
+                                                <div class="candidate-education-content mt-4 d-flex">
+                                                    <div class="circle flex-shrink-0 bg-soft-primary">{{ $experiences->first_keyword_name }}</div>
+                                                    <div class="ms-4">
+                                                        <h6 class="fs-16 mb-1">{{ $experiences->position }}</h6>
+                                                        <p class="mb-2 text-muted">{{ $experiences->company_name }} - ({{ ($experiences->fm_start) ?? '' }} - {{ ($experiences->fm_end) ?? '' }})</p>
+                                                        <p class="text-muted">
+                                                            {{ ($experiences->description) ?? '' }}    
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="candidate-education-content mt-4 d-flex">
-                                                <div class="circle flex-shrink-0 bg-soft-primary"> P </div>
-                                                <div class="ms-4">
-                                                    <h6 class="fs-16 mb-1">Project Manager</h6>
-                                                    <p class="mb-2 text-muted">Jobcy Technology Pvt.Ltd - (Pressent)</p>
-                                                    <p class="text-muted mb-0">There are many variations of passages of available, but the majority alteration in some form. As a highly skilled and successfull product development and design specialist with more than 4 Years of My experience.</p>
+
+                                                @endforeach
+                                            @endisset
+                                        </div>
+
+                                        <div class="candidate-education-details mt-4">
+                                            <h6 class="fs-18 fw-bold mb-0">Project</h6>
+                                            @isset(auth()->user()->profileUser->project)
+                                                @foreach (auth()->user()->profileUser->project as $project)
+                                                <div class="candidate-education-content mt-4 d-flex">
+                                                    <div class="circle flex-shrink-0 bg-soft-primary">{{ $project->first_keyword_name }}</div>
+                                                    <div class="ms-4">
+                                                        <h6 class="fs-16 mb-1">{{ $project->name }}</h6>
+                                                        <p class="mb-2 text-muted">{{ $project->position }} - ({{ ($project->fm_start) ?? '' }} - {{ ($project->fm_end) ?? '' }})</p>
+                                                        <p class="text-muted">
+                                                            {{ ($project->description) ?? '' }}    
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
+
+                                                @endforeach
+                                            @endisset
                                         </div>
                                         <div class="mt-4">
-                                            <h5 class="fs-18 fw-bold">Skills</h5>
-                                            <span class="badge fs-13 bg-soft-blue mt-2">Cloud Management</span>
-                                            <span class="badge fs-13 bg-soft-blue mt-2">Responsive Design</span>
-                                            <span class="badge fs-13 bg-soft-blue mt-2">Network Architecture</span>
-                                            <span class="badge fs-13 bg-soft-blue mt-2">PHP</span>
-                                            <span class="badge fs-13 bg-soft-blue mt-2">Bootstrap</span>
-                                            <span class="badge fs-13 bg-soft-blue mt-2">UI & UX Designer</span>
-                                        </div>
-                                        <div class="mt-4">
-                                            <h5 class="fs-18 fw-bold">Spoken languages</h5>
-                                            <span class="badge fs-13 bg-soft-success mt-2">English</span>
-                                            <span class="badge fs-13 bg-soft-success mt-2">German</span>
-                                            <span class="badge fs-13 bg-soft-success mt-2">French</span>
+                                            @isset(auth()->user()->profileUser->arr_skill)
+                                                <h5 class="fs-18 fw-bold">Skills</h5>
+                                                @foreach (auth()->user()->profileUser->arr_skill as $skill)
+                                                    <span class="badge fs-13 bg-soft-blue mt-2">{{ $skill }}</span>
+                                                @endforeach
+                                            @endisset
                                         </div>
                                     </div>
                                     <div class="tab-pane fade {{ (isset(auth()->user()->profileUser)) ? '' : 'show active' }}" id="settings" role="tabpanel" aria-labelledby="settings-tab">
@@ -289,12 +301,13 @@
                                                             <input type="text" class="form-control" name="user[name]" placeholder="Nhập họ và tên" value="{{ (auth()->user()->name) ?? '' }}" />
                                                         </div>
                                                      </div>
-                                                     <div class="col-lg-12">
+                                                    
+                                                    <div class="col-lg-12">
                                                         <div class="mb-3">
                                                             <label for="name" class="form-label">Địa Chỉ</label>
-                                                            <input type="text" class="form-control" id="address" name="address" placeholder="Địa chỉ" value="{{ (auth()->user()->profileUser->address) ?? '' }}" />
+                                                            <input type="text" class="form-control" name="address" placeholder="Địa chỉ" value="{{ (auth()->user()->profileUser->address) ?? '' }}" />
                                                         </div>
-                                                     </div>
+                                                    </div>
                                                     <!--end col-->
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
@@ -354,7 +367,12 @@
                                                 </div>
                                                 <!--end row-->
                                             </div>
-
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="name" class="form-label">Technical Skills</label>
+                                                    <input type="text" class="form-control" name="skill" placeholder="Enter with format PHP|Javascript|Python" value="{{ (auth()->user()->profileUser->skill) ?? '' }}" />
+                                                </div>
+                                            </div>
                                             <div class="mt-4">
                                                 <h5 class="fs-17 fw-semibold mb-3">Education</h5>
                                                 <div class="row">
@@ -482,24 +500,22 @@
                                                 <!--end row-->
                                             </div>
 
-                                            {{-- <div class="mt-4">
+                                            <div class="mt-4">
                                                 <h5 class="fs-17 fw-semibold mb-3">Project</h5>
                                                 <div class="row">
                                                     <!--end col-->
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
                                                             @php
-                                                                // if (isset(auth()->user()->profileUser->experiences)) {
-                                                                //     $experience = auth()->user()->profileUser->experiences[0];
-                                                                //     $start = (isset($experience->start)) ? substr($experience->start, 0, 7) : '';
-                                                                //     $end = (isset($experience->end)) ? substr($experience->end, 0, 7) : '';
-                                                                // }
+                                                                if (isset(auth()->user()->profileUser->project)) {
+                                                                    $project = auth()->user()->profileUser->project[0];
+                                                                }
                                                             @endphp
-                                                            <label for="firstName" class="form-label">Company Name</label>
+                                                            <label for="firstName" class="form-label">Name Project</label>
                                                             <input type="text" class="form-control" 
-                                                                name="experience[company_name]" 
+                                                                name="project[name]" 
                                                                 placeholder="Enter company name" 
-                                                                value="{{ isset($experience->company_name) ? $experience->company_name : '' }}"
+                                                                value="{{ isset($project->name) ? $project->name : '' }}"
                                                             />
                                                         </div>
                                                     </div>
@@ -508,9 +524,9 @@
                                                         <div class="mb-3">
                                                             <label for="firstName" class="form-label">Position</label>
                                                             <input type="text" class="form-control" 
-                                                                name="experience[position]" 
+                                                                name="project[position]" 
                                                                 placeholder="Vị trí trong công ty"
-                                                                value="{{ isset($experience->position) ? $experience->position : '' }}" 
+                                                                value="{{ isset($project->position) ? $project->position : '' }}" 
                                                             />
                                                         </div>
                                                     </div>
@@ -518,9 +534,9 @@
                                                         <div class="mb-3">
                                                             <label for="firstName" class="form-label">Thời gian bắt đầu</label>
                                                             <input type="month" class="form-control" 
-                                                                name="experience[start]" 
+                                                                name="project[start]" 
                                                                 
-                                                                value="{{ isset($experience->start) ? $start : '' }}" 
+                                                                value="{{ isset($project->start) ? $start : '' }}" 
                                                             />
                                                         </div>
                                                     </div>
@@ -529,19 +545,19 @@
                                                         <div class="mb-3">
                                                             <label for="firstName" class="form-label">Đến</label>
                                                             <input type="month" class="form-control" 
-                                                                name="experience[end]" 
+                                                                name="project[end]" 
                                                                 
-                                                                value="{{ isset($experience->end) ? $end : '' }}" 
+                                                                value="{{ isset($project->end) ? $end : '' }}" 
                                                             />
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="mb-3">
-                                                            <label for="firstName" class="form-label">Vai trò</label>
+                                                            <label for="firstName" class="form-label">Mô tả dự án</label>
                                                             <textarea class="form-control text-start" 
-                                                                name="experience[description]"
+                                                                name="project[description]"
                                                                 rows="3"> 
-                                                                {{ isset($experience->description) ? $experience->description : '' }}
+                                                                {{ isset($project->description) ? $project->description : '' }}
                                                             </textarea>
                                                             
                                                         </div>
@@ -549,7 +565,7 @@
                                                     <!--end col-->
                                                 </div>
                                                 <!--end row-->
-                                            </div> --}}
+                                            </div>
 
                                             <div class="mt-4 text-end">
                                                 <button type="submit" class="btn btn-primary">Update</button>
@@ -578,34 +594,7 @@
     <!-- End Page-content -->
 
     <!-- START SUBSCRIBE -->
-    <section class="bg-subscribe">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-lg-6">
-                    <div class="text-center text-lg-start">
-                        <h4 class="text-white">Get New Jobs Notification!</h4>
-                        <p class="text-white-50 mb-0">Subscribe & get all related jobs notification.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="mt-4 mt-lg-0">
-                        <form class="subscribe-form" action="#">
-                            <div class="input-group justify-content-center justify-content-lg-end">
-                                <input type="text" class="form-control" id="subscribe" placeholder="Enter your email">
-                                <button class="btn btn-primary" type="button" id="subscribebtn">Subscribe</button>
-                            </div>
-                        </form><!--end form-->
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-        </div>
-        <!--end container-->
-        <div class="email-img d-none d-lg-block">
-            <img src="assets/images/subscribe.png" alt="" class="img-fluid">
-        </div>
-    </section>
+    
     <!-- END SUBSCRIBE -->
 
     <!-- START FOOTER -->
@@ -718,9 +707,7 @@
                 </div>
             </div>
         </div>
-        <div class="bottom d-none d-md-block" >
-            <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
-        </div>
+        
     </div>
     <!-- end switcher-->
 

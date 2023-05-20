@@ -45,7 +45,14 @@
         
         <section class="section">
             <div class="container">
-              
+                @if (auth()->user()->company->active == 0)
+                <div class="my-5">
+                    <h2 class="text-center">Công ty của bạn chưa được duyệt !</h2>
+                    <div class="mt-4 text-center">
+                        <a href="/" class="btn btn-primary">Update Info Của Bạn</a>
+                    </div>
+                </div>
+                @else
                 <div class="row bg-1">
                     <form method="POST" action="/job/save">
                         @csrf
@@ -83,19 +90,92 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="level" class="form-label">Level</label>
-                                        <input type="text" class="form-control" 
+                                        <div id="jobtype" class="accordion-collapse collapse show" aria-labelledby="jobType">
+                                            <div class="accordion-body pt-0">
+                                                <div class="side-title">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value='Intern' name="level[]" id="level1">
+                                                        <label class="form-check-label ms-2 text-muted" for="level1">
+                                                            Intern
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mt-2">
+                                                        <input class="form-check-input" type="checkbox" value='Fresher' name="level[]" id="level2">
+                                                        <label class="form-check-label ms-2 text-muted" for="level2">
+                                                            Fresher
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mt-2">
+                                                        <input class="form-check-input" type="checkbox" value='Junior' name="level[]" id="level3">
+                                                        <label class="form-check-label ms-2 text-muted" for="level3">
+                                                            Junior
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mt-2">
+                                                        <input class="form-check-input" type="checkbox" value='Senior' name="level[]" id="level4">
+                                                        <label class="form-check-label ms-2 text-muted" for="level4">
+                                                            Senior
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mt-2">
+                                                        <input class="form-check-input" type="checkbox" value='' checked name="level[]" id="level5">
+                                                        <label class="form-check-label ms-2 text-muted" for="level5">
+                                                            None
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- <input type="text" class="form-control" 
                                             name="level" 
                                             placeholder="Enter by format Fresher|Junior|Middle|..."
-                                        />
+                                        /> --}}
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
+                                    
                                     <div class="mb-3">
                                         <label for="type" class="form-label">Type</label>
-                                        <input type="text" class="form-control" 
+                                        <div id="jobtype" class="accordion-collapse collapse show" aria-labelledby="jobType">
+                                            <div class="accordion-body pt-0">
+                                                <div class="side-title">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value='Freelance' name="type[]" id="type1">
+                                                        <label class="form-check-label ms-2 text-muted" for="type1">
+                                                            Freelance
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mt-2">
+                                                        <input class="form-check-input" type="checkbox" value='FullTime' name="type[]" id="type2">
+                                                        <label class="form-check-label ms-2 text-muted" for="type2">
+                                                            Full Time
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mt-2">
+                                                        <input class="form-check-input" type="checkbox" value='Internship' name="type[]" id="type3">
+                                                        <label class="form-check-label ms-2 text-muted" for="type3">
+                                                            Internship
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mt-2">
+                                                        <input class="form-check-input" type="checkbox" value='Remote' name="type[]" id="type4">
+                                                        <label class="form-check-label ms-2 text-muted" for="type4">
+                                                            Remote
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mt-2">
+                                                        <input class="form-check-input" type="checkbox" value='' checked name="type[]" id="type5">
+                                                        <label class="form-check-label ms-2 text-muted" for="type5">
+                                                            None
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- <input type="text" class="form-control" 
                                             name="type" 
                                             placeholder="Enter by format Fulltime|Remote|..." 
-                                        />
+                                        /> --}}
                                     </div>
                                 </div>
                                 <h5 class="fs-17 fw-semibold mb-3 mb-0">Salary</h5>
@@ -175,7 +255,7 @@
                         </div>
                     </form>
                 </div>
-            
+                @endif
             </div>
         </section>
 
@@ -290,9 +370,7 @@
                 </div>
             </div>
         </div>
-        <div class="bottom d-none d-md-block" >
-            <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
-        </div>
+        
     </div>
     <!-- end switcher-->
 

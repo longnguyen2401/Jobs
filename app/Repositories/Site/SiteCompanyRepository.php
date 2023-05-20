@@ -72,6 +72,10 @@ class SiteCompanyRepository extends SiteBaseRepository
      */
     public function save(Request $request)
     { 
+        $request->validate([
+            'tax' => ['required'],
+        ]);
+
         try {
             DB::beginTransaction();
 

@@ -80,7 +80,10 @@ class SiteJobRepository extends SiteBaseRepository
                 $profileData['max_salary'] = null;
             }
 
-            self::$_model::updateOrCreate(['company_id' => $request->company_id], $profileData);
+            $profileData['level'] = implode("|", $request->level);
+            $profileData['type'] = implode("|", $request->type);
+
+            self::$_model::create($profileData);
             session()->put('message-profile-detail', 'Tạo tin thành công !');
 
             DB::commit();
@@ -91,5 +94,16 @@ class SiteJobRepository extends SiteBaseRepository
             session()->put('message-profile-detail', 'Đã xảy ra lỗi vui lòng thử lại !');
             return redirect('company/profile');
         }
+    }
+
+    /**
+     * 
+     *
+     * @return
+     */
+    public function delele($id)
+    {   
+        self::$_model->find($id)->delete();
+        return redirect('company/profile');
     }
 }

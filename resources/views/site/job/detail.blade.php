@@ -84,12 +84,12 @@
                                             <ul class="list-inline mb-0 text-lg-end mt-3 mt-lg-0">
                                                 <li class="list-inline-item">
                                                     <div class="favorite-icon">
-                                                        <a href="javascript:void(0)"><i class="uil uil-heart-alt"></i></a>
+                                                        {{-- <a href="javascript:void(0)"><i class="uil uil-heart-alt"></i></a> --}}
                                                     </div>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <div class="favorite-icon">
-                                                        <a href="javascript:void(0)"><i class="uil uil-setting"></i></a>
+                                                        {{-- <a href="javascript:void(0)"><i class="uil uil-setting"></i></a> --}}
                                                     </div>
                                                 </li>
                                             </ul>
@@ -121,7 +121,7 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="border p-3">
-                                                <p class="text-muted fs-13 mb-0">Position</p>
+                                            <p class="text-muted fs-13 mb-0">Level</p>
                                                 <p class="fw-medium mb-0">
                                                     @if (is_array($detail->arr_level))
                                                         @foreach ($detail->arr_level as $level)
@@ -245,7 +245,7 @@
                                                 </div><!--end col-->
                                             </div><!--end row-->
                                             <div class="favorite-icon">
-                                                <a href="javascript:void(0)"><i class="uil uil-heart-alt fs-18"></i></a>
+                                                {{-- <a href="javascript:void(0)"><i class="uil uil-heart-alt fs-18"></i></a> --}}
                                             </div>
                                         </div>
                                         <div class="p-3 bg-light">
@@ -374,7 +374,7 @@
                                             </div>
                                         </li>
                                     </ul>
-                                    <div class="mt-3">
+                                    <div class="mt-3 text-center">
                                         @if ($detail->can_apply)
                                             @if (auth()->check() && auth()->user()->type == config('constants.USER.TYPE.USER'))
                                                 <form method="POST" action="{{ route('site.request.apply') }}">
@@ -573,9 +573,7 @@
                 </div>
             </div>
         </div>
-        <div class="bottom d-none d-md-block" >
-            <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
-        </div>
+        
     </div>
     <!-- end switcher-->
 

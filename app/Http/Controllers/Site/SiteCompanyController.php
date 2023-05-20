@@ -25,6 +25,21 @@ class SiteCompanyController extends SiteBaseController
     }
 
     /**
+     * Index function
+     *
+     * @param 
+     * @return mixed
+     */
+    public function edit()
+    {   
+        if (auth()->user()->type != config('constants.USER.TYPE.COMPANY')) {
+            return redirect('/');    
+        }
+        
+        return view('site.company.edit');
+    }
+    
+    /**
      * List apply function
      *
      * @param int $id

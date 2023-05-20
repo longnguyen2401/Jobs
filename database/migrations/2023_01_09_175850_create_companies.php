@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+    Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('tax')->nullable();
             $table->string('address')->nullable();
             $table->string('email')->nullable();
             $table->string('name')->nullable();
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->integer('people')->nullable();
             $table->string('logo')->nullable();
             $table->string('slogan')->nullable();
+            $table->integer('active')->default(0);
             $table->timestamps();
         });
     }

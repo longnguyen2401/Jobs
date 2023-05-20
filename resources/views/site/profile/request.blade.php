@@ -18,7 +18,7 @@
                                 <nav class="d-inline-block" aria-label="breadcrumb text-center">
                                     <ol class="breadcrumb justify-content-center">
                                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Profile</a></li>
+                                        <li class="breadcrumb-item"><a href="/profile/detail">Profile</a></li>
                                         <li class="breadcrumb-item active" aria-current="page"> Manage Jobs </li>
                                     </ol>
                                 </nav>
@@ -54,7 +54,7 @@
                             <h6 class="mb-0"> My Job Listings </h6>
                         </div>
                     </div><!--end col-->
-                    <div class="col-lg-4">
+                    {{-- <div class="col-lg-4">
                         <div class="candidate-list-widgets">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -80,7 +80,7 @@
                                 </div><!--end col-->
                             </div><!--end row-->
                         </div><!--end candidate-list-widgets-->
-                    </div><!--end col-->
+                    </div><!--end col--> --}}
                 </div><!--end row-->
                 <div class="row">
                     <div class="col-lg-12">
@@ -89,7 +89,8 @@
                             <div class="card-body p-4">
                                 <div class="row">
                                     <div class="col-lg-1">
-                                        <a href="/company/detail/{{ $detail->company->id }}"><img src="{{ asset('storage/uploads/' . $request->job->company->logo) }}" alt="" class="img-fluid rounded-3"></a>
+                                        {{-- {{ $detail->company->id }} --}}
+                                        <a href="/company/detail/"><img src="{{ asset('storage/uploads/' . $request->job->company->logo) }}" alt="" class="img-fluid rounded-3"></a>
                                     </div><!--end col-->
                                     <div class="col-lg-9">
                                         <div class="mt-3 mt-lg-0">
@@ -114,15 +115,15 @@
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <p class="text-muted fs-14 mb-0"><i class="uil uil-wallet"></i> 
-                                                        @if ($job->is_negotiate)
+                                                        @if ($request->job->is_negotiate)
                                                             Negotiate
                                                         @else 
-                                                            @if (empty($job->min_salary))
-                                                                up to {{ $job->max_salary }}$
+                                                            @if (empty($request->job->min_salary))
+                                                                up to {{ $request->job->max_salary }}$
                                                             @elseif (empty($job->max_salary))
-                                                                {{ $job->min_salary }}$+
+                                                                {{ $request->job->min_salary }}$+
                                                             @else
-                                                                {{ $job->min_salary }}$ - {{ $job->max_salary }}$
+                                                                {{ $request->job->min_salary }}$ - {{ $request->job->max_salary }}$
                                                             @endif
                                                         @endif
                                                     </p>
@@ -158,7 +159,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="p-3 bg-light">
+                                    {{-- <div class="p-3 bg-light">
                                         <div class="row justify-content-center ">
                                             <li class="list-inline-item">
                                                 @php
@@ -170,7 +171,7 @@
                                             <!--end col-->
                                         </div>
                                         <!--end row-->
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div><!--end job-box-->
@@ -191,34 +192,7 @@
     <!-- End Page-content -->
 
     <!-- START SUBSCRIBE -->
-    <section class="bg-subscribe">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-lg-6">
-                    <div class="text-center text-lg-start">
-                        <h4 class="text-white">Get New Jobs Notification!</h4>
-                        <p class="text-white-50 mb-0">Subscribe & get all related jobs notification.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="mt-4 mt-lg-0">
-                        <form class="subscribe-form" action="#">
-                            <div class="input-group justify-content-center justify-content-lg-end">
-                                <input type="text" class="form-control" id="subscribe" placeholder="Enter your email">
-                                <button class="btn btn-primary" type="button" id="subscribebtn">Subscribe</button>
-                            </div>
-                        </form><!--end form-->
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-        </div>
-        <!--end container-->
-        <div class="email-img d-none d-lg-block">
-            <img src="assets/images/subscribe.png" alt="" class="img-fluid">
-        </div>
-    </section>
+    
     <!-- END SUBSCRIBE -->
 
     <!-- START FOOTER -->
@@ -331,9 +305,7 @@
                 </div>
             </div>
         </div>
-        <div class="bottom d-none d-md-block" >
-            <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
-        </div>
+        
     </div>
     <!-- end switcher-->
 

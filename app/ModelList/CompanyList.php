@@ -23,6 +23,9 @@ class CompanyList extends BaseList
             'name' => 'Tên công ty',
         ],
         [
+            'name' => 'Tax',
+        ],
+        [
             'name' => 'Địa chỉ',
         ],
         [
@@ -47,6 +50,9 @@ class CompanyList extends BaseList
     protected array $list = array(
         [
             'key' => 'name',
+        ],
+        [
+            'key' => 'tax',
         ],
         [
             'key' => 'address',

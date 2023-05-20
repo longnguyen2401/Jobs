@@ -13,6 +13,7 @@ class Company extends Model
      */
     protected $fillable = [
         'user_id',
+        'tax',
         'address',
         'email',
         'name',
@@ -23,6 +24,7 @@ class Company extends Model
         'people',
         'logo',
         'slogan',
+        'active',
     ];
 
     public function jobs()

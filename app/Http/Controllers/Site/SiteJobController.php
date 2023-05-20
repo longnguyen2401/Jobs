@@ -43,4 +43,14 @@ class SiteJobController extends SiteBaseController
     {   
         return $this->repository->save($request);
     }
+
+    /**
+     * Index function
+     *
+     * @return
+     */
+    public function delele($id)
+    {   
+        return $this->repository->delele($id);
+    }
 }

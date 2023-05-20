@@ -66,9 +66,11 @@ Route::prefix('/')->name('site.')->group(function () {
     Route::get('job/create',              [SiteJobController::class, 'create'])->name('job.create');
     Route::post('job/save',               [SiteJobController::class, 'save'])->name('job.save');
     Route::get('job/filter',              [SiteJobController::class, 'filter'])->name('job.filter');
+    Route::get('job/delete/{id}',         [SiteJobController::class, 'delele'])->name('job.delete');
 
     Route::get('company/detail/{id}',     [SiteCompanyController::class, 'detail'])->name('company.detail');
     Route::get('company/profile',         [SiteCompanyController::class, 'profile'])->name('company.profile');
+    Route::get('company/profile/edit',    [SiteCompanyController::class, 'edit'])->name('company.profile.edit');
     Route::get('company/applys/{id}',     [SiteCompanyController::class, 'applys'])->name('company.applys');
     Route::post('company/profile/save',   [SiteCompanyController::class, 'save'])->name('company.profile.save');
 

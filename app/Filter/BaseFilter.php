@@ -4,6 +4,7 @@ namespace App\Filter;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 abstract class BaseFilter
 {    
@@ -41,6 +42,12 @@ abstract class BaseFilter
         $requests = $request->all();
 
         foreach ($requests as $key => $value) {
+            if (empty($value)) {
+                continue;
+            }
+            
+            $key = str_replace('|', '.', $key);
+            
             foreach ($this->columns as $column => $condition) {
                 if ($column == $key) {
                     switch ($condition) {
@@ -49,6 +56,7 @@ abstract class BaseFilter
                         break;
 
                         case 'in':
+                            dd($value);
                             $q = $q->whereIn($key, $value);
                         break;
 
@@ -56,11 +64,21 @@ abstract class BaseFilter
                             $value = $this->getValueBeforeDate($value);
                             $q = $q->where($key, '>', $value);
                         break;
+
+                        case 'like_trim':
+                            $array = explode(".", $key);
+                            $table = $array[0];
+                            $column = $array[1];
+
+                            $q = $q->whereHas($table, function ($query) use ($column, $value) {
+                                $query->where(
+                                    DB::raw("REPLACE(TRIM($column), ' ', '')"), 'like', '%' . strtolower(trim($value)) . '%');
+                            }); 
+                        break;
                     }
                 }
             }
         }
-        
         return $q->paginate(2);
     }
 

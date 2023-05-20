@@ -56,7 +56,7 @@
                                         <div class="col-lg-3 col-md-6">
                                             <div class="filler-job-form">
                                                 <i class="uil uil-clipboard-notes"></i>
-                                                <select class="form-select" data-trigger name="address" id="address" aria-label="Default select example">
+                                                <select class="form-select" data-trigger name="company|address" id="address" aria-label="Default select example">
                                                     <option value="">Thành phố</option>
                                                     <option value="hochiminh">TP Hồ Chí Minh</option>
                                                     <option value="hanoi">Hà Nội</option>
@@ -85,7 +85,7 @@
                                     </div><!--end row-->
                                 </form>
                             </div><!--end job-list-header-->
-                            <div class="wedget-popular-title mt-4">
+                            {{-- <div class="wedget-popular-title mt-4">
                                 <h6>Popular</h6>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
@@ -129,7 +129,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </div><!--end wedget-popular-title-->
+                            </div><!--end wedget-popular-title--> --}}
         
                             <!-- Job-list -->
                             <div>
@@ -337,6 +337,12 @@
                                                         Remote
                                                     </label>
                                                 </div>
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="radio" value='' name="type" id="type5" checked>
+                                                    <label class="form-check-label ms-2 text-muted" for="type5">
+                                                        None
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -385,6 +391,12 @@
                                                     <input class="form-check-input" type="radio" value="5" name="created_at" {{ isset(request()->created_at) && '5' == request()->created_at ? 'checked' : ''}} value="last" id="created_at5" />
                                                     <label class="form-check-label ms-2 text-muted" for="created_at5">
                                                         Last 30 days
+                                                    </label>
+                                                </div>
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="radio" value='' name="created_at" id="created_at6" checked>
+                                                    <label class="form-check-label ms-2 text-muted" for="created_at6">
+                                                        None
                                                     </label>
                                                 </div>
                                             </div>
@@ -580,9 +592,7 @@
                 </div>
             </div>
         </div>
-        <div class="bottom d-none d-md-block" >
-            <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
-        </div>
+        
     </div>
     <!-- end switcher-->
 

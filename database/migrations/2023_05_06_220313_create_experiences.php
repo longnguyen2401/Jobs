@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
             $table->integer('profile_user_id');
-            $table->string('company_name');
-            $table->string('position');
-            $table->dateTime('start');
+            $table->string('company_name')->nullable();
+            $table->string('position')->nullable();
+            $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

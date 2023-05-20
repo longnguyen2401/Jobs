@@ -67,6 +67,14 @@
                                     <ul class="list-unstyled mb-0">
                                         <li>
                                             <div class="d-flex">
+                                                <label class="text-dark">Tax</label>
+                                                <div>
+                                                    <p class="text-muted mb-0">{{ auth()->user()->company->tax }}</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex">
                                                 <label class="text-dark">Employees</label>
                                                 <div>
                                                     <p class="text-muted mb-0">{{ auth()->user()->company->people }}</p>
@@ -100,6 +108,9 @@
                                     </ul>
                                     <div class="mt-3">
                                         <a href="/profile/list" class="btn btn-danger btn-hover w-100"><i class="uil uil-envelope"></i> Find CV</a>
+                                    </div>
+                                    <div class="mt-3">
+                                        <a href="/company/profile/edit" class="btn btn-primary btn-hover w-100"><i class="uil uil-envelope"></i> Update Info</a>
                                     </div>
                                 </div>
                                 
@@ -201,8 +212,8 @@
                                                         </div>
                                                     </div>
                                                 </div><!--end row-->
-                                                <div class="favorite-icon">
-                                                    <a href="javascript:void(0)"><i class="uil uil-heart-alt fs-18"></i></a>
+                                                <div class="favorite-icon" style="display: block;">
+                                                    <a href="/job/delete/{{ $job->id }}"><i class="uil uil-trash-alt fs-18"></i></a>
                                                 </div>
                                             </div>
                                             <div class="p-3 bg-light">
@@ -263,7 +274,8 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="logo" class="form-label">Logo Company</label>
-                                            <input type="file" class="form-control" name="file-logo" />
+                                            <input type="file" class="form-control" name="file-logo" 
+                                            value="{{ isset(auth()->user()->company) ? auth()->user()->company->logo : '' }}"/>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -273,6 +285,16 @@
                                                 name="name" 
                                                 placeholder="Company name" 
                                                 value="{{ (auth()->user()->company->name) ?? '' }}" 
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Tax Identification Number</label>
+                                            <input type="number" class="form-control" 
+                                                name="tax" 
+                                                placeholder="Enter tax" 
+                                                value="{{ (auth()->user()->company->tax) ?? '' }}" 
                                             />
                                         </div>
                                     </div>
@@ -485,9 +507,7 @@
                 </div>
             </div>
         </div>
-        <div class="bottom d-none d-md-block" >
-            <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
-        </div>
+        
     </div>
     <!-- end switcher-->
 

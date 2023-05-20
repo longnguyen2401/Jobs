@@ -54,27 +54,40 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mx-auto navbar-center">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="/" id="" role="button" >
-                                    Job List 
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="/profile/list" id="" role="button" >
-                                    Portfolio List 
-                                </a>
-                            </li>
+                            @if (auth()->check())
+                                @if (auth()->user()->type == config('constants.USER.TYPE.USER'))
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="/" id="" role="button" >
+                                            Job List 
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="/apply/list/{{ auth()->user()->id }}" id="" role="button" >
+                                            My Job Apply 
+                                        </a>
+                                    </li>
+                                @else
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="/profile/list" id="" role="button" >
+                                            Portfolio List 
+                                        </a>
+                                    </li>
+                                @endif
+                            @endif
+                            
+                            
+                            
                         </ul><!--end navbar-nav-->
                     </div>
                     <!--end navabar-collapse-->
                     <ul class="header-menu list-inline d-flex align-items-center mb-0">
                         <li class="list-inline-item dropdown me-4">
-                            <a href="javascript:void(0)" class="header-item noti-icon position-relative" id="notification" data-bs-toggle="dropdown"
+                            {{-- <a href="javascript:void(0)" class="header-item noti-icon position-relative" id="notification" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <i class="mdi mdi-bell fs-22"></i>
                                 <div class="count position-absolute">3</div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end p-0" aria-labelledby="notification">
+                            </a> --}}
+                            {{-- <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end p-0" aria-labelledby="notification">
                                 <div class="notification-header border-bottom bg-light">
                                     <h6 class="mb-1"> Notification </h6>
                                     <p class="text-muted fs-13 mb-0">You have 4 unread Notification</p>
@@ -151,7 +164,7 @@
                                         <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span>
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </li>
                         <li class="list-inline-item dropdown">
                             @if (auth()->check())
@@ -171,8 +184,12 @@
                             
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown">
                                 <li><a class="dropdown-item" href="/profile/detail">My Profile</a></li>
+                                @if (auth()->check() && auth()->user()->type == config('constants.USER.TYPE.USER'))
+                                    <li><a class="dropdown-item" href="/apply/list/{{ auth()->user()->id }}">My Job Apply</a></li>
+                                @endif
                                 <li><a class="dropdown-item" href="/password/change">Đổi Password</a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                                
                             </ul>
                         </li>
                     </ul><!--end header-menu-->

@@ -111,6 +111,9 @@ abstract class BaseRepository
         $request = $this->checkUploadFile($request);
         $attributes = self::$_model->getFillable();
         $data = $request->only($attributes);
+
+        $data = $this->hookBeforeUpdate($data);
+
         self::$_model::updateOrCreate(['id' => $id], $data);
     }
 
@@ -158,5 +161,12 @@ abstract class BaseRepository
      * @return void
      */
     public function hookBeforeReturIndexById(Model $model): void {}
+
+    /**
+     * Hook before return index by id
+     *
+     * @return 
+     */
+    public function hookBeforeUpdate($data) {}
 
 }

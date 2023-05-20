@@ -3,6 +3,7 @@ namespace App\Repositories\Site;
 
 use App\Models\Education;
 use App\Models\Experiences;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repositories\Site\SiteBaseRepository;
@@ -37,7 +38,7 @@ class SiteProfileUserRepository extends SiteBaseRepository
      */
     public function index(): View
     { 
-        $list = self::$_model->get();
+        $list = self::$_model->paginate(2);
         return view('site.profile.list', compact('list'));
     }
 
@@ -62,21 +63,23 @@ class SiteProfileUserRepository extends SiteBaseRepository
     public function save(Request $request)
     { 
         try {
+          
             DB::beginTransaction();
             $request = $this->checkUploadFile($request);
 
             $profileAttr = self::$_model->getFillable();
             $profileData = $request->only($profileAttr);
-         
+    
             $profile = self::$_model::updateOrCreate(['user_id' => $request->user_id], $profileData);
-            
-            $education = $this->handleTime($request->education);
-            
+          
+            $education = $this->handleTime($request->education);            
             Education::updateOrCreate(['profile_user_id' => $profile->id], $education);
 
             $experience = $this->handleTime($request->experience);
-            
             Experiences::updateOrCreate(['profile_user_id' => $profile->id], $experience);
+           
+            $project = $this->handleTime($request->project);
+            Project::updateOrCreate(['profile_user_id' => $profile->id], $project);
 
             User::updateOrCreate(['id' => $request->user_id], $request->user);
             

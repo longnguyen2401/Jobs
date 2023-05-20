@@ -71,6 +71,17 @@ class CompanyForm extends BaseForm
             'key' => 'about',
             'component' => 'textarea',
         ],
+        [
+            'name' => 'Tax',
+            'key' => 'tax',
+            'component' => 'input',
+            'type' => 'number',
+        ],
+        [
+            'name' => 'Active',
+            'key' => 'active',
+            'component' => 'checkbox',
+        ],
     );
         
 }

@@ -38,6 +38,12 @@
                                                 <input type="file" class="form-control" name="file-{{ $form['key'] }}">
                                                     
                                                 @break
+
+                                            @case('checkbox')
+
+                                                <input type="checkbox" class="" name="{{ $form['key'] }}" value="1" {{ ($metadata['data']->{$form['key']} == 1) ? 'checked' : ''  }}>
+                                                    
+                                                @break
                                                 
                                         @endswitch
                                         </div>

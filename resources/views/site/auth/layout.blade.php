@@ -79,9 +79,9 @@
                     </div>
                 </div>
             </div>
-            <div class="bottom d-none d-md-block" >
+            {{-- <div class="bottom d-none d-md-block" >
                 <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
-            </div>
+            </div> --}}
         </div>
         <!-- end switcher-->
 
