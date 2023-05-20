@@ -71,8 +71,17 @@ abstract class BaseFilter
                             $column = $array[1];
 
                             $q = $q->whereHas($table, function ($query) use ($column, $value) {
-                                $query->where(
-                                    DB::raw("REPLACE(TRIM($column), ' ', '')"), 'like', '%' . strtolower(trim($value)) . '%');
+                                $arr = explode('|', $value);
+                                
+                                foreach ($arr as $key => $strString) {
+                                    if ($key == 0) {
+                                        $query->where(
+                                            DB::raw("REPLACE(TRIM($column), ' ', '')"), 'like', '%' . strtolower(trim($strString)) . '%');
+                                    } else {
+                                        $query->orWhere(
+                                            DB::raw("REPLACE(TRIM($column), ' ', '')"), 'like', '%' . strtolower(trim($strString)) . '%');
+                                    }
+                                }
                             }); 
                         break;
                     }

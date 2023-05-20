@@ -49,7 +49,7 @@
                 <div class="my-5">
                     <h2 class="text-center">Công ty của bạn chưa được duyệt !</h2>
                     <div class="mt-4 text-center">
-                        <a href="/" class="btn btn-primary">Update Info Của Bạn</a>
+                        <a href="/company/profile/edit" class="btn btn-primary">Update Info Của Bạn</a>
                     </div>
                 </div>
                 @else

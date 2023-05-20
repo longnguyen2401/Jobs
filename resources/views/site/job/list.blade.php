@@ -58,10 +58,10 @@
                                                 <i class="uil uil-clipboard-notes"></i>
                                                 <select class="form-select" data-trigger name="company|address" id="address" aria-label="Default select example">
                                                     <option value="">Thành phố</option>
-                                                    <option value="hochiminh">TP Hồ Chí Minh</option>
-                                                    <option value="hanoi">Hà Nội</option>
-                                                    <option value="danang">Đà Nẵng</option>
-                                                    <option value="dalat">Đà Lạt</option>
+                                                    <option value="hochiminh|hcm" {{ isset(request()->{'company|address'}) && 'hochiminh|hcm' == request()->{'company|address'} ? 'selected' : ''}}>TP Hồ Chí Minh</option>
+                                                    <option value="hanoi|hn" {{ isset(request()->{'company|address'}) && 'hanoi|hn' == request()->{'company|address'} ? 'selected' : ''}}>Hà Nội</option>
+                                                    <option value="danang|dn" {{ isset(request()->{'company|address'}) && 'danang|dn' == request()->{'company|address'} ? 'selected' : ''}}>Đà Nẵng</option>
+                                                    <option value="dalat|dl" {{ isset(request()->{'company|address'}) && 'dalat|dl' == request()->{'company|address'} ? 'selected' : ''}}>Đà Lạt</option>
                                                 </select>
                                             </div>
                                         </div><!--end col-->
@@ -70,6 +70,7 @@
                                                 <i class="uil uil-clipboard-notes"></i>
                                                 <select class="form-select" data-trigger name="level" id="level" aria-label="Default select example">
                                                     <option value="">Level</option>
+                                                    <option value="Intern" {{ isset(request()->level) && 'Intern' == request()->level ? 'selected' : ''}}>Fresher</option>
                                                     <option value="Fresher" {{ isset(request()->level) && 'Fresher' == request()->level ? 'selected' : ''}}>Fresher</option>
                                                     <option value="Junior" {{ isset(request()->level) && "Junior" == request()->level ? 'selected' : ''}}>Junior</option>
                                                     <option value="Middle" {{ isset(request()->level) && "Middle" == request()->level ? 'selected' : ''}} >Middle</option>
