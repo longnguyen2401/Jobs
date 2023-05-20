@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('job_id');
             $table->integer('user_id');
             $table->string('file_cv');
-            $table->integer('status')->default(0);
+            // $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
