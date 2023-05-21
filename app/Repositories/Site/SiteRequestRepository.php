@@ -58,8 +58,7 @@ class SiteRequestRepository extends SiteBaseRepository
         $data = [
             'user_id' => auth()->user()->id,
             'job_id' => $request->job_id,
-            'file_cv' => $request->file_cv,
-            'status' => config('constants.REQUEST.STATUS.ADMIN_REVIEW'),
+            'file_cv' => $request->file_cv
         ];
 
         self::$_model::insert($data);

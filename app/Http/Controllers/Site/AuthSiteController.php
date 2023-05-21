@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -98,6 +99,41 @@ class AuthSiteController extends Controller
         $pw = Hash::make($request->password);
         auth()->user()->password = $pw;
         auth()->user()->save();
+        return redirect('/type/confirm');
+    }
+
+    
+    /**
+     * View loggin
+     *
+     * @return view
+     */
+    public function register()
+    {
+        return view('site.auth.register');
+    }
+
+    /**
+     * View loggin
+     *
+     * @return view
+     */
+    public function registerSave(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        $user = User::create(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password'=> Hash::make($request->password),
+            ]
+        );
+        Auth::login($user);
         return redirect('/type/confirm');
     }
     

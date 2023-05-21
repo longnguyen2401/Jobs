@@ -66,6 +66,9 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 Route::prefix('/')->middleware(['site.if.auth'])->group(function () {
     Route::get('/login',                  [AuthSiteController::class, 'index'])->name('site.login');
     Route::post('/auth',                  [AuthSiteController::class, 'authenticate'])->name('site.auth');
+    
+    Route::get('/register',               [AuthSiteController::class, 'register'])->name('site.register');
+    Route::post('/register',              [AuthSiteController::class, 'registerSave'])->name('site.register.save');
 });
 
 Route::prefix('/')->name('site.')->group(function () {

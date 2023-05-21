@@ -56,7 +56,6 @@ abstract class BaseFilter
                         break;
 
                         case 'in':
-                            dd($value);
                             $q = $q->whereIn($key, $value);
                         break;
 

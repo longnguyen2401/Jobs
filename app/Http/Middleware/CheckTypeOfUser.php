@@ -20,6 +20,6 @@ class CheckTypeOfUser
             return $next($request);
         }
 
-        return redirect()->route('site.home');
+        return redirect()->route('site.job.list');
     }
 }

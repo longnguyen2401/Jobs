@@ -339,7 +339,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="radio" value='' name="type" id="type5" checked>
+                                                    <input class="form-check-input" type="radio" value='' name="type" id="type5" {{ empty(request()->type) ? 'checked' : ''}}>
                                                     <label class="form-check-label ms-2 text-muted" for="type5">
                                                         None
                                                     </label>
@@ -395,7 +395,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
-                                                    <input class="form-check-input" type="radio" value='' name="created_at" id="created_at6" checked>
+                                                    <input class="form-check-input" type="radio" value='' name="created_at" {{ empty(request()->created_at) ? 'checked' : ''}} id="created_at6" checked>
                                                     <label class="form-check-label ms-2 text-muted" for="created_at6">
                                                         None
                                                     </label>

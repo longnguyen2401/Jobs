@@ -1,6 +1,6 @@
 @extends('site.auth.layout')
 
-@section('title', 'Đăng Nhập')
+@section('title', 'Đăng Ký')
 
 @section('content')
 <div class="page-content">
@@ -28,10 +28,19 @@
                                     <div class="w-100">
                                         <div class="text-center mb-4">
                                             <h5>Jobcy !</h5>
-                                            <p class="text-white-70">Đăng Nhập Để Tiếp Tục.</p>
+                                            <p class="text-white-70">Đăng Ký Tài Khoảng.</p>
                                         </div>
-                                        <form method="POST" action="{{ route('site.auth') }}">
+                                        <form method="POST" action="{{ route('site.register.save') }}">
                                             @csrf
+                                            <div class="mb-3">
+                                                <label for="usernameInput" class="form-label">Full Name</label>
+                                                <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ & tên" required>
+                                                
+                                                @error('name')
+                                                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
                                             <div class="mb-3">
                                                 <label for="usernameInput" class="form-label">Email</label>
                                                 <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email" required>
@@ -40,27 +49,29 @@
                                                     <div class="alert alert-danger mt-3">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-4">
                                                 <label for="passwordInput" class="form-label">Password</label>
                                                 <input type="password" class="form-control" id="password" name="password" placeholder="Nhập password" required>
 
                                                 @error('password')
-                                                    <div class="alert alert-danger mt-3">{{ $password }}</div>
+                                                    <div class="alert alert-danger mt-3">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            
-                                            <div class="text-center mb-3">
-                                                <button type="submit" class="btn btn-danger btn-hover w-100">Đăng nhập</button>
+
+                                            <div class="mb-4">
+                                                <label for="passwordInput" class="form-label">Confirm Password</label>
+                                                <input type="password" class="form-control" name="password_confirmation" placeholder="Nhập password" required>
+
+                                                {{-- @error('password')
+                                                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                                                @enderror --}}
                                             </div>
-                                            <div class="text-center">
-                                                <a id="login-goolge" class="btn btn-white btn-hover w-100" href="">
-                                                    Đăng nhập bằng google
-                                                </a>
+                                            <div class="text-center mb-4">
+                                                <button type="submit" class="btn btn-danger btn-hover w-100">Đăng ký</button>
                                             </div>
                                             <div class="mt-3">
-                                                <a class="text-white " href="/register" style="text-decoration: underline;
-                                                text-align: end;">
-                                                    Bạn chưa có tài khoảng?
+                                                <a class="text-white " href="/login" style="text-decoration: underline;">
+                                                    Quay lại trang đăng nhập
                                                 </a>
                                             </div>
                                         </form>
