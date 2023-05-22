@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories\Site;
 
+use App\Models\Certification;
 use App\Models\Education;
 use App\Models\Experiences;
 use App\Models\Project;
@@ -90,6 +91,9 @@ class SiteProfileUserRepository extends SiteBaseRepository
             $project = $this->handleTime($request->project);
             Project::updateOrCreate(['profile_user_id' => $profile->id], $project);
 
+            $certificate = $this->handleTime($request->certification); 
+            Certification::updateOrCreate(['profile_user_id' => $profile->id], $certificate);
+           
             User::updateOrCreate(['id' => $request->user_id], $request->user);
             
             DB::commit();

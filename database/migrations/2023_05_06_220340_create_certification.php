@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::create('certification', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('name');
-        //     $table->string('organize_name');
-        //     $table->date('time');
-        //     $table->string('description');
-        //     $table->string('file');
-        //     $table->timestamps();
-        // });
+        Schema::create('certifications', function (Blueprint $table) {
+            $table->id();
+            $table->integer('profile_user_id');
+            $table->string('name');
+            $table->string('organize_name');
+            $table->date('time');
+            $table->string('description');
+            $table->string('file');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('certification');
+        Schema::dropIfExists('certifications');
     }
 };

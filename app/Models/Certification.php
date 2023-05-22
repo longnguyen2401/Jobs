@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Certification extends Model
 {
@@ -23,5 +24,13 @@ class Certification extends Model
     public function profileUser()
     {
         return $this->belongsTo('App\Models\ProfileUser');
+    }
+
+    public function getFmTimeAttribute() {
+        return Carbon::create($this->time)->format('M Y');
+    }
+
+    public function getFirstKeywordNameAttribute() {
+        return substr($this->name, 0, 1);
     }
 }

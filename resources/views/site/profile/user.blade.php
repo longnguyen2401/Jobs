@@ -257,6 +257,38 @@
                                                 @endforeach
                                             @endisset
                                         </div>
+
+                                        <div class="candidate-education-details mt-4">
+                                            <h6 class="fs-18 fw-bold mb-0">Certificate</h6>
+                                            @isset(auth()->user()->profileUser->certification)
+                                                @foreach (auth()->user()->profileUser->certification as $certification)
+                                                <div class="candidate-education-content mt-4 d-flex">
+                                                    <div class="circle flex-shrink-0 bg-soft-primary">{{ $certification->first_keyword_name }}</div>
+                                                    <div class="ms-4">
+                                                        <h6 class="fs-16 mb-1">{{ $certification->name }}</h6>
+                                                        <p class="mb-2 text-muted">{{ $certification->organize_name }} - {{ ($certification->fm_time) ?? '' }}</p>
+                                                        <p class="text-muted">
+                                                            {{ ($certification->description) ?? '' }}    
+                                                        </p>
+                                                        @php
+                                                            if (strpos($certification->file, "jpg" || strpos($certification->file, "png")) !== false) { @endphp
+                                                                <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank"><img style="height: 300px;" src='{{ asset('storage/uploads/' . $certification->file) }}' alt="" class="img-fluid rounded-3"></a>
+                                                        @php } else { @endphp
+                                                                <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank">Link Certificate</a>
+                                                        @php
+                                                               
+                                                           }
+                                                        @endphp
+                                                        <div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                @endforeach
+                                            @endisset
+                                        </div>
+                                        
                                         <div class="mt-4">
                                             @isset(auth()->user()->profileUser->arr_skill)
                                                 <h5 class="fs-18 fw-bold">Skills</h5>
@@ -565,6 +597,70 @@
                                                             
                                                         </div>
                                                     </div>
+                                                    <!--end col-->
+                                                </div>
+                                                <!--end row-->
+                                            </div>
+
+                                            <div class="mt-4">
+                                                <h5 class="fs-17 fw-semibold mb-3">Certificate</h5>
+                                                <div class="row">
+                                                    <!--end col-->
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            @php
+                                                                if (isset(auth()->user()->profileUser->certification)) {
+                                                                    $certification = auth()->user()->profileUser->certification[0];
+                                                                    $time = (isset($certification->time)) ? substr($certification->time, 0, 7) : '';
+                                                                }
+                                                            @endphp
+                                                            <label for="firstName" class="form-label">Name</label>
+                                                            <input type="text" class="form-control" 
+                                                                name="certification[name]" 
+                                                                placeholder="Enter company name" 
+                                                                value="{{ isset($certification->name) ? $certification->name : '' }}"
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Organizer</label>
+                                                            <input type="text" class="form-control" 
+                                                                name="certification[organize_name]" 
+                                                                placeholder="Vị trí trong công ty"
+                                                                value="{{ isset($certification->organize_name) ? $certification->organize_name : '' }}" 
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Thời gian bắt đầu</label>
+                                                            <input type="month" class="form-control" 
+                                                                name="certification[time]" 
+                                                                value="{{ isset($certification->time) ? $time : '' }}" 
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
+                                                        <div class="mb-3">
+                                                            <label for="file_certificate" class="form-label">File đính kèm</label>
+                                                            <input class="form-control" type="file" id="file_certificate" name="file-certification-file"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
+                                                        <div class="mb-3">
+                                                            <label for="firstName" class="form-label">Mô tả dự án</label>
+                                                            <textarea class="form-control text-start" 
+                                                                name="certification[description]"
+                                                                rows="3"> {{ isset($certification->description) ? $certification->description : '' }}</textarea>
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    
                                                     <!--end col-->
                                                 </div>
                                                 <!--end row-->

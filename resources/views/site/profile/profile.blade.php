@@ -209,6 +209,38 @@
                                         @endforeach
                                     @endisset
                                 </div>
+
+                                <div class="candidate-education-details mt-4">
+                                    <h6 class="fs-18 fw-bold mb-0">Certificate</h6>
+                                    @isset($detail->certification)
+                                        @foreach ($detail->certification as $certification)
+                                        <div class="candidate-education-content mt-4 d-flex">
+                                            <div class="circle flex-shrink-0 bg-soft-primary">{{ $certification->first_keyword_name }}</div>
+                                            <div class="ms-4">
+                                                <h6 class="fs-16 mb-1">{{ $certification->name }}</h6>
+                                                <p class="mb-2 text-muted">{{ $certification->organize_name }} - {{ ($certification->fm_time) ?? '' }}</p>
+                                                <p class="text-muted">
+                                                    {{ ($certification->description) ?? '' }}    
+                                                </p>
+                                                @php
+                                                    if (strpos($certification->file, "jpg" || strpos($certification->file, "png")) !== false) { @endphp
+                                                        <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank"><img style="height: 300px;" src='{{ asset('storage/uploads/' . $certification->file) }}' alt="" class="img-fluid rounded-3"></a>
+                                                @php } else { @endphp
+                                                        <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank">Link Certificate</a>
+                                                @php
+                                                       
+                                                   }
+                                                @endphp
+                                                <div>
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+                                        @endforeach
+                                    @endisset
+                                </div>
                                 
                             </div><!--end card-body-->
                         </div><!--end card-->

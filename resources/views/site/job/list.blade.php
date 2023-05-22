@@ -321,6 +321,12 @@
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="radio" value='Partime' name="type" id="type7" {{ isset(request()->type) && 'FullTime' == request()->type ? 'checked' : ''}}>
+                                                    <label class="form-check-label ms-2 text-muted" for="type7">
+                                                        Part Time
+                                                    </label>
+                                                </div>
+                                                <div class="form-check mt-2">
                                                     <input class="form-check-input" type="radio" value='FullTime' name="type" id="type2" {{ isset(request()->type) && 'FullTime' == request()->type ? 'checked' : ''}}>
                                                     <label class="form-check-label ms-2 text-muted" for="type2">
                                                         Full Time

@@ -252,7 +252,7 @@
                     </div><!--end col-->
                 </div><!--end row-->
 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-12 mt-5">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination job-pagination mb-0 justify-content-center">
@@ -273,7 +273,7 @@
                             </ul>
                         </nav>
                     </div><!--end col-->
-                </div><!-- end row -->
+                </div><!-- end row --> --}}
 
             </div><!--end container-->
         </section>

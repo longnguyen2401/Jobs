@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 trait MonthTrait
 {  
@@ -15,12 +14,16 @@ trait MonthTrait
     */
     public function handleTime(array $data): array
     {
-        if ($data['start']) {
+        if (isset($data['start'])) {
             $data['start'] = Carbon::create($data['start'])->startOfMonth();
         }
 
-        if ($data['end']) {
+        if (isset($data['end'])) {
             $data['end'] = Carbon::create($data['end'])->lastOfMonth();
+        }
+
+        if (isset($data['time'])) {
+            $data['time'] = Carbon::create($data['time'])->lastOfMonth();
         }
         
         return $data;

@@ -15,7 +15,7 @@ trait FilesTrait
     public function checkUploadFile(Request $request): Request
     {
         $arrayKeyValue = [];
-        
+
         foreach ($request->all() as $key => $value) 
         {
             if (preg_match('/^file-*/', $key) && $request->hasFile($key)) 
@@ -24,6 +24,7 @@ trait FilesTrait
                 $file        = $request->file($key);
 
                 if (is_array($file)) {
+            
                     // $fileName    = $file[0]->getClientOriginalName();
                     $arrStr = '';
                     foreach ($file as $item) {
@@ -31,6 +32,7 @@ trait FilesTrait
                         $item->storeAs('public/uploads', $fileName);
                         $arrStr = $arrStr . '|' . $fileName;
                     }
+               
                     $arrStr = substr($arrStr, 1, strlen($arrStr));
                     $arrayKeyValue = array_merge($arrayKeyValue, $this->handleKeyValue($request, $key, $arrStr));
                     
@@ -55,9 +57,14 @@ trait FilesTrait
     public function handleKeyValue(Request $request, String $key, String $fileName): array
     {
         $keyArr = explode("-", $key);
-        $key    = $keyArr[1];
-        $data   = array($key => $fileName);
-
+        if (count($keyArr) < 3) {
+            $key    = $keyArr[1];
+            $data   = array($key => $fileName);   
+        } else {
+            $data = [];
+            $item = array($keyArr[2] => $fileName);    
+            $request[$keyArr[1]] = array_merge($item, $request[$keyArr[1]]);
+        }
         return $data;
     }
 

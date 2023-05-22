@@ -81,7 +81,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="year" class="form-label">Year</label>
-                                        <input type="number" class="form-control" 
+                                        <input type="number" class="form-control" value="0"
                                             name="year" 
                                             placeholder="Number of year" 
                                         />
@@ -143,6 +143,12 @@
                                                         <input class="form-check-input" type="checkbox" value='Freelance' name="type[]" id="type1">
                                                         <label class="form-check-label ms-2 text-muted" for="type1">
                                                             Freelance
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mt-2">
+                                                        <input class="form-check-input" type="checkbox" value='Partime' name="type[]" id="type7">
+                                                        <label class="form-check-label ms-2 text-muted" for="type7">
+                                                            Part Time
                                                         </label>
                                                     </div>
                                                     <div class="form-check mt-2">

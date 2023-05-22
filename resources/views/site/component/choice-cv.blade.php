@@ -26,7 +26,7 @@
                                                 <h5 class="modal-title primary" id="staticBackdropLabel">Choice CV For Job</h5>
                                             </div>
                                             <div class="position-absolute end-0 top-0 p-3">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <a href="/"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="inputGroupFile01">Resume Upload</label>
