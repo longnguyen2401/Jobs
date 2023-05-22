@@ -223,13 +223,14 @@
                                                     {{ ($certification->description) ?? '' }}    
                                                 </p>
                                                 @php
-                                                    if (strpos($certification->file, "jpg" || strpos($certification->file, "png")) !== false) { @endphp
+                                                    if (strstr($certification->file, '.png') || strstr($certification->file, '.jpg')) { @endphp
+                                                        
                                                         <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank"><img style="height: 300px;" src='{{ asset('storage/uploads/' . $certification->file) }}' alt="" class="img-fluid rounded-3"></a>
-                                                @php } else { @endphp
+                                                    @php } else { @endphp
                                                         <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank">Link Certificate</a>
-                                                @php
-                                                       
-                                                   }
+                                                    @php
+                                                        
+                                                    }
                                                 @endphp
                                                 <div>
                                                     

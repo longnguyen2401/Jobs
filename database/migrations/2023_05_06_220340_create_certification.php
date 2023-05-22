@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('certifications', function (Blueprint $table) {
             $table->id();
             $table->integer('profile_user_id');
-            $table->string('name');
-            $table->string('organize_name');
-            $table->date('time');
-            $table->string('description');
-            $table->string('file');
+            $table->string('name')->nullable();
+            $table->string('organize_name')->nullable();
+            $table->date('time')->nullable();
+            $table->string('description')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
