@@ -87,7 +87,7 @@ abstract class BaseFilter
                 }
             }
         }
-        return $q->paginate(2);
+        return $q->paginate(4);
     }
 
     /**

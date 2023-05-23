@@ -64,9 +64,11 @@ class Job extends Model
     public function getRelatedAttribute() {
         $skills = $this->arr_skill;
         $q = $this->where('skill', '!=', '');
-        foreach ($skills as $skill) {
-            $q->orWhere('skill', 'like', '%' . $skill . '%');
-        }
+        $q->where(function ($query) use ($skills) {
+            foreach ($skills as $skill) {
+                $query->orWhere('skill', 'like', '%' . $skill);
+            }
+        });
         return $q->get();
     }
 }

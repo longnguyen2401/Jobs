@@ -6,7 +6,7 @@ use App\Models\Education;
 use App\Models\Experiences;
 use App\Models\Project;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Request;
 use App\Repositories\Site\SiteBaseRepository;
 use App\Traits\MonthTrait;
 use Illuminate\Contracts\View\View;
@@ -48,7 +48,8 @@ class SiteProfileUserRepository extends SiteBaseRepository
     public function index(): View
     { 
         $list = self::$_model->paginate(2);
-        return view('site.profile.list', compact('list'));
+        $jobs = Request::getCountRequest();
+        return view('site.profile.list', compact('list', 'jobs'));
     }
 
     /**
@@ -60,7 +61,8 @@ class SiteProfileUserRepository extends SiteBaseRepository
     public function detail(int $id)
     { 
         $detail = self::$_model->where('user_id', $id)->first();
-        return view('site.profile.profile', compact('detail'));
+        $jobs = Request::getCountRequest();
+        return view('site.profile.profile', compact('detail', 'jobs'));
     }
 
     /**
@@ -69,7 +71,7 @@ class SiteProfileUserRepository extends SiteBaseRepository
      * @param int|null $id
      * @return 
      */
-    public function save(Request $request)
+    public function save($request)
     { 
         try {
           
@@ -108,7 +110,8 @@ class SiteProfileUserRepository extends SiteBaseRepository
             dd($e);
             DB::rollBack();
             $message = 'Đã xảy ra lỗi khi cập nhật thông tin! hãy thử lại.';
-            return view('site.profile.user', compact('message'));
+            $jobs = Request::getCountRequest();
+            return view('site.profile.user', compact('message', 'jobs'));
         }
         
     }

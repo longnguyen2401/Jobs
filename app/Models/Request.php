@@ -26,4 +26,16 @@ class Request extends Model
     {
         return $this->belongsTo('App\Models\Job');
     }
+
+    public static function getCountRequest() {
+        if (isset(auth()->user()->company)) {
+            $jobs = auth()->user()->company->jobs;
+            $countAll = self::whereIn('job_id', $jobs->pluck('id'))->count();
+            return array(
+                'countAll' => $countAll,
+                'items' => $jobs
+            );
+        }
+        
+    }
 }

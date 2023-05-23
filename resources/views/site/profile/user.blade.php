@@ -270,16 +270,20 @@
                                                         <p class="text-muted">
                                                             {{ ($certification->description) ?? '' }}    
                                                         </p>
-                                                        @php
-                                                            if (strstr($certification->file, '.png') || strstr($certification->file, '.jpg')) { @endphp
-                                                                
-                                                                <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank"><img style="height: 300px;" src='{{ asset('storage/uploads/' . $certification->file) }}' alt="" class="img-fluid rounded-3"></a>
-                                                            @php } else { @endphp
-                                                                <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank">Link Certificate</a>
+                                                        @if ($certification->file != '') 
+                                                            
+                                                        
                                                             @php
-                                                               
-                                                           }
-                                                        @endphp
+                                                                if (strstr($certification->file, '.png') || strstr($certification->file, '.jpg')) { @endphp
+                                                                    
+                                                                    <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank"><img style="height: 300px;" src='{{ asset('storage/uploads/' . $certification->file) }}' alt="" class="img-fluid rounded-3"></a>
+                                                                @php } else { @endphp
+                                                                    <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank">Link Certificate</a>
+                                                                @php
+                                                                
+                                                            }
+                                                            @endphp
+                                                        @endif
                                                         <div>
                                                             
                                                         </div>
@@ -375,11 +379,15 @@
                                                         <div class="mb-3">
                                                             <label for="exampleFormControlTextarea1"
                                                                 class="form-label">Introduce Yourself</label>
-                                                            <textarea class="form-control text-start" id="exampleFormControlTextarea1"
+                                                            <textarea class="form-control text-start textarea-count" id="exampleFormControlTextarea1"
                                                                 name="about"
-                                                                rows="5"> 
-                                                                {{ (auth()->user()->profileUser->about) ?? 'I\'m a Full-stack developer ...' }}    
-                                                            </textarea>
+                                                                rows="5"
+                                                                maxlength="1000">{{ (auth()->user()->profileUser->about) ?? 'I\'m a Full-stack developer ...' }}</textarea>
+                                                            <div class="mt-1">    
+                                                                <small>
+                                                                    Length of text <span class="textarea-display"></span>
+                                                                </small> 
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -523,12 +531,15 @@
                                                     <div class="col-lg-12">
                                                         <div class="mb-3">
                                                             <label for="firstName" class="form-label">Vai trò</label>
-                                                            <textarea class="form-control text-start" 
+                                                            <textarea class="form-control text-start textarea-count" 
                                                                 name="experience[description]"
-                                                                rows="3"> 
-                                                                {{ isset($experience->description) ? $experience->description : '' }}
-                                                            </textarea>
-                                                            
+                                                                rows="3"
+                                                                maxlength="1000">{{ isset($experience->description) ? $experience->description : '' }}</textarea>
+                                                            <div class="mt-1">    
+                                                                <small>
+                                                                    Length of text <span class="textarea-display"></span>
+                                                                </small> 
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -590,12 +601,15 @@
                                                     <div class="col-lg-12">
                                                         <div class="mb-3">
                                                             <label for="firstName" class="form-label">Mô tả dự án</label>
-                                                            <textarea class="form-control text-start" 
+                                                            <textarea class="form-control text-start textarea-count" 
                                                                 name="project[description]"
-                                                                rows="3"> 
-                                                                {{ isset($project->description) ? $project->description : '' }}
-                                                            </textarea>
-                                                            
+                                                                rows="3"
+                                                                maxlength="1000">{{ isset($project->description) ? $project->description : '' }}</textarea>
+                                                            <div class="mt-1">    
+                                                                <small>
+                                                                    Length of text <span class="textarea-display"></span>
+                                                                </small> 
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -618,7 +632,7 @@
                                                             <label for="firstName" class="form-label">Name</label>
                                                             <input type="text" class="form-control" 
                                                                 name="certification[name]" 
-                                                                placeholder="Enter company name" 
+                                                                placeholder="Chứng chỉ" 
                                                                 value="{{ isset($certification->name) ? $certification->name : '' }}"
                                                             />
                                                         </div>
@@ -629,7 +643,7 @@
                                                             <label for="firstName" class="form-label">Organizer</label>
                                                             <input type="text" class="form-control" 
                                                                 name="certification[organize_name]" 
-                                                                placeholder="Vị trí trong công ty"
+                                                                placeholder="Tên tổ chức"
                                                                 value="{{ isset($certification->organize_name) ? $certification->organize_name : '' }}" 
                                                             />
                                                         </div>
@@ -654,10 +668,14 @@
                                                     <div class="col-lg-12">
                                                         <div class="mb-3">
                                                             <label for="firstName" class="form-label">Mô tả dự án</label>
-                                                            <textarea class="form-control text-start" 
+                                                            <textarea class="form-control text-start textarea-count" maxlength="1000"
                                                                 name="certification[description]"
-                                                                rows="3"> {{ isset($certification->description) ? $certification->description : '' }}</textarea>
-                                                            
+                                                                rows="3">{{ isset($certification->description) ? $certification->description : '' }}</textarea>
+                                                            <div class="mt-1">    
+                                                                <small>
+                                                                    Length of text <span class="textarea-display"></span>
+                                                                </small> 
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -752,5 +770,8 @@
 @section('js')
     <script>
         var choicesSkill = new Choices("#input-skill");
+
+        
+        
     </script>
 @endsection

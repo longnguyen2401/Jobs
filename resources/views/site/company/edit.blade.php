@@ -76,7 +76,7 @@
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Tax Identification Number</label>
-                                        <input type="number" class="form-control" 
+                                        <input type="number" class="form-control" oninput="validateNumberInput(this)"
                                             name="tax" 
                                             placeholder="Enter tax" 
                                             value="{{ (auth()->user()->company->tax) ?? '' }}" 
@@ -149,12 +149,13 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <textarea class="form-control" id="about-text-area" name="about"
-                                            rows="5">
-                                            @php
-                                            echo auth()->user()->company->about;
-                                        @endphp
-                                        </textarea>
+                                        <textarea class="form-control textarea-count" id="about-text-area" name="about"
+                                            rows="5" maxlength="1000">@php echo auth()->user()->company->about; @endphp</textarea>
+                                        <div class="mt-1">    
+                                            <small>
+                                                Length of text <span class="textarea-display"></span>
+                                            </small> 
+                                        </div>
                                     </div>
                                 </div>
                                 <!--end col-->
@@ -252,5 +253,9 @@
             .catch( error => {
                 console.error( error );
             } );
+
+        var choicesSkill = new Choices("#input-skill");
+
+        
     </script>
 @endsection

@@ -305,7 +305,12 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Enter your message"></textarea>
+                            <textarea class="form-control textarea-count" maxlength="1000" id="exampleFormControlTextarea1" rows="4" placeholder="Enter your message"></textarea>
+                            <div class="mt-1">    
+                                <small>
+                                    Length of text <span class="textarea-display"></span>
+                                </small> 
+                            </div>
                         </div>
                         <div class="mb-4">
                             <label class="form-label" for="inputGroupFile01">Resume Upload</label>

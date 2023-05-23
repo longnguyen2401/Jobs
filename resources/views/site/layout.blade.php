@@ -74,15 +74,57 @@
                                     </li>
                                 @endif
                             @endif
-                            
-                            
-                            
                         </ul><!--end navbar-nav-->
                     </div>
+
+
                     <!--end navabar-collapse-->
                     <ul class="header-menu list-inline d-flex align-items-center mb-0">
-                        <li class="list-inline-item dropdown me-4">
-                        </li>
+                        @if (auth()->check() && auth()->user()->type == config('constants.USER.TYPE.COMPANY'))
+                            <li class="list-inline-item dropdown me-4">
+                                <a href="javascript:void(0)" class="header-item noti-icon position-relative" id="notification" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-bell fs-22"></i>
+                                    <div class="count position-absolute">{{ $jobs['countAll'] }}</div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end p-0" aria-labelledby="notification">
+                                    <div class="notification-header border-bottom bg-light">
+                                        <h6 class="mb-1"> Notification </h6>
+                                        <p class="text-muted fs-13 mb-0">You have {{ $jobs['countAll'] }} CV Apply</p>
+                                    </div>
+                                    <div class="notification-wrapper dropdown-scroll">
+                                        @foreach ($jobs['items'] as $item)
+                                        <a href="/company/applys/{{ $item->id }}" class="text-dark notification-item d-block active">
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar-xs bg-primary text-white rounded-circle text-center">
+                                                        {{-- <i class="uil uil-user-check"></i> --}}
+                                                        {{ $item->number_request }}
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mt-0 mb-1 fs-14">{{ $item->title }}</h6>
+                                                    <p class="mb-0 fs-12 text-muted">
+                                                        {{-- <a href="javascript:void(0)"> --}}
+                                                            <i class="mdi mdi-clock-outline"></i> <span>
+                                                            Show list CV</span>
+                                                        {{-- </a> --}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        @endforeach
+                                        
+                                    
+                                    </div><!--end notification-wrapper-->
+                                    {{-- <div class="notification-footer border-top text-center">
+                                        <a class="primary-link fs-13" href="javascript:void(0)">
+                                            <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span>
+                                        </a>
+                                    </div> --}}
+                                </div>
+                            </li>
+                        @endif
                         <li class="list-inline-item dropdown">
                             @if (auth()->check())
                                 <a href="javascript:void(0)" class="header-item" id="userdropdown" data-bs-toggle="dropdown"

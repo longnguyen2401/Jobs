@@ -58,7 +58,7 @@
                                         <h6 class="fs-18 mb-1 mt-4">
                                             {{ auth()->user()->company->name }}
                                         </h6>
-                                        <p class="text-muted mt-3 mb-0">{{ auth()->user()->company->slogan }}</p>
+                                        <p class="text-muted mt-2 mb-0">{{ auth()->user()->company->slogan }}</p>
 
                                         <div>
                                             <div class="mt-2">
@@ -300,7 +300,7 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="name" class="form-label">Tax Identification Number</label>
-                                            <input type="number" class="form-control" 
+                                            <input type="number" class="form-control" oninput="validateNumberInput(this)"
                                                 name="tax" 
                                                 placeholder="Enter tax" 
                                                 value="{{ (auth()->user()->company->tax) ?? '' }}" 
@@ -373,8 +373,13 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <textarea class="form-control" id="about-text-area" name="about"
-                                                rows="5">About of company</textarea>
+                                            <textarea class="form-control textarea-count" id="about-text-area" name="about"
+                                                rows="5" maxlength="1000">About of company</textarea>
+                                            <div class="mt-1">    
+                                                <small>
+                                                    Length of text <span class="textarea-display"></span>
+                                                </small> 
+                                            </div>
                                         </div>
                                     </div>
                                     <!--end col-->

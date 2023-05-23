@@ -3,8 +3,7 @@ namespace App\Repositories\Site;
 
 use App\Models\User;
 use App\Repositories\Site\SiteBaseRepository;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use App\Models\Request;
 
 class SiteRequestRepository extends SiteBaseRepository
 {
@@ -18,39 +17,39 @@ class SiteRequestRepository extends SiteBaseRepository
     /**
      * Get list job
      * 
-     * @param Request $request
-     * @param Request $id
+     * @param $request
+     * @param $id
      * @return 
      */
-    public function list(Request $request, int $id)
+    public function list($request, int $id)
     {
         $data = self::$_model::where('user_id', $id)->get();
-        
-        return view('site.profile.request', compact('data'));
+        $jobs = Request::getCountRequest();
+        return view('site.profile.request', compact('data', 'jobs'));
     }
 
     /**
      * Get list job
      * 
-     * @param Request $request
+     * @param $request
      * @return mixed
      */
-    public function apply(Request $request): mixed
+    public function apply($request): mixed
     {
         $user = User::where('id', (int)auth()->user()->id)->first();
         if (auth()->user()->type != config('constants.USER.TYPE.USER')) {
             return '';
         }
-
+        $jobs = Request::getCountRequest();
         if (empty($user->ProfileUser)) {
             session()->put('message-profile-detail', 'Nhập thông tin của bạn để apply !');
             $job_id = $request->job_id;
-            return view('site.profile.user', compact('job_id'));
+            return view('site.profile.user', compact('job_id', 'jobs'));
         }
 
         if (empty($request->file_cv)) {
             $job_id = $request->job_id;
-            return view('site.component.choice-cv', compact('job_id'));
+            return view('site.component.choice-cv', compact('job_id', 'jobs'));
         }
 
         $request = $this->handleFileCV($request);
@@ -69,10 +68,10 @@ class SiteRequestRepository extends SiteBaseRepository
     /**
      * handleFileCV
      * 
-     * @param Request $request
-     * @return request $request
+     * @param $request
+     * @return $request
      */
-    public function handleFileCV(Request $request): request
+    public function handleFileCV($request)
     {
         if ($request->is_use_profile_cv) {
             $request->file_cv = auth()->user()->profileUser->cv;

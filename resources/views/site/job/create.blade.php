@@ -72,7 +72,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="quantity" class="form-label">Quantity</label>
-                                        <input type="number" class="form-control" 
+                                        <input type="number" class="form-control" oninput="validateNumberInput(this)"
                                             name="quantity" 
                                             placeholder="Quantity" 
                                         />
@@ -81,7 +81,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="year" class="form-label">Year</label>
-                                        <input type="number" class="form-control" value="0"
+                                        <input type="number" class="form-control" value="0" oninput="validateNumberInput(this)"
                                             name="year" 
                                             placeholder="Number of year" 
                                         />
@@ -196,7 +196,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="min_salary" class="form-label">Min Salary</label>
-                                        <input type="number" class="form-control" 
+                                        <input type="number" class="form-control" oninput="validateNumberInput(this)"
                                             name="min_salary" 
                                             placeholder="Enter $" 
                                         />
@@ -206,7 +206,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="max_salary" class="form-label">Max Salary</label>
-                                        <input type="number" class="form-control" 
+                                        <input type="number" class="form-control" oninput="validateNumberInput(this)"
                                             name="max_salary" 
                                             placeholder="Enter $" 
                                         />
@@ -216,7 +216,7 @@
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label for="skill" class="form-label">Skill Requirement</label>
-                                        <input type="text" class="form-control" 
+                                        <input type="text" class="form-control" id="input-skill"
                                             name="skill" 
                                             placeholder="Enter by format PHP|Laravel|..." 
                                         />
@@ -225,8 +225,8 @@
                                 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="expired_date" class="form-label" >Thời gian bắt đầu làm việc</label>
-                                        <input type="date" class="form-control" min='{{ $now }}'
+                                        <label for="from_date" class="form-label" >Thời gian bắt đầu làm việc</label>
+                                        <input type="date" class="form-control" min='{{ $now }}' id="from_date"
                                             name="from_date" 
                                         />
                                     </div>
@@ -234,7 +234,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="expired_date" class="form-label" >Expired date</label>
-                                        <input type="date" class="form-control" min='{{ $now }}'
+                                        <input type="date" class="form-control" min='{{ $now }}' onchange="updateMinDate()" id="expired_date"
                                             name="expired_date" 
                                         />
                                     </div>
@@ -248,8 +248,13 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <textarea class="form-control" id="about-job-textarea" name="description"
-                                            rows="5">About of job</textarea>
+                                        <textarea class="form-control textarea-count" id="about-job-textarea" name="description"
+                                            rows="5" maxlength="1000">About of job</textarea>
+                                        <div class="mt-1">    
+                                            <small>
+                                                Length of text <span class="textarea-display"></span>
+                                            </small> 
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -286,9 +291,10 @@
         padding: 2em 1.5em;
     }
 </style>
+<link rel="stylesheet" href="{{ asset('assets/site/css/choices.min.css') }}">
 @endsection
-
 @section('after-main-js')
+    <script src="{{ asset('assets/site/js/choices.min.js') }}"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
@@ -299,6 +305,19 @@
             .catch( error => {
                 console.error( error );
             } );
+
+        var choicesSkill = new Choices("#input-skill");
+
+        function updateMinDate() {
+            // const fromDateInput = document.getElementById('from_date');
+            // const expiredDateInput = document.getElementById('expired_date');
+                
+            // // Handle min date value
+            // const fromDate = new Date(expiredDateInput.value);
+            // fromDate.setDate(fromDate.getDate() + 1);
+            // const minDate = fromDate.toISOString().split('T')[0];
+            // fromDateInput.min = minDate;
+        }
     </script>
 @endsection
 

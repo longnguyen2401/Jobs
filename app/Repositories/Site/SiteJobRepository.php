@@ -3,9 +3,10 @@ namespace App\Repositories\Site;
 
 use App\Repositories\Site\SiteBaseRepository;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\Request;
+
 class SiteJobRepository extends SiteBaseRepository
 {
     /**
@@ -23,6 +24,15 @@ class SiteJobRepository extends SiteBaseRepository
     protected $viewFilter = 'site.job.list';
 
     /**
+     * Key use mutiple value 
+     * 
+     * @var 
+     */
+    protected $mutipleValueKey = [
+        'skill'
+    ];
+    
+    /**
      * Get list job
      * 
      * @param int|null $id
@@ -31,7 +41,8 @@ class SiteJobRepository extends SiteBaseRepository
     public function index(): View
     { 
         $list = self::$_model->where('active', 1)->paginate(2);
-        return view('site.job.list', compact('list'));
+        $jobs = Request::getCountRequest();
+        return view('site.job.list', compact('list', 'jobs'));
     }
 
     /**
@@ -43,7 +54,8 @@ class SiteJobRepository extends SiteBaseRepository
     public function detail(int $id)
     { 
         $detail = self::$_model->find($id);
-        return view('site.job.detail', compact('detail'));
+        $jobs = Request::getCountRequest();
+        return view('site.job.detail', compact('detail', 'jobs'));
     }
 
     /**
@@ -54,24 +66,26 @@ class SiteJobRepository extends SiteBaseRepository
      */
     public function create(): View
     { 
+        $jobs = Request::getCountRequest();
         if (auth()->user()->type === config('constants.USER.TYPE.USER')) {
-            return view('/');
+            return view('/', compact('jobs'));
         }
         $dt = Carbon::now('Asia/Ho_Chi_Minh');
         $now = $dt->toDateString();
-        return view('site.job.create', compact('now'));
+        return view('site.job.create', compact('now', 'jobs'));
     }
 
     /**
      * 
      * 
-     * @param Request $request
+     * @param 
      * @return 
      */
-    public function save(Request $request)
+    public function save($request)
     { 
         try {
             DB::beginTransaction();
+            $request = $this->mutipleValueByString($request);
 
             $profileAttr = self::$_model->getFillable();
             $profileData = $request->only($profileAttr);

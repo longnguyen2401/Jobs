@@ -4,7 +4,7 @@ namespace App\Repositories\Site;
 
 use App\Traits\FilesTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
+use App\Models\Request;
 
 abstract class SiteBaseRepository
 {
@@ -106,10 +106,11 @@ abstract class SiteBaseRepository
      * 
      * @return 
      */
-    public function filter(Request $request)
+    public function filter($request)
     {
         $list = $this->filter->main(self::$_model, $request);
-        return view($this->viewFilter, compact('list'));
+        $jobs = Request::getCountRequest();
+        return view($this->viewFilter, compact('list', 'jobs'));
     }
 
     /**
@@ -117,7 +118,7 @@ abstract class SiteBaseRepository
      * 
      * @return 
      */
-    public function mutipleValueByString(Request $request)
+    public function mutipleValueByString($request)
     {
         foreach ($this->mutipleValueKey as $key => $value) {
             $request[$value] = str_replace(',', '|', $request->{$value});

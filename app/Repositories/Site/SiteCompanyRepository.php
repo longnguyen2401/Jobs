@@ -4,9 +4,8 @@ namespace App\Repositories\Site;
 use App\Models\Job;
 use App\Repositories\Site\SiteBaseRepository;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Request;
 class SiteCompanyRepository extends SiteBaseRepository
 {
     /**
@@ -34,7 +33,8 @@ class SiteCompanyRepository extends SiteBaseRepository
     public function detail(int $id)
     { 
         $detail = self::$_model->find($id);
-        return view('site.company.detail', compact('detail'));
+        $jobs = Request::getCountRequest();
+        return view('site.company.detail', compact('detail', 'jobs'));
     }
     
     /**
@@ -48,8 +48,8 @@ class SiteCompanyRepository extends SiteBaseRepository
         if (auth()->user()->type != config('constants.USER.TYPE.COMPANY')) {
             return redirect('/');    
         }
-
-        return view('site.company.profile');
+        $jobs = Request::getCountRequest();
+        return view('site.company.profile', compact('jobs'));
     }
 
     /**
@@ -63,23 +63,22 @@ class SiteCompanyRepository extends SiteBaseRepository
         if (auth()->user()->type != config('constants.USER.TYPE.COMPANY')) {
             return redirect('/');    
         }
-        // dd($id);
         $job = Job::find($id);
 
         if (!$job) {
             return redirect('/');
         }
-
-        return view('site.company.request', compact('job'));
+        $jobs = Request::getCountRequest();
+        return view('site.company.request', compact('job', 'jobs'));
     }
 
     /**
      * 
      * 
-     * @param Request $request
+     * @param $request
      * @return 
      */
-    public function save(Request $request)
+    public function save($request)
     { 
         $request->validate([
             'tax' => ['required'],

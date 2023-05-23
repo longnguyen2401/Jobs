@@ -443,7 +443,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="messageControlTextarea" class="form-label">Message</label>
-                            <textarea class="form-control" id="messageControlTextarea" rows="4" placeholder="Enter your message"></textarea>
+                            <textarea class="form-control" id="messageControlTextarea" rows="4" maxlength="1000" placeholder="Enter your message"></textarea>
                         </div>
                         <div class="mb-4">
                             <label class="form-label" for="inputGroupFile01">Resume Upload</label>
