@@ -80,7 +80,7 @@
 
                     <!--end navabar-collapse-->
                     <ul class="header-menu list-inline d-flex align-items-center mb-0">
-                        @if (auth()->check() && auth()->user()->type == config('constants.USER.TYPE.COMPANY'))
+                        @if (auth()->check() && auth()->user()->type == config('constants.USER.TYPE.COMPANY') && isset($jobs))
                             <li class="list-inline-item dropdown me-4">
                                 <a href="javascript:void(0)" class="header-item noti-icon position-relative" id="notification" data-bs-toggle="dropdown"
                                     aria-expanded="false">
