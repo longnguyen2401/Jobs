@@ -47,7 +47,7 @@ class SiteProfileUserRepository extends SiteBaseRepository
      */
     public function index(): View
     { 
-        $list = self::$_model->paginate(2);
+        $list = self::$_model->paginate(4);
         $jobs = Request::getCountRequest();
         return view('site.profile.list', compact('list', 'jobs'));
     }

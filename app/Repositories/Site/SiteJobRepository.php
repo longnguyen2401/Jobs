@@ -40,7 +40,7 @@ class SiteJobRepository extends SiteBaseRepository
      */
     public function index(): View
     { 
-        $list = self::$_model->where('active', 1)->paginate(2);
+        $list = self::$_model->where('active', 1)->paginate(4);
         $jobs = Request::getCountRequest();
         return view('site.job.list', compact('list', 'jobs'));
     }
