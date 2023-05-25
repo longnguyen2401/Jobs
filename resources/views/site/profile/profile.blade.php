@@ -162,7 +162,7 @@
                                                     {{ ($education->major) ?? '' }}
                                                 </h6>
                                                 <p class="mb-2 text-muted">
-                                                    {{ ($education->school_name) ?? '' }} - ({{ ($education->start) ?? '' }} - {{ ($education->end) ?? '' }})
+                                                    {{ ($education->school_name) ?? '' }} - ({{ ($education->fm_start) ?? '' }} - {{ ($education->fm_end) ?? '' }})
                                                 </p>
                                                 <p class="text-muted">
                                                     {{ ($education->description) ?? '' }}

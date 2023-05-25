@@ -27,11 +27,11 @@ class Project extends Model
     }
 
     public function getFmStartAttribute() {
-        return Carbon::create($this->start)->format('M Y');
+        return $this->start ? Carbon::create($this->start)->format('M Y') : '';
     }
 
     public function getFmEndAttribute() {
-        return Carbon::create($this->end)->format('M Y');
+        return $this->end ? Carbon::create($this->end)->format('M Y') : 'To now';
     }
 
     public function getFirstKeywordNameAttribute() {
