@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('organize_name')->nullable();
             $table->date('time')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('file')->nullable();
             $table->timestamps();
         });

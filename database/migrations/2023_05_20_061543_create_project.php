@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('position')->nullable();
             $table->date('start')->nullable();
             $table->string('end')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
