@@ -373,11 +373,11 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <textarea class="form-control textarea-count" id="about-text-area" name="about"
+                                            <textarea class="form-control" id="about-text-area" name="about"
                                                 rows="5" maxlength="1000">About of company</textarea>
                                             <div class="mt-1">    
                                                 <small>
-                                                    Length of text <span class="textarea-display"></span>
+                                                    Length of text <span class="about-textarea-display"></span>
                                                 </small> 
                                             </div>
                                         </div>
@@ -466,14 +466,31 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
         var choicesSkill = new Choices("#input-skill");
+        var aboutTextareaDisplay = document.querySelector( '.about-textarea-display' )
+        var aboutTextArea = document.querySelector( '#about-text-area' );
+        
+        let textLength = aboutTextArea.value.length;
+        aboutTextareaDisplay.textContent = textLength + '/' + aboutTextArea.maxLength;
 
+        if (textLength > aboutTextArea.maxLength) {
+            aboutTextArea.value = aboutTextArea.value.slice(0, aboutTextArea.maxLength);
+        }
+                    
         ClassicEditor
-            .create( document.querySelector( '#about-text-area' ) )
+            .create( aboutTextArea )
             .then( editor => {
-                console.log( editor );
+                editor.editing.view.document.on( 'keyup', ( evt, data ) => {
+                    let textLength = data.domTarget.innerText.length;
+                    // console.log(aboutTextArea);
+                    aboutTextareaDisplay.textContent = textLength + '/' + aboutTextArea.maxLength;
+
+                    if (textLength > aboutTextArea.maxLength) {
+                        aboutTextArea.value = aboutTextArea.value.slice(0, aboutTextArea.maxLength);
+                    }
+                });
             } )
             .catch( error => {
                 console.error( error );
-            } );
+            } );    
     </script>
 @endsection

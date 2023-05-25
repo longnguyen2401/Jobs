@@ -94,6 +94,9 @@ class SiteProfileUserRepository extends SiteBaseRepository
             Project::updateOrCreate(['profile_user_id' => $profile->id], $project);
 
             $certificate = $this->handleTime($request->certification); 
+            if (empty($certificate['time'])) {
+                $certificate['time'] = null;
+            }
             Certification::updateOrCreate(['profile_user_id' => $profile->id], $certificate);
            
             User::updateOrCreate(['id' => $request->user_id], $request->user);

@@ -70,7 +70,7 @@
                                                 <i class="uil uil-clipboard-notes"></i>
                                                 <select class="form-select" data-trigger name="level" id="level" aria-label="Default select example">
                                                     <option value="">Level</option>
-                                                    <option value="Intern" {{ isset(request()->level) && 'Intern' == request()->level ? 'selected' : ''}}>Fresher</option>
+                                                    <option value="Intern" {{ isset(request()->level) && 'Intern' == request()->level ? 'selected' : ''}}>Intern</option>
                                                     <option value="Fresher" {{ isset(request()->level) && 'Fresher' == request()->level ? 'selected' : ''}}>Fresher</option>
                                                     <option value="Junior" {{ isset(request()->level) && "Junior" == request()->level ? 'selected' : ''}}>Junior</option>
                                                     <option value="Middle" {{ isset(request()->level) && "Middle" == request()->level ? 'selected' : ''}} >Middle</option>

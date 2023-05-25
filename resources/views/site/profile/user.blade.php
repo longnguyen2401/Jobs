@@ -266,7 +266,7 @@
                                                     <div class="circle flex-shrink-0 bg-soft-primary">{{ $certification->first_keyword_name }}</div>
                                                     <div class="ms-4">
                                                         <h6 class="fs-16 mb-1">{{ $certification->name }}</h6>
-                                                        <p class="mb-2 text-muted">{{ $certification->organize_name }} - {{ ($certification->fm_time) ?? '' }}</p>
+                                                        <p class="mb-2 text-muted">{{ $certification->organize_name }} {{ ($certification->fm_time) ? '- ' . $certification->fm_time : '' }}</p>
                                                         <p class="text-muted">
                                                             {{ ($certification->description) ?? '' }}    
                                                         </p>
@@ -274,7 +274,7 @@
                                                             
                                                         
                                                             @php
-                                                                if (strstr($certification->file, '.png') || strstr($certification->file, '.jpg')) { @endphp
+                                                                if (strstr($certification->file, '.png') || strstr($certification->file, '.jpg') || strstr($certification->file, '.jpeg')) { @endphp
                                                                     
                                                                     <a href="{{ asset('storage/uploads/' . $certification->file) }}" target="_blank"><img style="height: 300px;" src='{{ asset('storage/uploads/' . $certification->file) }}' alt="" class="img-fluid rounded-3"></a>
                                                                 @php } else { @endphp

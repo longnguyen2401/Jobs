@@ -248,11 +248,11 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <textarea class="form-control textarea-count" id="about-job-textarea" name="description"
+                                        <textarea class="form-control " id="about-job-textarea" onkeyup="textAreaKeyup()" name="description"
                                             rows="5" maxlength="1000">About of job</textarea>
                                         <div class="mt-1">    
                                             <small>
-                                                Length of text <span class="textarea-display"></span>
+                                                Length of text <span class="about-textarea-display"></span>
                                             </small> 
                                         </div>
                                     </div>
@@ -297,10 +297,27 @@
     <script src="{{ asset('assets/site/js/choices.min.js') }}"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script>
+        var aboutTextareaDisplay = document.querySelector( '.about-textarea-display' )
+        var aboutTextArea = document.querySelector( '#about-job-textarea' );
+        
+        let textLength = aboutTextArea.value.length;
+        aboutTextareaDisplay.textContent = textLength + '/' + aboutTextArea.maxLength;
+
+        if (textLength > aboutTextArea.maxLength) {
+            aboutTextArea.value = aboutTextArea.value.slice(0, aboutTextArea.maxLength);
+        }
+
         ClassicEditor
-            .create( document.querySelector( '#about-job-textarea' ) )
+            .create( aboutTextArea )
             .then( editor => {
-                console.log( editor );
+                editor.editing.view.document.on( 'keyup', ( evt, data ) => {
+                    let textLength = data.domTarget.innerText.length;
+                    aboutTextareaDisplay.textContent = textLength + '/' + aboutTextArea.maxLength;
+
+                    if (textLength > aboutTextArea.maxLength) {
+                        aboutTextArea.value = aboutTextArea.value.slice(0, aboutTextArea.maxLength);
+                    }
+                });
             } )
             .catch( error => {
                 console.error( error );
@@ -318,6 +335,7 @@
             // const minDate = fromDate.toISOString().split('T')[0];
             // fromDateInput.min = minDate;
         }
+       
     </script>
 @endsection
 

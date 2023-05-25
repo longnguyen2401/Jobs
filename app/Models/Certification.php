@@ -27,7 +27,7 @@ class Certification extends Model
     }
 
     public function getFmTimeAttribute() {
-        return Carbon::create($this->time)->format('M Y');
+        return isset($this->time) ? Carbon::create($this->time)->format('M Y') : '';
     }
 
     public function getFirstKeywordNameAttribute() {

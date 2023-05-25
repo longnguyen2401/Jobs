@@ -373,6 +373,18 @@
                                                 </div>
                                             </div>
                                         </li>
+
+                                        <li>
+                                            <div class="d-flex mt-4">
+                                                <i class="uil uil-history icon bg-soft-primary"></i>
+                                                <div class="ms-3">
+                                                    <h6 class="fs-14 mb-2">Thời Bian Bắt Đầu</h6>
+                                                    <p class="text-muted mb-0">
+                                                        {{ $detail->from_date }}    
+                                                    </p> 
+                                                </div>
+                                            </div>
+                                        </li>
                                     </ul>
                                     <div class="mt-3 text-center">
                                         @if ($detail->can_apply)
