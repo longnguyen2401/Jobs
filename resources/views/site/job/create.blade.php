@@ -112,6 +112,12 @@
                                                         </label>
                                                     </div>
                                                     <div class="form-check mt-2">
+                                                        <input class="form-check-input" type="checkbox" value='Middle' name="level[]" id="level6">
+                                                        <label class="form-check-label ms-2 text-muted" for="level6">
+                                                            Middle
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mt-2">
                                                         <input class="form-check-input" type="checkbox" value='Senior' name="level[]" id="level4">
                                                         <label class="form-check-label ms-2 text-muted" for="level4">
                                                             Senior
