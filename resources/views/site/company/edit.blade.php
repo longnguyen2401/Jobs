@@ -65,6 +65,19 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mb-3">
+                                        <label for="license" class="form-label">Giấy Phép Kinh Doanh</label>
+                                        <input type="file" class="form-control" name="file-license" />
+                                        <input type="hidden" class="form-control" name="license" 
+                                        value="{{ isset(auth()->user()->company) ? auth()->user()->company->license : '' }}"/>
+                                        @if($errors->has('license'))
+                                            <div class="alert bg-soft-danger mt-3">
+                                                {{ $errors->first('file-license') }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
                                         <label for="name" class="form-label">Company Name</label>
                                         <input type="text" class="form-control" 
                                             name="name" 

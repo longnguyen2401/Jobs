@@ -6,6 +6,8 @@ use App\Repositories\Site\SiteBaseRepository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use App\Models\Request;
+use Illuminate\Support\Facades\Http;
+
 class SiteCompanyRepository extends SiteBaseRepository
 {
     /**
@@ -80,18 +82,20 @@ class SiteCompanyRepository extends SiteBaseRepository
      */
     public function save($request)
     { 
-        $request->validate([
-            'tax' => ['required'],
-        ]);
-
         try {
             DB::beginTransaction();
             $request = $this->checkUploadFile($request);
             $request = $this->mutipleValueByString($request);
+            $request->validate([
+                'tax' => ['required'],
+                'license' => ['required'],
+            ]);
 
             $profileAttr = self::$_model->getFillable();
             $profileData = $request->only($profileAttr);
             
+            $profileData = $this->checkTax($profileData); 
+
             self::$_model::updateOrCreate(['user_id' => $request->user_id], $profileData);
             session()->put('message-profile-detail', 'Cập nhật thông tin thành công !');
 
@@ -104,4 +108,33 @@ class SiteCompanyRepository extends SiteBaseRepository
             return redirect('company/profile');
         }
     }
+
+    /**
+     * 
+     * 
+     * @param $request
+     * @return 
+     */
+    public function checkTax($profileData) {
+        $apiURL = 'https://api.vietqr.io/v2/business/' . $profileData['tax'];
+        $response = Http::get($apiURL);
+
+        if ($response->status() == 200) {
+            $data = json_decode($response->getBody(), true)['data'];
+            
+            if (isset($data) &&
+                $profileData['tax'] == $data['id'] &&
+                trim($profileData['name']) == trim($data['name'])
+            ) {
+                $profileData['active'] = config('constants.COMPANY.ACTIVE.ACTIVE');
+            } else {
+                $profileData['active'] = config('constants.COMPANY.ACTIVE.DEFAULT');
+            }
+        } else {
+            $profileData['active'] = config('constants.COMPANY.ACTIVE.DEFAULT');
+        }
+
+        return $profileData;
+    }
+    
 }

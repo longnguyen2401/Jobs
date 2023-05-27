@@ -48,6 +48,23 @@
          <!-- START CANDIDATE-DETAILS -->
         <section class="section">
             <div class="container">
+                @if(session()->has('message-company-detail'))
+                    <div class="row">
+                        <div class="w-100 alert  bg-soft-{{ (session()->has('message-class')) ? session()->get('message-class') : 'success' }} mb-4 text-center">
+                            {{-- <h5 class="mt-1 mb-1"> --}}
+                                
+                                    {{ session()->get('message-company-detail') }} 
+                                
+                            {{-- </h5> --}}
+                        </div>
+                    </div>
+
+                    @php
+                        session()->forget('message-company-detail');
+                        session()->forget('message-class');
+                    @endphp
+                @endisset
+                @if ($detail->active != config('constants.COMPANY.ACTIVE.BAN'))
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card side-bar">
@@ -107,8 +124,49 @@
                                     </li>
                                 </ul>
                                 <div class="mt-3">
-                                    <a href="mailto:{{ $detail->email }}" class="btn btn-danger btn-hover w-100"><i class="uil uil-envelope"></i> Contact</a>
+                                    <a href="mailto:{{ $detail->email }}" class="btn btn-primary btn-hover w-100"><i class="uil uil-envelope"></i> Contact</a>
                                 </div>
+                                @if (auth()->check() && auth()->user()->type == config('constants.USER.TYPE.COMPANY')) 
+                                <div class="mt-3">
+                                    <div class="text-start text-md-end">
+                                        <a href="#report" class="btn btn-danger btn-hover w-100" data-bs-toggle="modal" class="primary-link">Report</a>
+                                    </div>
+
+                                    <div class="modal fade" id="report" tabindex="-1" aria-labelledby="report" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <form method="POST" action="/report" >
+                                                    @csrf
+                                                    <input type="hidden" name="user_id" class="form-control" placeholder="Enter your name" name="title" value="{{ auth()->user()->id }}">
+                                                    <input type="hidden" name="company_id" class="form-control" placeholder="Enter your name" name="title" value="{{ $detail->id }}">
+                                                    <div class="modal-body p-5">
+                                                        <div class="text-center mb-4">
+                                                            <h5 class="modal-title" id="">Report This Company</h5>
+                                                        </div>
+                                                        <div class="position-absolute end-0 top-0 p-3">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Title</label>
+                                                            <input type="text" class="form-control" placeholder="Enter your name" name="title" value="Company giả mạo" readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Email Address</label>
+                                                            <input type="email" class="form-control" name="email" placeholder="Enter your email" value="{{ auth()->user()->email }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Description</label>
+                                                            <textarea class="form-control" id="" rows="4" name="description" placeholder="Enter your message"></textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary w-100">Send report</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div><!-- END APPLY MODAL -->
+                                    {{-- <button class="btn btn-danger btn-hover w-100">Report</button> --}}
+                                </div>
+                                @endif
                             </div>
 
                             {{-- <div class="card-body p-4 border-top">
@@ -280,58 +338,23 @@
                         </div><!--end card-->
                     </div><!--end col-->
                 </div><!--end row-->
+                @elseif ($detail->active == config('constants.COMPANY.ACTIVE.BAN'))
+                
+                    <div class="w-100 alert  bg-soft-danger mb-4 text-center">
+                        {{-- <h5 class="mt-1 mb-1"> --}}
+                            
+                                {{ $detail->name }} mạo danh đã bị ban
+                            
+                        {{-- </h5> --}}
+                    </div>
+                @endif  
             </div><!--end container-->
         </section>
         <!-- END CANDIDATE-DETAILS -->
 
         <!-- START APPLY MODAL -->
-        <div class="modal fade" id="applyNow" tabindex="-1" aria-labelledby="applyNow" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body p-5">
-                        <div class="text-center mb-4">
-                            <h5 class="modal-title" id="staticBackdropLabel">Apply For This Job</h5>
-                        </div>
-                        <div class="position-absolute end-0 top-0 p-3">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nameFormControlInput" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="nameFormControlInput" placeholder="Enter your name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="emailFormControlInput" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="emailFormControlInput" placeholder="Enter your email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                            <textarea class="form-control textarea-count" maxlength="1000" id="exampleFormControlTextarea1" rows="4" placeholder="Enter your message"></textarea>
-                            <div class="mt-1">    
-                                <small>
-                                    Length of text <span class="textarea-display"></span>
-                                </small> 
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label" for="inputGroupFile01">Resume Upload</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Send Application</button>
-                    </div>
-                </div>
-            </div>
-        </div><!-- END APPLY MODAL -->
 
     </div>
-    <!-- End Page-content -->
-
-    <!-- START SUBSCRIBE -->
-    
-    <!-- END SUBSCRIBE -->
-
-    <!-- START FOOTER -->
-    
-    <!--end back-to-top-->
 </div>
 @endsection
 
@@ -346,6 +369,12 @@
             width: 100%;
             height: 300px;
             object-fit: cover;
+        }
+
+        @media (min-width: 576px) {
+            .modal-dialog {
+                max-width: 700px !important;
+            }
         }
     </style>
 @endsection

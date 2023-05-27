@@ -367,15 +367,30 @@
                             </li>
 
                             <li>
-                                <a href="#company" data-bs-toggle="collapse">
+                                <a href="#profile-user" data-bs-toggle="collapse">
                                     <i class="mdi mdi-clipboard-outline"></i>
                                     <span> Profile User </span>
                                     <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="company">
+                                <div class="collapse" id="profile-user">
                                     <ul class="nav-second-level">
                                         <li>
                                             <a href="/admin/profileuser">Danh sách</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#report" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-clipboard-outline"></i>
+                                    <span> Reports </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="report">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="/admin/report">Danh sách</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -40,6 +40,9 @@
                                         $value = $item->{$key['key']};
                                     }
                                     
+                                    if (isset($key['const'])) {
+                                        $value = config($key['const'])[$value];
+                                    }
                                 @endphp
                                 
                                 @if (isset($key['component']))

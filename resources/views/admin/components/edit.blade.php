@@ -25,16 +25,31 @@
                                         } else {
                                             $value = $metadata['data']->{$form['key']};
                                         }
-                                        
+
+                                        if (isset($form['const'])) {
+                                            $value = config($form['const'])[$value];
+                                        }
                                     @endphp
                                     
                                     <div class="form-group row">
                                         <label class="col-md-2 col-form-label" for="simpleinput">{{ $form['name'] }}</label>
                                         <div class="col-md-10">
                                         @switch($form['component'])
+                                            @case('text')
+                                                <div style="
+                                                    height: 100%;
+                                                    display: flex;
+                                                    align-items: center;
+                                                ">
+                                                    <span for="" class="">{{ $value }}</span>
+                                                </div>
+                                                {{-- <input type="{{ $form['type'] }}" class="form-control" name="{{ $form['key'] }}" value="" {{ isset($form['read_only']) ? 'readonly' : '' }}> --}}
+                                                    
+                                                @break
+
                                             @case('input')
 
-                                                <input type="{{ $form['type'] }}" class="form-control" name="{{ $form['key'] }}" value="{{ $value }}">
+                                                <input type="{{ $form['type'] }}" class="form-control" name="{{ $form['key'] }}" value="{{ $value }}" {{ isset($form['read_only']) ? 'readonly' : '' }}>
                                                     
                                                 @break
 
@@ -72,9 +87,29 @@
                                                     </div>
                                                     
                                                 </div>
-                                                
+                                            @break
+                                            
+                                            @case('select')
+                                                <div class="row" >
+                                                    <div class="col-4">
+                                                        <select name="{{ $form['key'] }}" class="form-control">
+                                                            <option value="">Chọn</option>  
+                                                            @foreach ($form['options'] as $key => $item)
+                                                                <option value="{{ $key }}"
+                                                                    @if ($key == $metadata['data']->{$form['key']})
+                                                                        selected
+                                                                    @endif
+                                                                    >{{ $item }}
+                                                                </option> 
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                     
-                                                @break
+                                                </div>
+                                                
+
+                                            @break
+
                                         @endswitch
                                         </div>
                                     </div>  

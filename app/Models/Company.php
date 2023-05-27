@@ -14,6 +14,7 @@ class Company extends Model
     protected $fillable = [
         'user_id',
         'tax',
+        'license',
         'address',
         'email',
         'name',
@@ -40,6 +41,11 @@ class Company extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany('App\Models\Report');
     }
     
     public function getArrImageAttribute() {

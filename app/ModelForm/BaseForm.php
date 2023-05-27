@@ -25,6 +25,17 @@ abstract class BaseForm
      */
     public function getModelForm(): \Illuminate\Support\Collection
     {
-        return collect($this->form);
+        $form = $this->hookForm($this->form);
+        return collect($form);
+    }
+
+    /**
+     * Hook Form.
+     * 
+     * @return 
+     */
+    public function hookForm($form)
+    {
+        return $form;
     }
 }

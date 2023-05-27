@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\ProfileUserController;
 
@@ -14,7 +15,7 @@ use App\Http\Controllers\Site\SiteUserController;
 use App\Http\Controllers\Site\SiteRequestController;
 use App\Http\Controllers\Site\SiteProfileUserController;
 use App\Http\Controllers\Site\FilterController;
-
+use App\Http\Controllers\Site\SiteReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,6 +60,13 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::put('/profileuser/{id}',       [ProfileUserController::class, 'update'])->name('profileuser.update');
     Route::delete('/profileuser/{id}',    [ProfileUserController::class, 'destroy'])->name('profileuser.destroy');
     // Route::post('/company',               [CompanyController::class, 'store'])->name('company.store');
+
+    Route::get('/report',                [ReportController::class, 'index'])->name('report');
+    // Route::get('/report/create',         [ReportController::class, 'create'])->name('report.create');
+    Route::get('/report/edit/{id}',      [ReportController::class, 'show'])->name('report.edit');
+    Route::put('/report/{id}',           [ReportController::class, 'update'])->name('report.update');
+    Route::delete('/report/{id}',        [ReportController::class, 'destroy'])->name('report.destroy');
+    // Route::post('/report',               [ReportController::class, 'store'])->name('report.store');
 });
 
 // ** SITE **
@@ -94,10 +102,11 @@ Route::prefix('/')->name('site.')->group(function () {
     Route::post('apply',                  [SiteRequestController::class, 'apply'])->name('request.apply');
     Route::get('apply/list/{id}',         [SiteRequestController::class, 'list'])->name('request.list');
 
-   
     Route::get('password/change',         [AuthSiteController::class, 'changePassword'])->name('password.change');
     Route::post('password/save',          [AuthSiteController::class, 'savePassword'])->name('password.save');
     
+    Route::post('report',                  [SiteReportController::class, 'sendReport'])->name('report.send');
+
     Route::prefix('/')->middleware(['site.auth', 'if.type.default'])->group(function () {
         Route::get('/type/confirm',       [AuthSiteController::class, 'typeConfirm'])->name('type.confirm');
         Route::POST('/type/save',         [AuthSiteController::class, 'typeSave'])->name('type.save');
