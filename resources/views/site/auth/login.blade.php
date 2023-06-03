@@ -57,10 +57,14 @@
                                                     Đăng nhập bằng google
                                                 </a>
                                             </div>
-                                            <div class="mt-3">
+                                            <div class="mt-3 d-flex justify-content-between">
                                                 <a class="text-white " href="/register" style="text-decoration: underline;
                                                 text-align: end;">
-                                                    Bạn chưa có tài khoảng?
+                                                    Đăng ký tài khoản?
+                                                </a>
+                                                <a class="text-white " href="/password/forgot" style="text-decoration: underline;
+                                                text-align: end;">
+                                                    Quên mật khẩu
                                                 </a>
                                             </div>
                                         </form>

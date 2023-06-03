@@ -18,11 +18,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('google_id')->nullable();
             $table->string('email')->unique();
+            $table->string('phone')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('provider_id')->nullable();
             $table->string('avatar')->nullable();
             $table->integer('type')->default(0);
+            $table->integer('otp')->nullable();
+            $table->timestamp('expire_otp')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

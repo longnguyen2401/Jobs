@@ -79,6 +79,17 @@
                                     <li>
                                         <div class="d-flex align-items-center mt-4">
                                             <div class="icon bg-soft-primary flex-shrink-0">
+                                                <i class="uil uil-phone-alt"></i>
+                                            </div>
+                                            <div class="ms-3">
+                                                <h6 class="fs-14 mb-1">Điện thoại</h6>
+                                                <p class="text-muted mb-0">{{ $detail->user->phone }}</p> 
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="d-flex align-items-center mt-4">
+                                            <div class="icon bg-soft-primary flex-shrink-0">
                                                 <i class="uil uil-map-marker"></i>
                                             </div>
                                             <div class="ms-3">

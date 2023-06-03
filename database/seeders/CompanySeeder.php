@@ -27,6 +27,7 @@ class CompanySeeder extends Seeder
                 'people' => 100,
                 'logo' => 'bss-logo.png',
                 'slogan' => 'BSS Group - Globally trusted partner for full service ecommerce solutions',
+                'active' => 1,
             ],
             [
                 'user_id' => 2,
@@ -40,6 +41,7 @@ class CompanySeeder extends Seeder
                 'people' => 450,
                 'logo' => 'vitalify-asia-logo.jpg',
                 'slogan' => '',
+                'active' => 1,
             ]]);
     }
 }

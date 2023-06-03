@@ -142,6 +142,16 @@
                                             </li>
                                             <li>
                                                 <div class="d-flex">
+                                                    <label>Điện thoại</label>
+                                                    <div>
+                                                        <p class="text-muted mb-0">
+                                                            {{ (auth()->user()->phone) ?? '' }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="d-flex">
                                                     <label>Địa Chỉ</label>
                                                     <div>
                                                         <p class="text-muted mb-0">
@@ -337,7 +347,14 @@
                                                             <label for="name" class="form-label">Họ và tên</label>
                                                             <input type="text" class="form-control" name="user[name]" placeholder="Nhập họ và tên" value="{{ (auth()->user()->name) ?? '' }}" />
                                                         </div>
-                                                     </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
+                                                        <div class="mb-3">
+                                                            <label for="name" class="form-label">Điện Thoại</label>
+                                                            <input type="number" class="form-control" name="user[phone]" placeholder="Nhập họ và tên" value="{{ (auth()->user()->phone) ?? '' }}" />
+                                                        </div>
+                                                    </div>
                                                     
                                                     <div class="col-lg-12">
                                                         <div class="mb-3">

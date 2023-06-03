@@ -110,6 +110,14 @@
                                             </li>
                                             <li>
                                                 <div class="d-flex">
+                                                    <label class="text-dark">Phone</label>
+                                                    <div>
+                                                        <p class="text-muted text-break mb-0">{{ auth()->user()->phone }}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="d-flex">
                                                     <label class="text-dark">Website</label>
                                                     <div>
                                                         <p class="text-muted text-break mb-0">{{ auth()->user()->company->website }}</p>
@@ -127,7 +135,7 @@
                                             @isset(auth()->user()->company->license)
                                             <li>
                                                 <div class="d-flex">
-                                                    <label class="text-dark">Location</label>
+                                                    <label class="text-dark">License</label>
                                                     
                                                     <div class="profile-document-list d-flex justify-content-between w-100">
                                                         <div class="">
@@ -324,6 +332,14 @@
                                                 <label for="license" class="form-label">Giấy Phép Kinh Doanh</label>
                                                 <input type="file" class="form-control" name="file-license" 
                                                 value="{{ isset(auth()->user()->company) ? auth()->user()->company->license : '' }}"/>
+                                                {{-- @php
+                                                    dd($errors);
+                                                @endphp --}}
+                                                @if($errors->has('license'))
+                                                    <div class="alert bg-soft-danger mt-3">
+                                                        {{ $errors->first('license') }}
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-lg-12">

@@ -6,6 +6,7 @@ use App\Repositories\Site\SiteBaseRepository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use App\Models\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 class SiteCompanyRepository extends SiteBaseRepository
@@ -97,12 +98,17 @@ class SiteCompanyRepository extends SiteBaseRepository
             $profileData = $this->checkTax($profileData); 
 
             self::$_model::updateOrCreate(['user_id' => $request->user_id], $profileData);
+           
+            if (isset($request->user)) {
+                User::updateOrCreate(['id' => $request->user_id], $request->user);
+            }
+            
             session()->put('message-profile-detail', 'Cập nhật thông tin thành công !');
 
             DB::commit();
             return redirect('company/profile');
         } catch (\Exception $e) {
-            dd($e);
+            // dd($e);
             DB::rollBack();
             session()->put('message-profile-detail', 'Đã xảy ra lỗi vui lòng thử lại !');
             return redirect('company/profile');

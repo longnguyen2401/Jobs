@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
         'google_id',
     ];
@@ -61,5 +62,10 @@ class User extends Authenticatable
     public function report()
     {
         return $this->hasMany('App\Models\Report');
+    }
+
+    public static function findByPhone($phone)
+    {
+        return self::where('phone', $phone)->first();
     }
 }

@@ -104,8 +104,15 @@ Route::prefix('/')->name('site.')->group(function () {
 
     Route::get('password/change',         [AuthSiteController::class, 'changePassword'])->name('password.change');
     Route::post('password/save',          [AuthSiteController::class, 'savePassword'])->name('password.save');
+    Route::get('password/forgot',         [AuthSiteController::class, 'forgotPassword'])->name('password.forgot');
+    Route::post('password/forgot/check',  [AuthSiteController::class, 'checkPhoneNumber'])->name('password.forgot.check');
     
-    Route::post('report',                  [SiteReportController::class, 'sendReport'])->name('report.send');
+    Route::post('report',                 [SiteReportController::class, 'sendReport'])->name('report.send');
+
+    Route::post('sms/send',               [AuthSiteController::class, 'sendSMS'])->name('sms.send');
+
+    Route::get('otp/enter',               [AuthSiteController::class, 'viewOTP'])->name('otp.enter');
+    Route::post('otp/check',              [AuthSiteController::class, 'checkOTP'])->name('otp.check');
 
     Route::prefix('/')->middleware(['site.auth', 'if.type.default'])->group(function () {
         Route::get('/type/confirm',       [AuthSiteController::class, 'typeConfirm'])->name('type.confirm');
