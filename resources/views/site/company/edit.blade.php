@@ -91,7 +91,7 @@
                                         <label for="name" class="form-label">Điện Thoại</label>
                                         <input type="text" class="form-control" 
                                             name="user[phone]" 
-                                            placeholder="0900 *** ***" 
+                                            placeholder="0900******" 
                                             value="{{ (auth()->user()->phone) ?? '' }}" 
                                         />
                                     </div>

@@ -219,7 +219,7 @@ class AuthSiteController extends Controller
                 session()->put('user_otp', $user);
                 
                 // Send SMS
-                $phone = substr_replace($request->phone, '+', 0, 1);
+                $phone = $request->phone;
                 $messageOTP = 'Mã OTP của bạn là ' . $randomOTP . '. Mã tồn tại trong 60s hãy nhập mã này trước khi hết hạn!';
                 $this->sendSingleMessage($phone, $messageOTP);
 

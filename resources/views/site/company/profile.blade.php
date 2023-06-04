@@ -354,6 +354,16 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mb-3">
+                                                <label for="name" class="form-label">Điện Thoại</label>
+                                                <input type="text" class="form-control" 
+                                                    name="user[phone]" 
+                                                    placeholder="0900******" 
+                                                    value="{{ (auth()->user()->phone) ?? '' }}" 
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
                                                 <label for="name" class="form-label">Tax Identification Number</label>
                                                 <input type="number" class="form-control" oninput="validateNumberInput(this)"
                                                     name="tax" 
